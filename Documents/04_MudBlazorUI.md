@@ -47,10 +47,12 @@ builder.Services.AddMudServices();
 ![alt text](https://github.com/liuvt/IdentityBlazorCoreAPI/blob/main/Documents/Libraries/04_breakpoints.JPG)
 
 <h4>Hide by Break Points</h4>
+
+- Show size >= sm(<960px): August Center
+- Show size < sm(<960px): AugCenter
 ```html
-<!-- Show size >=sm -->
 <MudText Id="augNameCompany" Class="d-none d-sm-flex">August Center</MudText>
-<!-- Show size <sm -->
+
 <MudText Id="augNameCompany" Class="d-xs-flex d-sm-none">AugCenter</MudText>
 ```
 
