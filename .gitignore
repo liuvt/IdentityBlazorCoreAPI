@@ -1,3 +1,6 @@
 IdentityBlazorCoreAPI/bin
 IdentityBlazorCoreAPI/.config
 IdentityBlazorCoreAPI/obj
+bin
+.config
+obj
