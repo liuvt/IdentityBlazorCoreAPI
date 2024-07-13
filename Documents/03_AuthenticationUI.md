@@ -311,7 +311,10 @@ public class AppLoginBase : ComponentBase
 <h3>5 Result</h3>
 
 - Login.razor page
+
 ![alt text](https://github.com/liuvt/IdentityBlazorCoreAPI/blob/main/Documents/Libraries/03_login.JPG)
 
+
 - Check token in localhost after login: https://jwt.io/
+
 ![alt text](https://github.com/liuvt/IdentityBlazorCoreAPI/blob/main/Documents/Libraries/03_jwt.JPG)
