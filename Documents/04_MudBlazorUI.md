@@ -5,7 +5,7 @@
 
 <h3>1. Get start MudBlazor</h3>
 
-<h4>Enviroment</h4>
+<h4>Add Enviroment</h4>
 
 - dotnet add package MudBlazor
 
@@ -36,8 +36,8 @@ using MudBlazor.Services;
 builder.Services.AddMudServices();
 ```
 
-<h4>MainLayout</h4>
-<h4>NavMenu</h4>
+<h4>Add MainLayout</h4>
+<h4>Add NavMenu</h4>
 
 <h3>2. Tricks</h3>
 
@@ -49,9 +49,9 @@ builder.Services.AddMudServices();
 
 - Show size >= sm(<960px): August Center
 - Show size < sm(<960px): AugCenter
+
 ```html
 <MudText Id="augNameCompany" Class="d-none d-sm-flex">August Center</MudText>
-
 <MudText Id="augNameCompany" Class="d-xs-flex d-sm-none">AugCenter</MudText>
 ```
 
@@ -71,4 +71,39 @@ builder.Services.AddMudServices();
         B
     </MudItem>
 </MudGrid>
+```
+
+<h4>Scroll to top</h4>
+
+- Add below @body in MainLayout
+```html
+<MudScrollToTop>
+    <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.KeyboardArrowUp" />
+</MudScrollToTop>
+```
+
+<h4>MudSwipeArea</h4>
+
+- Mobile trược trên mọi điểm ở Body để show navigation menu
+```html
+<MudSwipeArea OnSwipeEnd="@OnSwipeEnd" Style="width: 100%;">
+    @body
+</MudSwipeArea>
+```
+
+```c#
+//Mobile swipper slider Drawer Navigation Menu
+protected void OnSwipeEnd(SwipeEventArgs e)
+{
+    if (e.SwipeDirection == SwipeDirection.LeftToRight && !_drawerOpen)
+    {
+        _drawerOpen = true;
+        StateHasChanged();
+    }
+    else if (e.SwipeDirection == SwipeDirection.RightToLeft && _drawerOpen)
+    {
+        _drawerOpen = false;
+        StateHasChanged();
+    }
+}
 ```
