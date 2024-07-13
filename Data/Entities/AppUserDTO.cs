@@ -7,8 +7,7 @@ public class AppUserDTO
     
 }
 
-//Auth Login
-//Using Regular Expression
+//Login: Using Regular Expression
 public class AppLoginDTO
 {
     [Required(ErrorMessage = "Email không được bỏ trống.")]
@@ -18,7 +17,7 @@ public class AppLoginDTO
     public string Password { get; set; } = string.Empty;
 }
 
-//Đăng ký
+//Register
 public partial class AppRegisterDTO
 {
     [Required(ErrorMessage = "Email không được bỏ trống.")]
@@ -52,7 +51,7 @@ public partial class AppRegisterDTO
     public string ConfirmPassword { get; set; } = string.Empty;
 }
 
-//Cập nhật user
+//Update
 public partial class AppEditDTO
 {
     [Required(ErrorMessage = "Họ không được bỏ trống.")]
@@ -74,7 +73,7 @@ public partial class AppEditDTO
     public string PhoneNumber { get; set; } = string.Empty;
 }
 
-//Cập nhật Mật khẩu
+//Change password
 public partial class AppChangePasswordDTO
 {
     [Required(ErrorMessage = "Không được bỏ trống.")]

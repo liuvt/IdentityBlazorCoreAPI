@@ -82,7 +82,7 @@ public class AuthController : ControllerBase
                 Console.WriteLine("User Id: " + User.FindFirstValue("ObjectIdentifier"));    //User Id
             */
             return Ok(await this.context.GetMe(this.User.FindFirstValue("ObjectIdentifier")
-                                                    ?? throw new Exception("Không tìm thấy User ID")));
+                                                    ?? throw new Exception("Not found User ID")));
         }
         catch (Exception ex)
         {
@@ -97,7 +97,7 @@ public class AuthController : ControllerBase
         try
         {
             var edit = await this.context.EditMe(models, this.User.FindFirstValue("ObjectIdentifier")
-                                                                ?? throw new Exception("Không tìm thấy User ID"));
+                                                                ?? throw new Exception("Not found User ID"));
             if (!edit.Succeeded) return BadRequest();
 
             return Ok(edit.Succeeded);
@@ -115,7 +115,7 @@ public class AuthController : ControllerBase
         try
         {
             var userId = this.User.FindFirstValue("ObjectIdentifier")
-                                                                ?? throw new Exception("Không tìm thấy User ID");
+                                                                ?? throw new Exception("Not found User ID");
             var resetpassword = await this.context.ChangeCurrentPassword(userId, changePassword.CurrentPassword, changePassword.Password);
             if (!resetpassword.Succeeded) return Unauthorized();
 

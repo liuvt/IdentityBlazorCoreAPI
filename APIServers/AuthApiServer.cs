@@ -53,7 +53,7 @@ public class AuthApiServer : IAuthApiServer
             var result = await this.loginManager.PasswordSignInAsync(
                                                 login.Email, login.Password, false, false);
             if (!result.Succeeded)
-                throw new Exception("Wrong Email và Password");
+                throw new Exception("Wrong Email or Password");
 
             return user;
         }

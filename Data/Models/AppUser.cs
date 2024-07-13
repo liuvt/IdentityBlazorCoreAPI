@@ -12,16 +12,15 @@ public class AppUser : IdentityUser
     public DateTime? BirthDay { get; set; }
 }
 
-//Set role tự động sau khi tạo user
+//Register: set default role for new User
 public partial class UserRoles
 {
-    //Set default is not exit
     public string RoleId { get; set; } = "5";
     public string RoleName { get; set; } = "Buyer";
     public bool IsSelected { get; set; } = true;
 }
 
-//Save in token
+//Login: create token 
 public partial class InfomationUserSaveInToken
 {
     public string userId { get; set; } = string.Empty;
