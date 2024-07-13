@@ -37,4 +37,8 @@
 - Hot run: _dotnet watch run /a_
 - Publish project: _dotnet publish -c Release --output ./Publish IdentityBlazorCoreAPI.csproj_
 
+<h3>Learn by Video</h3>
+
+Tutorial video learn about: https://www.youtube.com/playlist?list=PL1GjZTGoP_IldvgKuAipAUIok0T5Sgpu5
+
 ⭐️ From [Ruộng](https://github.com/liuvt)
