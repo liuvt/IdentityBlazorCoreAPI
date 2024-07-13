@@ -6,10 +6,10 @@
 <h3>Enviroment</h3>
  
 ````
-> dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer 
-> dotnet add package Swashbuckle.AspNetCore
-> dotnet add package System.Security.Cryptography.Primitives
-> dotnet add package Swashbuckle.AspNetCore.Filters
+- dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer 
+- dotnet add package Swashbuckle.AspNetCore
+- dotnet add package System.Security.Cryptography.Primitives
+- dotnet add package Swashbuckle.AspNetCore.Filters
 ````
 
 <h3>Create files</h3>
@@ -90,7 +90,7 @@ app.MapControllers();
 
 <h3>Run</h3>
 
-- Swagger UI:http://[Your LocalHost:Port]/swagger/index.html
+- Swagger UI: http://[Your LocalHost:Port]/swagger/index.html
 - Index page: http://[Your LocalHost:Port]
 
 <h3>Result</h3>
