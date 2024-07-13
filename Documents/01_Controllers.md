@@ -14,9 +14,9 @@
 
 <h3>Create files</h3>
 
-|Create **Controllers** folder
-|_Create **DemoController.cs** file
-|__Create **Method1Controller** method to HttpGet 
+- |Create **Controllers** folder
+- |_Create **DemoController.cs** file
+- |__Create **Method1Controller** method to HttpGet 
 
 ````
 [ApiController]
