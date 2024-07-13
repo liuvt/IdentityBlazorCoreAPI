@@ -1,8 +1,8 @@
-<h1> IdentityBlazorCoreAPI v1 👋 </h1>
+<h1>IdentityBlazorCoreAPI v1 👋</h1>
 
 - This's website with Identity Blazor Server Core API with Client and Server in a hosting/localhost
 
-<h3>Enviroment</h3>
+<h3>1. Enviroment</h3>
 
 - Languages: C#, HTML, CSS, JavaScript
 - Back-End: Blazor Server Core API, EF, LinQ
@@ -10,7 +10,7 @@
 - Databases: MySQL
 - Other: Firebase, Drive Google API
 
-<h3>Change configs in files</h3>
+<h3>2. Change configs in files</h3>
 
 - IdentityBlazorCoreAPIDbContext.cs: connenction string to MySQL
 - Program.cs: connenction string to MySQL
@@ -28,7 +28,7 @@
 - Git add fiile changes: _git add *_
 - Git commit: _git commit -m "comment"_
 
-<h3>Command dotnet to run project step by step</h3>
+<h3>3. Command dotnet to run project step by step</h3>
 
 - Clone project: _git clone https://github.com/liuvt/IdentityBlazorCoreAPI.git_
 - Build: _dotnet build_

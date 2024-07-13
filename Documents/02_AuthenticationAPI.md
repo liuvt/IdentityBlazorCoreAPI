@@ -1,12 +1,13 @@
-<h1> Authentication API - IdentityBlazorCoreAPI v1 👋 </h1>
+<h1>Authentication API - IdentityBlazorCoreAPI v1 👋</h1>
 
+- Enviroment nuget package
 - Identity connection to mySQL server
 - Ef migration with IdentityUser
-- Create dependency injection (DI): AuthServer class, IAuthServer interface
-- Create AuthController
+- Create dependency injection (DI): AuthServer class, IAuthServer interface, AuthController
 - Authen and Author from API Server
+- Result
 
-<h3>Enviroment</h3>
+<h3>1. Enviroment</h3>
  
 ````
 //Identity
@@ -30,7 +31,7 @@
 - dotnet add Pomelo.EntityFrameworkCore.MySql
 ````
 
-<h3>Identity connection to mySQL server</h3>
+<h3>2. Identity connection to mySQL server</h3>
 
 <h4> Create model use identity: AppUser.cs</h4>
 
@@ -123,7 +124,7 @@ builder.Services.AddDbContext<IdentityBlazorCoreAPIDbContext>(
 
 ```
 
-<h3>Ef migration</h3>
+<h3>3. Ef migration</h3>
 
 - Create mirations: dotnet ef migrations add Init -o Data/Migrations
 - Create database: dotnet ef database update
@@ -203,7 +204,7 @@ protected override async void OnModelCreating(ModelBuilder modelBuilder)
 }
 ```
 
-<h3>Create dependency injection (DI): AuthApiServer class, IAuthApiServer interface</h3>
+<h3>4. Create dependency injection (DI): AuthServer class, IAuthServer interface, AuthController</h3>
 
 - Create interface: IAuthApiServer.cs
 ```c#
@@ -284,7 +285,7 @@ public class AuthController : ControllerBase
 }
 ```
 
-<h3>Authen and Author from API Server</h3>
+<h3>5. Authen and Author from API Server</h3>
 
 - We need to add Authentication to use Identity. Create infomation in: ```appsettings.json``` file
 ```c#
@@ -331,7 +332,9 @@ app.UseAuthentication();
 app.UseAuthorization();
 ```
 
-- Create method in: AuthApiServer.cs class
+<h4>Create method in: AuthApiServer.cs class</h4>
+
+- Using UserManager and LoginManager to Login
 ```c#
     //Login app
     public async Task<AppUser> Login(AppLoginDTO login)
@@ -354,7 +357,10 @@ app.UseAuthorization();
             throw new Exception(ex.Message);
         }
     }
+```
 
+- Create a Token JWT
+```c#
     //Create token when login
     public async Task<string> CreateToken(InfomationUserSaveInToken user)
     {
@@ -389,7 +395,9 @@ app.UseAuthorization();
             throw new Exception(ex.Message);
         }
     }
-
+```
+- Get RoleName to Claim in Token
+```c#
     //Get role to create token
     public async Task<string> GetRoleName(AppUser user)
     {
@@ -407,18 +415,19 @@ app.UseAuthorization();
 
 ```
 
-- Create method in: IAuthApiServer.cs interface
+<h4>Create method in: IAuthApiServer.cs interface</h4>
+
 ```c#
     //Login
     Task<AppUser> Login(AppLoginDTO login);
     //Create Token
     Task<string> CreateToken(InfomationUserSaveInToken user);
-
     //Get Role name
     Task<string> GetRoleName(AppUser user);
 ```
 
-- Create method in: AuthController.cs file
+<h4>Create method in: AuthController.cs file</h4>
+
 ```c#
     [HttpPost("Login")]
     public async Task<ActionResult<string>> Login(AppLoginDTO appLogin)
@@ -455,7 +464,8 @@ app.UseAuthorization();
     }
 ```
 
-- Create Model in AppUser.cs and AppUserDTO.cs
+<h4>Create Model in AppUser.cs and AppUserDTO.cs</h4>
+
 ```c#
 //Login: create token
 public partial class InfomationUserSaveInToken
@@ -475,7 +485,7 @@ public class AppLoginDTO
 }
 ```
 
-<h3>Result</h3>
+<h3>6. Result</h3>
 
 - We use data seeding in Ef migration 
 ![alt text](https://github.com/liuvt/IdentityBlazorCoreAPI/blob/main/Documents/Libraries/02_paramater.JPG)

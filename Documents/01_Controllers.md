@@ -1,9 +1,12 @@
-<h1> Controller - IdentityBlazorCoreAPI v1 👋 </h1>
+<h1>Controller - IdentityBlazorCoreAPI v1 👋</h1>
 
+- Enviroment nuget package
 - Create Controllers for Blazor Server
-- Add SwaggerUI for Blazor Server
+- Register controller in Program.cs files
+- Run
+- Result
 
-<h3>Enviroment</h3>
+<h3>1. Enviroment</h3>
  
 ````
 - dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer 
@@ -12,7 +15,7 @@
 - dotnet add package Swashbuckle.AspNetCore.Filters
 ````
 
-<h3>Create files</h3>
+<h3>2. Create Controllers for Blazor Server</h3>
 
 - |Create **Controllers** folder
 - |_Create **DemoController.cs** file
@@ -43,7 +46,7 @@ public class DemoControllers : ControllerBase
 }
 ```
 
-<h3>Register controller in Program.cs files</h3>
+<h3>3. Register controller in Program.cs files</h3>
 
 ```c#
 // API: Add controllers
@@ -86,11 +89,11 @@ if (app.Environment.IsDevelopment())
 app.MapControllers();
 ```
 
-<h3>Run</h3>
+<h3>4. Run</h3>
 
 - Swagger UI: http://[Your LocalHost:Port]/swagger/index.html
 - Index page: http://[Your LocalHost:Port]
 
-<h3>Result</h3>
+<h3>5. Result</h3>
 
 ![alt text](https://github.com/liuvt/IdentityBlazorCoreAPI/blob/main/Documents/Libraries/01_result.JPG)
