@@ -18,7 +18,7 @@
 - |_Create **DemoController.cs** file
 - |__Create **Method1Controller** method to HttpGet 
 
-````
+```c#
 [ApiController]
 [Route("api/[controller]")]
 public class DemoControllers : ControllerBase
@@ -41,16 +41,15 @@ public class DemoControllers : ControllerBase
     }
 
 }
-````
+```
 
 <h3>Register controller in Program.cs files</h3>
 
-````
-...
+```c#
 // API: Add controllers
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-...
+
 // API: Add SwaggerGen
 builder.Services.AddSwaggerGen(
     opt =>
@@ -70,7 +69,7 @@ builder.Services.AddSwaggerGen(
         opt.OperationFilter<SecurityRequirementsOperationFilter>();
     }
 );
-...
+
 // API: Add run Swagger UI: http://[YourLocalHost]/swagger/index.html
 if (app.Environment.IsDevelopment())
 {
@@ -82,11 +81,10 @@ if (app.Environment.IsDevelopment())
         }
     );
 }
-...
+
 // API: Add controllers
 app.MapControllers();
-...
-````
+```
 
 <h3>Run</h3>
 
