@@ -43,7 +43,6 @@ builder.Services.AddMudServices();
 
 <h4>Break Points</h4>
 
-- MudBlazor use our own implementation of the original specification from Material design.
 ![alt text](https://github.com/liuvt/IdentityBlazorCoreAPI/blob/main/Documents/Libraries/04_breakpoints.JPG)
 
 <h4>Hide by Break Points</h4>
