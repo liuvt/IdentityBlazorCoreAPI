@@ -35,8 +35,10 @@
     <!--Layout MudBlazor-->
     <PackageReference Include="MudBlazor" Version="6.20.0" />
 
-    <!--Localhost for Blazor to save Token or etc..-->
-    <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
+    <!--Use Iconfiguration to appsettings.json..-->
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
 
     <!--Swagger for API-->
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />

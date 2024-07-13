@@ -2,15 +2,19 @@ using IdentityBlazorCoreAPI.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace IdentityBlazorCoreAPI.Data;
 
 public partial class IdentityBlazorCoreAPIDbContext : IdentityDbContext<AppUser>
 {
+    //Get config in appsetting
+    private readonly IConfiguration configuration;
     //Default constructor
-    public IdentityBlazorCoreAPIDbContext()
+    public IdentityBlazorCoreAPIDbContext(IConfiguration _configuration)
     {
-
+        this.configuration = _configuration;
     }
 
     //Constructor with parameter
@@ -22,13 +26,11 @@ public partial class IdentityBlazorCoreAPIDbContext : IdentityDbContext<AppUser>
     //Config to connection mysql server
     protected override async void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        //This my Connection string to mysql server
-        string myLocalhost = "server=localhost;user=root;password=123456aA@;Port=3306;database=BManagerDatabase";
-        string hosting = "server=sql.freedb.tech;user=freedb_adminmanagerbusiness;password=DRjd#vxe&%y5TRZ;Port=3306;database=freedb_managerbusinessdatabase";
-
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseMySql(myLocalhost, ServerVersion.Parse("8.0.31-mysql"));
+            optionsBuilder.UseMySql(configuration.GetConnectionString("LocalDB") ?? 
+                                throw new InvalidOperationException("Can't found [Secret Key] in appsettings.json !"), 
+                                ServerVersion.Parse("8.0.31-mysql"));
         }
     }
 
