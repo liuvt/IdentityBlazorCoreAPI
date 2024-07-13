@@ -95,4 +95,4 @@ app.MapControllers();
 
 <h3>Result</h3>
 
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/liuvt/IdentityBlazorCoreAPI/blob/main/Documents/Libraries/01_result.JPG)
