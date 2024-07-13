@@ -59,9 +59,9 @@ builder.Services.AddMudServices();
 <h4>Size auto for MudGrid by Break Points</h4>
 
 - Max size: 12
-- Mobile: A,B not inline
-- Tablet: A = B
-- Desktop: A > B
+- Mobile: one screen, A top and B bottom
+- Tablet: A and B split the screen
+- Desktop: A is greater than B
 
 ```html
 <MudGrid>
