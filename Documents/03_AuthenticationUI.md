@@ -244,7 +244,7 @@ builder.Services.AddCascadingAuthenticationState();
 </CascadingAuthenticationState>
 ```
 
-<h4>4. Use to razor page</h4>
+<h4>Use to razor page</h4>
 
 - The first way
 ```c#
