@@ -11,15 +11,15 @@ public partial class IdentityBlazorCoreAPIDbContext : IdentityDbContext<AppUser>
     //Get config in appsetting
     private readonly IConfiguration configuration;
     //Default constructor
-    public IdentityBlazorCoreAPIDbContext(IConfiguration _configuration)
+    public IdentityBlazorCoreAPIDbContext()
     {
-        this.configuration = _configuration;
     }
 
     //Constructor with parameter
-    public IdentityBlazorCoreAPIDbContext(DbContextOptions<IdentityBlazorCoreAPIDbContext> options) : base(options)
+    public IdentityBlazorCoreAPIDbContext(DbContextOptions<IdentityBlazorCoreAPIDbContext> options, IConfiguration _configuration) : base(options)
     {
         //Models - Etityties
+        this.configuration = _configuration;
     }
 
     //Config to connection mysql server
@@ -27,9 +27,11 @@ public partial class IdentityBlazorCoreAPIDbContext : IdentityDbContext<AppUser>
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseMySql(configuration.GetConnectionString("LocalDB") ?? 
+            optionsBuilder.UseMySql(
+                configuration["ConnectionStrings:LocalDB"] ?? 
                                 throw new InvalidOperationException("Can't found [Secret Key] in appsettings.json !"), 
-                                ServerVersion.Parse("8.0.31-mysql"));
+                ServerVersion.Parse("8.0.31-mysql")
+            );
         }
     }
 
