@@ -1,0 +1,36 @@
+﻿@inherits MainLayoutBase
+
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar>
+        <MudIconButton 
+            Icon="@Icons.Material.Filled.Menu" 
+            Color="Color.Inherit" 
+            Edge="Edge.Start" 
+            OnClick="@((e) => DrawerToggle(Anchor.Start))" />
+        Business Manager
+        <!--BreakPoint-->
+        <MudSpacer />
+        <!-- Infomation Option MudMenu-->
+        <LayoutProfiles />
+    </MudAppBar>
+    <MudDrawer @bind-Open="@_drawerOpen"Width="@width" Height="@height" Anchor="@anchor" Elevation="1" Variant="@DrawerVariant.Temporary">
+        <NavMenu/>
+    </MudDrawer>
+    <MudMainContent>
+        <!--    
+            x-16: margin-left & margin-right or padding-left & padding-right.
+            mb-auto: margin-bottom auto
+            mt-10: margin-top
+        -->
+        <MudContainer Class="x-16 mb-auto mt-3" MaxWidth="MaxWidth.Medium">
+            @Body
+            <MudScrollToTop>
+                <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.KeyboardArrowUp" />
+            </MudScrollToTop>
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>

@@ -1,0 +1,133 @@
+@page "/faq"
+
+<PageTitle>Câu hỏi thường gặp - AugCenter</PageTitle>
+
+<MudMainContent Class="augBackground augReFont">
+    <MudContainer MaxWidth="MaxWidth.Large" Class="augImg pa-5">
+        <MudGrid Class="d-flex align-center">
+            <MudItem sm="12" md="3">
+                <img width="100%" height="100%" src="imgs/photos/faq1.png" />
+            </MudItem>
+            <MudItem sm="12" md="9">
+                <MudItem>
+                    <MudText Typo="Typo.h4" Color="Color.Primary">Câu hỏi thường gặp</MudText>
+                </MudItem>
+                <MudItem>
+                    <MudText Class="pa-3">Nếu như cảm thấy câu hỏi của bạn, đang chơi trốn tìm? Đừng lo lắng!
+                        Tận hưởng cảm giác phấn khích bằng cách khám phá danh sách Câu hỏi thường gặp của chúng tôi
+                        hoặc thoải mái gửi email cho chúng tôi theo địa chỉ <MudText Inline="true" Typo="Typo.h5"
+                            Color="Color.Primary">mrdurk6@gmail.com</MudText> để biết tất cả các câu trả lời mà bạn săn
+                        lùng! Hãy cùng nhau giải mã những điều bí ẩn nhé!
+                    </MudText>
+                </MudItem>
+            </MudItem>
+        </MudGrid>
+        <MudItem xs="12" Class="pa-2">
+            <MudTabs Elevation="0" Rounded="true" AlwaysShowScrollButtons="true" ApplyEffectsToContainer="true">
+                <MudTabPanel Class="buttonOrMudTabs" Text="Tổng quan">
+                    <MudItem Class="px-10">
+                    <MudList T="string">
+                        <MudListSubheader>
+                            <MudText Typo="Typo.h5">Các câu hỏi tổng quan</MudText>
+                        </MudListSubheader>
+                        <MudPaper>
+                            <MudListItem Class="augCursorFAQ" Text="Ý tưởng ban đầu của Augcenter là gì?" Expanded>
+                                <NestedList>
+                                    <MudListItem>
+                                        <MudText>
+                                            Chúng tôi tạo ra mẫu dự án, dành cho các công ty khởi nghiệp sử dụng .NET 8
+                                            và Blazor,
+                                            để cung cấp cho các nhà phát triển mã mẫu thường dùng trong nhiều dự án .NET
+                                            với mức tùy chỉnh tối thiểu.
+                                        </MudText>
+                                    </MudListItem>
+                                    <MudListItem>
+                                        <MudText>
+                                            Các tính năng như xác thực, đa thuê bao, ủy quyền, ghi nhật ký, bản địa hóa
+                                            và các tính năng khác
+                                            thường xuất hiện trong hầu hết mọi dự án .NET, đòi hỏi nhiều thời gian và
+                                            nguồn lực.
+                                        </MudText>
+                                    </MudListItem>
+                                    <MudListItem>
+                                        <MudText>
+                                            Mục tiêu chính của chúng tôi, là tổng hợp tất cả mã lặp lại và các trang UI
+                                            chuẩn liên quan đến các tính năng
+                                            đã đề cập ở trên, thành một mẫu chuẩn duy nhất mà các nhà phát triển có thể
+                                            sử dụng nhiều lần
+                                            trong các dự án tương lai, giúp giảm đáng kể công sức và chi phí phát triển.
+                                        </MudText>
+                                    </MudListItem>
+                                </NestedList>
+                            </MudListItem>
+                        </MudPaper>
+                        <MudPaper Class="mt-3">
+                            <MudListItem Class="augCursorFAQ" Text="Augcenter có cung cấp mã nguồn không?">
+                                <NestedList>
+                                    <MudListItem>
+                                        <MudText>
+                                            Có. Chúng tôi cung cấp mãn nguồn đầy đủ. Khi chấp nhận thanh toán, chúng tôi
+                                            sẽ có sẵn để tải xuống ngay lập tức.
+                                            Ngoài ra, bạn sẽ nhận được email thông báo. Điều này cho phép bạn truy cập
+                                            mã nguồn đầy đủ, tạo điều kiện tùy chỉnh liền mạch để đáp ứng các yêu cầu cụ
+                                            thể của bạn.
+                                        </MudText>
+                                    </MudListItem>
+                                    <MudListItem>
+                                        <MudText>
+                                            Tuy nhiên, điều quan trọng cần lưu ý là giải pháp này kết hợp một số thư
+                                            viện miễn phí và mã nguồn mở,
+                                            chẳng hạn như thư viện MudBlazor, CDN, Swiper,.. và một số gói NuGet khác.
+                                            Để duy trì hiệu quả và tránh sự phức tạp không cần thiết, mã nguồn đầy đủ
+                                            cho các thư viện này
+                                            không được bao gồm trong giải pháp chính. Thay vào đó, bạn có thể lấy mã
+                                            nguồn của các gói này trực tiếp
+                                            từ kho lưu trữ tương ứng của chúng, nếu cần.
+                                        </MudText>
+                                    </MudListItem>
+                                </NestedList>
+                            </MudListItem>
+                        </MudPaper>
+                        <MudPaper Class="mt-3">
+                            <MudListItem Class="augCursorFAQ" Text="Augcenter có cung cấp phiên bản dùng thử không?">
+                                <NestedList>
+                                    <MudListItem>
+                                        <MudText>
+                                            Không. Bạn chỉ có thể mua kèm mã nguồn và không có phiên bản dùng thử.
+                                        </MudText>
+                                    </MudListItem>
+                                    <MudListItem>
+                                        <MudText>
+                                            Nếu bạn có bất kỳ câu hỏi nào khác, vui lòng gửi email cho chúng tôi theo
+                                            địa chỉ <MudText Inline="true" Typo="Typo.h5" Color="Color.Primary">
+                                                mrdurk6@gmail.com</MudText>
+                                        </MudText>
+                                    </MudListItem>
+                                </NestedList>
+                            </MudListItem>
+                        </MudPaper>
+                    </MudList>
+                    </MudItem>
+                </MudTabPanel>
+
+                <MudTabPanel Class="buttonOrMudTabs">
+                    <TabContent>
+                        Hỗ trợ kỹ thuật
+                    </TabContent>
+                    <ChildContent>
+                        Updating...
+                    </ChildContent>
+                </MudTabPanel>
+
+                <MudTabPanel Class="buttonOrMudTabs">
+                    <TabContent>
+                        Kế hoạch bảo trì
+                    </TabContent>
+                    <ChildContent>
+                        Updating...
+                    </ChildContent>
+                </MudTabPanel>
+            </MudTabs>
+        </MudItem>
+    </MudContainer>
+</MudMainContent>

@@ -1,0 +1,91 @@
+@page "/register"
+@inherits AppRegisterBase
+<PageTitle>Đăng ký tài khoản - AugCenter</PageTitle>
+
+<MudMainContent Class="augBackground augReFont">
+<MudContainer MaxWidth="MaxWidth.Medium" Class="augImg pa-5">
+    <AuthorizeView Context="authContext">
+    <Authorized>
+        <h3>You was Login</h3>
+        <p><a href="/">Click here! to back Home</a></p>
+    </Authorized>
+    <NotAuthorized>
+        <MudItem Class="d-flex justify-center">
+            <MudText Typo="Typo.h4" Color="Color.Primary">Đăng ký tài khoản</MudText>
+        </MudItem>
+        <EditForm Model="@models" OnValidSubmit="OnValidSubmit">
+        <DataAnnotationsValidator />
+            <MudGrid Class="pa-3">
+                <MudItem sm="12" md="7">
+                    <MudCard>
+                        <MudCardContent>
+                            <MudGrid>
+                                <MudItem xs="12">
+                                    <MudTextField Label="Email*" HelperText="Hỗ trợ Email: Gmail, Yahoo, Hotmail, Outlook,.."
+                                        @bind-Value="models.Email" For="@(() => models.Email)" Disabled="@_processing"/>
+                                </MudItem>
+                                <MudItem xs="12" sm="6">
+                                    <MudTextField Label="Họ*" HelperText="Họ tối thiểu 3 ký tự" @bind-Value="models.FirstName"
+                                        For="@(() => models.FirstName)" Disabled="@_processing"/>
+                                </MudItem>
+                                <MudItem xs="12" sm="6">
+                                    
+                                    <MudTextField Label="Tên*" HelperText="Tên tối thiểu 3 ký tự" @bind-Value="models.LastName"
+                                        Disabled="@_processing"
+                                        For="@(() => models.LastName)" />
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <MudSelect Dense="true" T="string" Label="Giới tính" Disabled="@_processing"
+                                        Variant="Variant.Text" @bind-Value="models.Gender" For="@(() => models.Gender)">
+                                            <MudSelectItem Value="@("Nam")" />
+                                            <MudSelectItem Value="@("Nữ")" />
+                                            <MudSelectItem Value="@("Khác")" />
+                                    </MudSelect>
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <MudTextField Label="Mật khẩu*" Class="mt-3"
+                                        Disabled="@_processing"
+                                        HelperText="Mật khẩu yêu cầu: 8-15 ký tự, 1 ký tự đặt biệt (!,#,$,%,..), 1 ký tự viết hoa, 1 chữ số. Ví dụ: Abc!1234"
+                                        @bind-Value="models.Password" For="@(() => models.Password)" InputType="@PasswordInput"
+                                        Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon"
+                                        OnAdornmentClick="@(() => ShowPasswordHandler())" AdornmentAriaLabel="Show Password" />
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <MudTextField Label="Nhập lại mật khẩu*" Class="mt-3"
+                                        Disabled="@_processing"
+                                        HelperText="Vui lòng nhập lại mật khẩu bên trên" @bind-Value="models.ConfirmPassword"
+                                        For="@(() => models.ConfirmPassword)" InputType="@PasswordInput"
+                                        Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon"
+                                        OnAdornmentClick="@(() => ShowPasswordHandler())" AdornmentAriaLabel="Show Password" />
+                                </MudItem>
+                            </MudGrid>
+                        </MudCardContent>
+                        <MudCardActions Class="d-flex justify-space-between pa-4">
+                            <MudIconButton Color="Color.Secondary" Icon="@Icons.Material.Filled.Autorenew"
+                                Disabled="@_processing" OnClick="@(() => CleanForm())"></MudIconButton>
+                            <MudButton StartIcon="@Icons.Material.Filled.AppRegistration" ButtonType="ButtonType.Submit"
+                                Disabled="@_processing" Variant="Variant.Filled" Color="Color.Primary" Class="buttonOrMudTabs ml-auto text-end">Đăng ký
+                            </MudButton>
+                        </MudCardActions>
+                        <MudItem Class="pa-3">
+                            <MudLink Color="Color.Primary" Href="/login">Đăng nhập ngay! nếu bạn đã có tài khoản</MudLink>
+                        </MudItem>
+                    </MudCard>
+                </MudItem>
+                <MudItem sm="12" md="5" >
+                    <MudItem Class="pa-3">
+                        <MudText Color="@Color.Error" Typo="Typo.subtitle2">
+                            <ValidationSummary />
+                        </MudText>
+                        <MudText Color="@Color.Error" Typo="Typo.subtitle2">@textResult</MudText>
+                    </MudItem>
+                    <MudItem Class="mt-3">
+                        <img width="100%" height="100%" src="imgs/photos/register1.jpg" />
+                    </MudItem>
+                </MudItem>
+            </MudGrid>
+        </EditForm>
+    </NotAuthorized>
+</AuthorizeView>
+</MudContainer>
+</MudMainContent>

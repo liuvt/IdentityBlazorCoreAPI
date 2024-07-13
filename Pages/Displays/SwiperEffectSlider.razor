@@ -1,0 +1,40 @@
+    
+    <!-- 
+        swiper: tên mặt định call API từ swiper
+        swiper-slide: tên mặt định call API từ swiper
+        swiper-wrapper: tên mặt định call API từ swiper
+
+        swiperJsEffect: gọi từ tên hàm trong script.js và site.css
+     -->
+    <MudItem class="swiper swiperJsEffect">
+        <MudItem class="swiper-wrapper">
+            <MudItem class="swiper-slide">
+                <img src="imgs/photos/index1.jpg" width="100%" height="100%" class="rounded-lg"/>
+            </MudItem>
+            <MudItem class="swiper-slide">
+                <img src="imgs/photos/index2.jpg" width="100%" height="100%" class="rounded-lg"/>
+            </MudItem>
+            <MudItem class="swiper-slide">
+                <img src="imgs/photos/index3.jpg" width="100%" height="100%" class="rounded-lg"/>
+            </MudItem>
+            <MudItem class="swiper-slide">
+                <img src="imgs/photos/index4.jpg" width="100%" height="100%" class="rounded-lg"/>
+            </MudItem>
+            <MudItem class="swiper-slide">
+                <img src="imgs/photos/index5.jpg" width="100%" height="100%" class="rounded-lg"/>
+            </MudItem>
+        </MudItem>
+    </MudItem>
+
+@code{
+
+    [Inject]
+    private IJSRuntime js { get; set; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await js.InvokeVoidAsync("callSwiperJSEffect", null);
+        }
+    }
+}

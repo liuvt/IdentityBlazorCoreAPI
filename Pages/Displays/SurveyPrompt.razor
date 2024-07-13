@@ -1,0 +1,13 @@
+﻿    
+<MudText>
+    <strong>@Title</strong>
+    Vui lòng liên hệ 
+    <MudLink Href="https://www.facebook.com/mrdurk6" Target="_blank" Underline="Underline.None">chúng tôi</MudLink>
+    và hãy nói về điều bạn cần !
+</MudText>
+
+@code {
+    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public string? Title { get; set; }
+}

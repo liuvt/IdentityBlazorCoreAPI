@@ -1,0 +1,64 @@
+﻿@using MudBlazor
+@inherits MainLayoutBase
+
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Style="@($"background:rgb(245,245,245);")" Class=" augReFont">
+        <!-- Show size >=sm -->
+        <MudText Id="augNameCompany" Class="d-none d-sm-flex">August Center</MudText>
+        <!-- Show size <sm -->
+        <MudText Id="augNameCompany" Class="d-xs-flex d-sm-none">AugCenter</MudText>
+        <!-- BreakPoint -->
+        <MudSpacer />
+        <!-- For desktop
+            d-none: ẩn toàn bộ size
+            d-md-flex: hiển thị từ size md
+            gap-8: khoản cách giữ các link
+            mr-15: item thục vào 15
+        -->
+        <MudItem Class="d-none d-md-flex gap-8 mr-15" >
+            <MudItem>
+                <MudLink Href="/" Underline="Underline.None">Trang chủ</MudLink>
+            </MudItem>
+            <MudItem>
+                <MudLink Href="/check-out" Underline="Underline.None">Đơn hàng</MudLink>
+            </MudItem>
+            <MudItem>
+                <MudLink Href="/pricing" Underline="Underline.None">Giá tiền</MudLink>
+            </MudItem>
+            <MudItem>
+                <MudLink Href="/contact" Underline="Underline.None">Liên hệ</MudLink>
+            </MudItem>
+            <MudItem>
+                <MudLink Href="/about" Underline="Underline.None">Thông tin</MudLink>
+            </MudItem>
+        </MudItem>
+        <!--For mobile-->
+        <MudIconButton Class="d-none d-sm-flex d-md-none" 
+            Icon="@Icons.Material.Filled.Menu" Color="Color.Default"
+            Edge="Edge.Start" OnClick="@((e) => DrawerToggle(Anchor.Start))" />
+        <!-- Infomation Option MudMenu -->
+        <LayoutProfiles />
+    </MudAppBar>
+    <!-- For navigation menu-->
+     <MudDrawer @bind-Open="@_drawerOpen" Width="@width" Height="@height" 
+            Style="@($"color:{Colors.Shades.White}; background:{Colors.Shades.Black};")"
+            Anchor="@anchor" Elevation="1" Variant="@DrawerVariant.Temporary">
+        <NavMenu />
+    </MudDrawer>
+    <!--Mobile trược trên mọi điểm ở Body để show navigation menu-->
+    <MudSwipeArea OnSwipeEnd="@OnSwipeEnd" Style="width: 100%;">
+        <!--Body-->
+        <MudMainContent>
+            @Body
+        </MudMainContent>
+        <!--Footer-->
+        <FooterLayout />
+        <MudScrollToTop>
+                <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.KeyboardArrowUp" />
+        </MudScrollToTop>
+    </MudSwipeArea>
+</MudLayout>

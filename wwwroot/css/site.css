@@ -1,0 +1,213 @@
+/* =========================================================================================== */
+/* MudAppBar in MainLayout.razor change font: Navigation Link and Logo Name */
+/* Logo name*/
+.logoName {
+    font-family: "Trirong", serif !important;
+    vertical-align: middle !important;
+    letter-spacing: .2rem !important;
+    font-weight: 200 !important;
+    font-size: 22px !important;
+    color: black !important;
+    line-height: 1.334 !important;
+    text-transform: none !important;
+}
+
+#augNameCompany {
+    font-family: "Trirong", serif !important;
+    vertical-align: middle !important;
+    letter-spacing: .2rem !important;
+    font-weight: 200 !important;
+    font-size: 22px !important;
+    color: black !important;
+    line-height: 1.334 !important;
+    text-transform: none !important;
+}
+
+/* =========================================================================================== */
+/*Maincontent in Index.razor*/
+.augBackgroundImg {
+    background: url(../imgs/photos/bg1.jpg) no-repeat center fixed !important;
+    background-size: cover !important;
+}
+
+/* =========================================================================================== */
+/* Format font style */
+.augReFont,
+.augReFont a,
+.augReFont button,
+.augFont h1,
+.augReFont h2,
+.augReFont h3,
+.augReFont h4,
+.augReFont h5,
+.augReFont h6,
+.augReFont div,
+.augReFont body {
+    font-family: "Trirong", serif;
+}
+
+.augReFont p,
+button {
+    font-size: 0.9375rem;
+    /* 15 pixel/16 = 0.9375 rem */
+    font-family: "Trirong", serif;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: .00938em;
+    text-transform: none;
+}
+
+.augReFont h5 {
+    font-size: 1.125rem;
+    /* 18 pixel/16 = 1.125rem rem */
+    font-family: "Trirong", serif;
+    font-weight: 400;
+    line-height: 1.334;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.augReFont h4 {
+    font-size: 1.875rem;
+    /* 30 pixel/16 = 1.875 rem */
+    font-family: "Trirong", serif;
+    font-weight: 400;
+    line-height: 1.235;
+    letter-spacing: .2rem;
+    text-transform: none;
+}
+
+/* =========================================================================================== */
+/* Animation for show text*/
+.augAnimation {
+    animation-name: augSlideInDown;
+    animation-duration: 700ms;
+    animation-timing-function: ease;
+    animation-direction: normal;
+    animation-fill-mode: both;
+}
+
+@keyframes augSlideInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================================================== */
+/* Hover logo*/
+.moving-top {
+    position: relative;
+    transition: transform 0.3s ease !important;
+    transform: translateY(10px) !important;
+}
+
+.moving-top:hover {
+    transform: translateY(0px) !important;
+}
+
+/* =========================================================================================== */
+/* Swiper trượt brand logo*/
+.swiperJsBrand {
+    width: 100% ;
+    height: 100% ;
+}
+
+.swiperJsBrand .swiper-slide {
+    display: flex ;
+
+    padding-right: 1.25rem ;
+    padding-left: 1.25rem ;
+
+    width: 160px ;
+    margin-right: 30px ;
+}
+
+.swiperJsBrand .swiper-slide img {
+    width: 126.66px ;
+    height: 84.44px ;
+}
+
+/* Đầu và cuối swiper bị làm mờ*/
+.swiperJsBrand::before,
+.swiperJsBrand::after {
+    content: "";
+    width: 50px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 111;
+    background-image: linear-gradient(90deg, #fff, transparent);
+}
+
+.swiperJsBrand::after {
+    left: auto;
+    width: 150px;
+    right: 0;
+    z-index: 222;
+    background-image: linear-gradient(270deg, #fff, transparent);
+}
+
+/* =========================================================================================== */
+/* Swiper effect */
+.swiperJsEffect {
+    width: 100% ;
+    height: 100% ;
+}
+
+.swiperJsEffect .swiper-slide {
+    display: flex ;
+    align-items: center ;
+    justify-content: center ;
+}
+
+.swiperJsEffect .swiper-slide img {
+    width: 100% ;
+    height: 100% ;
+}
+
+
+/* =========================================================================================== */
+/* Format img*/
+.augImg img,
+.augImg section,
+.augImg section img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    width: auto !important;
+}
+
+/* =========================================================================================== */
+/* Nền trắng mờ giành cho MudMainContent */
+.augBackground {
+    background-color: #FEFEFE !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* =========================================================================================== */
+
+.augCursorFAQ p {
+    font-weight: bold !important;
+    cursor: pointer !important;
+}
+
+/* =========================================================================================== */
+.buttonOrMudTabs {
+    font-size: 1.125rem !important;
+    /* 18 pixel/16 = 1.125rem rem */
+    font-family: "Trirong", serif !important;
+    font-weight: 400 !important;
+    line-height: 1.334 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+}
+
+/* =========================================================================================== */

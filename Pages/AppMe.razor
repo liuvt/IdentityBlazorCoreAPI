@@ -1,0 +1,120 @@
+@page "/me"
+@inherits AppMeBase
+@attribute [Authorize]
+
+<PageTitle>Thông tin tài khoản - AugCenter</PageTitle>
+
+<MudMainContent Class="augBackground augReFont">
+<MudContainer MaxWidth="MaxWidth.Medium" Class="augImg pa-5">
+    <MudItem>
+        <MudText Typo="Typo.h4" Color="Color.Primary">Thông tin tài khoản</MudText>
+    </MudItem>
+    <MudGrid Spacing="6" Class="mt-3">
+        <!--Nội dung phần Public-->
+        <MudItem xs="12" Style="@($"background:{Colors.Blue.Lighten5};")" Class="pa-4">
+            <MudItem Class="d-flex pa-2">
+                <MudText Class="mr-2" Typo="Typo.h5" GutterBottom="true">Public</MudText>
+                <MudButton Class="mb-2" OnClick="(() => editControl())" 
+                            Variant="Variant.Text" StartIcon="@Icons.Material.Outlined.Edit" 
+                            Style="@($"color:{Colors.Orange.Darken3};")" Size="Size.Small" Edge="Edge.End">@nameEditControl
+                </MudButton>
+            </MudItem>
+            <EditForm Model="@models" OnValidSubmit="OnValidSubmit">
+                <MudCard>
+                    <MudCardHeader>
+                        <MudText Class="pa-3" GutterBottom="true">Thông tin cơ bản, xác thực nhận dạng thật người dùng.</MudText>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <MudGrid Class="pl-10 pr-10">
+                            <MudItem xs="12" sm="5">
+                                <MudTextField Color="Color.Primary" Label="Họ" @bind-Value="models.FirstName"
+                                                    For="@(() => models.FirstName)"  Disabled="@_processing"/>
+                            </MudItem>
+                            <MudItem xs="12" sm="5">
+                                <MudTextField Label="Tên" @bind-Value="models.LastName"
+                                                    For="@(() => models.LastName)" Disabled="@_processing"/>
+                            </MudItem>
+                            <MudItem xs="12" sm="2">
+                                <MudSelect Disabled="@_processing" Label="Giới tính" Variant="Variant.Text" 
+                                                            @bind-Value="models.Gender" For="@(() => models.Gender)">
+                                        <MudSelectItem Value="@("Nam")">@("Nam")</MudSelectItem>
+                                        <MudSelectItem Value="@("Nữ")">@("Nữ")</MudSelectItem>
+                                        <MudSelectItem Value="@("Khác")">@("Khác")</MudSelectItem>
+                                </MudSelect>
+                            </MudItem>
+                            <MudItem xs="12" sm="6">
+                                <MudTextField Label="Số điện thoại" @bind-Value="models.PhoneNumber"
+                                                    For="@(() => models.PhoneNumber)" Disabled="@_processing"/>
+                            </MudItem>
+                            <MudItem xs="12" sm="6">
+                                <MudDatePicker @bind-Date="models.BirthDay" For="@(() => models.BirthDay)" Label="Ngày sinh"
+                                            Editable="true" Placeholder="Chọn ngày" Adornment="Adornment.Start"
+                                            AdornmentColor="Color.Warning" PickerVariant="PickerVariant.Dialog" Disabled="@_processing"/>
+                            </MudItem>
+                            <MudItem xs="12">
+                                <MudTextField Label="Địa chỉ" @bind-Value="models.Address"
+                                                    For="@(() => models.Address)" Disabled="@_processing"/>
+                            </MudItem>
+                        </MudGrid>
+                    </MudCardContent>
+                    <MudCardActions Class="d-flex justify-space-between pa-4">
+                        <MudIconButton Color="Color.Secondary" Icon="@Icons.Material.Filled.Autorenew"
+                                            aria-label="delete" OnClick="@(() => CleanForm())" Disabled="@_processing">
+                        </MudIconButton>
+                        <MudButton StartIcon="@Icons.Material.Filled.AppRegistration" 
+                                        ButtonType="ButtonType.Submit" Variant="Variant.Filled" 
+                                        Color="Color.Primary" Class="ml-auto text-end" Disabled="@_processing">Lưu
+                        </MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </EditForm>
+        </MudItem>
+        <!--Nội dung phần Private-->
+        <MudItem xs="12" Style="@($"background:{Colors.Blue.Lighten5};")">
+            <MudItem Class="d-flex pa-2">
+                <MudText Class="mr-2" Typo="Typo.h5" GutterBottom="true">Private</MudText>
+            </MudItem>
+            <MudCard>
+                <MudCardHeader>
+                    <MudText Class="pa-3" GutterBottom="true">Thông tin bảo mật, xác thực tài khoản truy cập người dùng.</MudText>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudGrid Class="pl-10 pr-10">
+                        <MudItem xs="12">
+                            <MudTextField Label="Email" @bind-Value="models.Email" 
+                                For="@(() => models.Email)" Disabled="true"/>
+                        </MudItem>
+                        <MudItem xs="12">
+                            <MudTextField Label="ID User" @bind-Value="models.Id" 
+                                For="@(() => models.Id)" Disabled="true" InputType="InputType.Password"/>
+                        </MudItem>
+                        <MudItem xs="12" Class="d-flex">
+                            <MudTextField Label="Mật khẩu" @bind-Value="models.PasswordHash" 
+                                For="@(() => models.PasswordHash)" Disabled="true" InputType="InputType.Password"/>
+                            <MudButton OnClick="pageChangePassword" Variant="Variant.Text" StartIcon="@Icons.Material.Outlined.Edit" 
+                               Style="@($"color:{Colors.Orange.Darken3};")" Size="Size.Small" Edge="Edge.End">Thay đổi mật khẩu
+                            </MudButton>
+                        </MudItem>
+                    </MudGrid>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+        <!--Nội dung phần Setting-->
+        <MudItem xs="12" Style="@($"background:{Colors.Blue.Lighten5};")">
+            <MudItem Class="d-flex pa-2">
+                <MudText Class="mr-2" Typo="Typo.h5" GutterBottom="true">Setting</MudText>
+            </MudItem>
+            <MudCard>
+                <MudCardHeader>
+                    <MudText Class="pa-3" GutterBottom="true">Cài đặt tài khoản.</MudText>
+                </MudCardHeader>
+                <MudCardActions Class="d-flex justify-space-between pa-4">
+                    <MudButton OnClick="(() => DeleteMe_Dialag())" Variant="Variant.Text" StartIcon="@Icons.Material.Outlined.Delete" 
+                                Color="Color.Error" Size="Size.Small" Edge="Edge.End">Xóa tài khoản
+                    </MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+</MudMainContent>

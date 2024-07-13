@@ -1,0 +1,66 @@
+@page "/login"
+@inherits AppLoginBase
+
+<PageTitle>Đăng nhập tài khoản - AugCenter</PageTitle>
+
+<MudMainContent Class="augBackground augReFont">
+<MudContainer MaxWidth="MaxWidth.Medium" Class="augImg pa-5">
+    <AuthorizeView Context="authContext">
+    <Authorized>
+        <h3>You was Login</h3>
+        <p><a href="/">Click here! to back Home</a></p>
+    </Authorized>
+    <NotAuthorized>
+        <MudItem Class="d-flex justify-center">
+            <MudText Typo="Typo.h4" Color="Color.Primary">Đăng nhập tài khoản</MudText>
+        </MudItem>
+        <EditForm Model="@models" OnValidSubmit="OnValidSubmit">
+        <DataAnnotationsValidator />
+        <MudGrid Class="justify-center">
+            <MudItem sm="12" md="6">
+            <MudPaper Class="mt-3">
+                <MudCardContent>
+                    <MudItem xs="12">
+                        <MudTextField Label="Email" HelperText="Hổ trợ: Gmail, Yahoo, Hotmail, Outlook,.."
+                            @bind-Value="models.Email" For="@(() => models.Email)" Disabled="@_processing"/>
+                    </MudItem>
+                    <MudItem xs="12">
+                        <MudTextField Label="Mật khẩu" HelperText="Vui lòng bảo vệ mật khẩu!"
+                            @bind-Value="models.Password" For="@(() => models.Password)" Disabled="@_processing"
+                                InputType="@PasswordInput"
+                                Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon"
+                                OnAdornmentClick="@(() => ShowPasswordEvent())" AdornmentAriaLabel="Show Password" />
+                    </MudItem>
+                </MudCardContent>
+                <MudCardActions Class="d-flex justify-space-between pa-2">
+                    <MudIconButton OnClick="@(() => CleanForm())" Color="Color.Secondary"
+                        Icon="@Icons.Material.Filled.Autorenew" Disabled="@_processing"/>
+                    <MudButton StartIcon="@Icons.Material.Filled.Login" ButtonType="ButtonType.Submit"
+                        Variant="Variant.Filled" Color="Color.Primary" Class="buttonOrMudTabs ml-auto text-end"
+                        Disabled="@_processing">
+                        @if (_processing)
+                        {
+                            <MudProgressCircular Size="Size.Small" Indeterminate="true" />
+                            <MudText>Đang xữ lý..</MudText>
+                        }
+                        else
+                        {
+                            <MudText>Đăng nhập</MudText>
+                        }
+                    </MudButton>
+                </MudCardActions>
+                <MudItem Class="pa-3">
+                    <MudLink Color="Color.Primary" Href="/register">Đăng ký ngay! nếu bạn chưa có tài khoản</MudLink>
+                </MudItem>
+                <MudCardContent>
+                    <MudText Color="@Color.Error" Typo="Typo.subtitle2"> <ValidationSummary /> </MudText>
+                    <MudText Color="@Color.Error" Typo="Typo.subtitle2">@textResult</MudText>
+                </MudCardContent>
+            </MudPaper>
+            </MudItem>
+        </MudGrid>
+        </EditForm>
+    </NotAuthorized>
+</AuthorizeView>
+</MudContainer>
+</MudMainContent>

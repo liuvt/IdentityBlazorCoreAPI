@@ -1,0 +1,76 @@
+<!--Sử dụng css animation-->
+<MudItem sm="12" md="7">
+    <MudText Typo="Typo.h4" Class="augAnimation" Style="animation-delay: 600ms;">
+        @Title
+    </MudText>
+    <br />
+    <MudText Class="augAnimation" Style="animation-delay: 900ms;">
+        @Desciption
+    </MudText>
+    <MudItem Class="d-flex justify-center gap-4 flex-wrap flex-md-nowrap pt-6">
+        <MudButton Class="rounded-xl augAnimation buttonOrMudTabs" Style="animation-delay: 1200ms;"
+            Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" Href="@LinkButton1">@TitleButton1</MudButton>
+        <MudButton Class="rounded-xl augAnimation buttonOrMudTabs" Style="animation-delay: 1500ms;"
+            Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" Href="@LinkButton2">@TitleButton2</MudButton>
+        <MudButton Class="rounded-xl augAnimation buttonOrMudTabs" Style="animation-delay: 1800ms;"
+            Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" Href="@LinkButton3">@TitleButton3</MudButton>
+        <MudButton Class="rounded-xl augAnimation buttonOrMudTabs" Style="animation-delay: 2100ms;"
+            Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" Href="@LinkButton4">@TitleButton4</MudButton>
+    </MudItem>
+</MudItem>
+<!-- Ds ảnh dùng swiper -->
+<MudItem sm="12" md="5" Class="augImg">
+    <SwiperEffectSlider />
+</MudItem>
+
+@code {
+    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
+    public string? Desciption { get; set; }
+    [Parameter]
+    public string? TitleButton1 { get; set; }
+    [Parameter]
+    public string? TitleButton2 { get; set; }
+    [Parameter]
+    public string? TitleButton3 { get; set; }
+    [Parameter]
+    public string? TitleButton4 { get; set; }
+    [Parameter]
+    public string? LinkButton1 { get; set; }
+    [Parameter]
+    public string? LinkButton2 { get; set; }
+    [Parameter]
+    public string? LinkButton3 { get; set; }
+    [Parameter]
+    public string? LinkButton4 { get; set; }
+}
+
+@*
+            <MudItem sm="12" md="7">
+                <MudText Typo="Typo.h4" Class="augAnimation" Style="animation-delay: 600ms;">
+                    AUGCENTER chuyên cung cấp các giải pháp về: CNTT - Marketing - SEO
+                </MudText>
+                <br/>
+                <MudText Class="augAnimation" Style="animation-delay: 900ms;">
+                    Ngoài ra, chúng tôi còn cung cấp: thiết bị điện tử, máy tính pc, laptop, máy tính bảng,...
+                    Phần mềm/website quản lý, website bán hàng, webapi, teamplates,...
+                </MudText>
+                <MudItem Class="d-flex justify-center gap-4 flex-wrap flex-md-nowrap pt-6">
+                    <MudButton Class="rounded-xl augAnimation buttonOrMudTabs" Style="animation-delay: 1200ms;"
+                        Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary">Thuê tôi!</MudButton>
+                    <MudButton Class="rounded-xl augAnimation buttonOrMudTabs" Style="animation-delay: 1500ms;"
+                        Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary">Sản phẩm</MudButton>
+                    <MudButton Class="rounded-xl augAnimation buttonOrMudTabs" Style="animation-delay: 1800ms;"
+                        Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" Href="/contact">Liên hệ</MudButton>
+                    <MudButton Class="rounded-xl augAnimation buttonOrMudTabs" Style="animation-delay: 2100ms;"
+                        Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary">Xem thêm</MudButton>
+                </MudItem>
+            </MudItem>
+            <!-- Ds ảnh dùng swiper -->
+            <MudItem sm="12" md="5" >
+                <EffectSliderSwiper />
+            </MudItem> 
+*@
