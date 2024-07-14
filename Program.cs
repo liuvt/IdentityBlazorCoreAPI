@@ -126,7 +126,7 @@ builder.Services.AddSwaggerGen(
 );
 
 // API: Register ApiServers
-builder.Services.AddScoped<IAuthApiServer, AuthApiServer>();
+builder.Services.AddScoped<IAuthServer, AuthServer>();
 
 // UI: Register Repository
 builder.Services.AddScoped<IAuthService, AuthService>();
