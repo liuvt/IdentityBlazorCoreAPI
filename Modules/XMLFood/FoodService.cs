@@ -1,7 +1,8 @@
 using System.Xml.Linq;
-namespace IdentityBlazorCoreAPI.Data.Modules.XMLFoods;
 
-public class FoodService : FoodServiceInterface
+namespace IdentityBlazorCoreAPI.Modules.XMLFoods;
+
+public class FoodService : IFoodService
 {
     //Connection String to XML
     private readonly XElement context;

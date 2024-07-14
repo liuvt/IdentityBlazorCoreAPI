@@ -4,7 +4,7 @@ using IdentityBlazorCoreAPI.Repositories.Interfaces;
 using IdentityBlazorCoreAPI.Repositories.Services;
 using MudBlazor.Services;
 using IdentityBlazorCoreAPI.Data.Models;
-using IdentityBlazorCoreAPI.Data.Modules.XMLFoods;
+using IdentityBlazorCoreAPI.Modules.XMLFoods;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using IdentityBlazorCoreAPI.APIServers.Contracts;
@@ -131,8 +131,8 @@ builder.Services.AddScoped<IAuthApiServer, AuthApiServer>();
 // UI: Register Repository
 builder.Services.AddScoped<IAuthService, AuthService>();
 
-// UI: Modules
-builder.Services.AddScoped<FoodServiceInterface,FoodService>();
+// UI: Modules XML
+builder.Services.AddScoped<IFoodService,FoodService>();
 
 // UI: Authentication
 builder.Services.AddScoped<AuthenticationStateProvider, AuthService>();

@@ -1,4 +1,5 @@
-﻿    
+﻿@inherits SurveyPromptBase 
+
 <MudText>
     <strong>@Title</strong>
     Vui lòng liên hệ 
@@ -6,8 +7,3 @@
     và hãy nói về điều bạn cần !
 </MudText>
 
-@code {
-    // Demonstrates how a parent component can supply parameters
-    [Parameter]
-    public string? Title { get; set; }
-}

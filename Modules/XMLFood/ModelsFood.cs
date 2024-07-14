@@ -1,4 +1,4 @@
-namespace IdentityBlazorCoreAPI.Data.Modules.XMLFoods;
+namespace IdentityBlazorCoreAPI.Modules.XMLFoods;
 
 public class Food
 {

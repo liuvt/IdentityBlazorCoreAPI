@@ -1,5 +1,5 @@
-namespace IdentityBlazorCoreAPI.Data.Modules.XMLFoods;
-public interface FoodServiceInterface
+namespace IdentityBlazorCoreAPI.Modules.XMLFoods;
+public interface IFoodService
 {
     //Get all
     public Task<IEnumerable<Food>> Gets();

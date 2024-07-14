@@ -1,12 +1,12 @@
-using IdentityBlazorCoreAPI.Data.Modules.XMLFoods;
+using IdentityBlazorCoreAPI.Modules.XMLFoods;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
-namespace IdentityBlazorCoreAPI.Pages.Bases;
+namespace IdentityBlazorCoreAPI.Modules.XMLFoods;
 public class ModuleFoodBase : ComponentBase
 {
     [Inject]
-    protected FoodServiceInterface foodService { get; set; }
+    protected IFoodService foodService { get; set; }
     protected IEnumerable<Food> listFoods { get; set; }
     protected Food _food { get; set; }
 
