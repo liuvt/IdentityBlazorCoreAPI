@@ -52,9 +52,8 @@ public class AuthService : AuthenticationStateProvider, IAuthService
                 throw new Exception(mess);
             }
         }
-        catch (System.Exception ex)
+        catch (Exception ex)
         {
-
             throw;
         }
     }
@@ -108,9 +107,8 @@ public class AuthService : AuthenticationStateProvider, IAuthService
                 throw new Exception(mess);
             }
         }
-        catch (System.Exception ex)
+        catch (Exception ex)
         {
-
             throw;
         }
     }
@@ -135,9 +133,8 @@ public class AuthService : AuthenticationStateProvider, IAuthService
                 throw new Exception(mess);
             }
         }
-        catch (System.Exception ex)
+        catch (Exception ex)
         {
-
             throw;
         }
     }
@@ -199,9 +196,8 @@ public class AuthService : AuthenticationStateProvider, IAuthService
                 throw new Exception(mess);
             }
         }
-        catch (System.Exception ex)
+        catch (Exception ex)
         {
-
             throw new Exception(ex.Message);
         }
     }

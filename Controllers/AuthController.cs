@@ -12,9 +12,9 @@ namespace IdentityBlazorCoreAPI.Controllers;
 public class AuthController : ControllerBase
 {
     //Get API Server
-    private readonly IAuthApiServer context;
+    private readonly IAuthServer context;
     private readonly ILogger<AuthController> logger;
-    public AuthController(IAuthApiServer _context, ILogger<AuthController> _logger)
+    public AuthController(IAuthServer _context, ILogger<AuthController> _logger)
     {
         this.context = _context;
         this.logger = _logger;
