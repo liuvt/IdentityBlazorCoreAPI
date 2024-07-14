@@ -15,6 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.AspNetCore.Components.Authorization;
+using IdentityBlazorCoreAPI.Modules.APIYoutube;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -127,12 +128,15 @@ builder.Services.AddSwaggerGen(
 
 // API: Register ApiServers
 builder.Services.AddScoped<IAuthServer, AuthServer>();
+builder.Services.AddScoped<IYoutubeServer, YoutubeServer>();
 
 // UI: Register Repository
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 // UI: Modules XML
-builder.Services.AddScoped<IFoodService,FoodService>();
+builder.Services.AddScoped<IFoodService, FoodService>();
+// UI: Modules Youtube
+builder.Services.AddScoped<IYoutubeService, YoutubeService>();
 
 // UI: Authentication
 builder.Services.AddScoped<AuthenticationStateProvider, AuthService>();

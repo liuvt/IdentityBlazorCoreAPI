@@ -1,0 +1,45 @@
+@page "/w/{listId}"
+@inherits WatchMovieBase
+<PageTitle>Xem video - AugCenter</PageTitle>
+
+<MudMainContent Class="augBackground augReFont">
+<MudContainer MaxWidth="MaxWidth.Large" Class="augImg mt-5">
+    <MudGrid>
+        <MudItem sm="12" md="8">
+            <MudItem Class="mt-3">
+                <MudPaper Class="d-flex align-center" Elevation="1" Style="height:450px">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/@(playListItem.plItemId)">
+                        frameborder="0" allow="accelerometer; autoplay; clipboard-write;
+                        encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+                    </iframe>
+                </MudPaper>
+            </MudItem>
+            <MudItem Class="mt-3">
+                <MudPaper Class="pa-2" Elevation="1" >
+                <MudText Typo="Typo.h4">@playListItem.plItemTitle</MudText>
+                </MudPaper>
+            </MudItem>
+        </MudItem>
+        <MudItem sm="12" md="4">
+            <MudPaper Elevation="4" MaxHeight="450px" Class="mt-3 d-flex flex-wrap overflow-auto">
+                @foreach(var item in playListItems)
+                {
+                    <MudPaper Class="d-flex flex-wrap mb-2 durk7HoverLink" Elevation="4" >
+                        <MudLink OnClick="@(() => GetUrlID(item.plItemId))" Underline="Underline.None">
+                            <MudGrid Class="pa-2 d-flex align-center">
+                                <MudItem sm="12" md="4">
+                                    <img src="@item.plItemThumbnail" width="100%" height="100%"/>
+                                </MudItem>
+                                <MudItem sm="12" md="8">
+                                    <MudText Typo="Typo.body2">@item.plItemTitle</MudText>
+                                </MudItem>
+                            </MudGrid>
+                        </MudLink>
+                    </MudPaper>
+                }
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+</MudMainContent>
+

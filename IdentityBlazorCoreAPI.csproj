@@ -41,6 +41,8 @@
     <PackageReference Include="System.Security.Cryptography.Primitives" Version="4.3.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="8.0.2" />
 
+    <!--Youtube API-->
+    <PackageReference Include="Google.Apis.YouTube.v3" Version="1.68.0.3421" />
   </ItemGroup>
 
 </Project>
