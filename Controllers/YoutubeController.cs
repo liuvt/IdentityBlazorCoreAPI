@@ -20,7 +20,7 @@ public class YoutubeController : ControllerBase
     }
 
     [HttpGet("Playlists")]
-    public async Task<ActionResult<IEnumerable<YtbPlaylists>>> GetPlaylists()
+    public async Task<ActionResult<IEnumerable<YoutubePlayList>>> GetPlaylists()
     {
         try
         {
@@ -34,7 +34,7 @@ public class YoutubeController : ControllerBase
     }
 
     [HttpGet("PlaylistItems/{playListId}")]
-    public async Task<ActionResult<IEnumerable<YtbPlaylistItem>>> GetPlaylistItems(string playListId)
+    public async Task<ActionResult<YoutubePlayListItem>> GetPlaylistItems(string playListId)
     {
         try
         {
