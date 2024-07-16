@@ -15,18 +15,34 @@ public class YtbResponse
     public string? PrevPageToken {get; set;}
 }
 
-public class YtbPlaylists 
+public class YoutubeVideo
 {
-    public string? plId {get; set;}
-    public string? plTitle {get; set;}
-    public string? plLink {get; set;}
-    public string? plThumbnail {get; set;}
+    public string? VideoId {get; set;}
+    public string? VideoTitle {get; set;}
+    public string? VideoThumbnail {get; set;}
+    public string? VideoDescription {get; set;}
+    public DateTimeOffset? VideoPublishedAt {get; set;}
 }
 
-public class YtbPlaylistItem 
+public class YoutubeVideoPagination
 {
-    public string? plItemId {get; set;}
-    public string? plItemTitle {get; set;}
-    public string? plItemLink {get; set;}
-    public string? plItemThumbnail {get; set;}
+    public List<YoutubeVideo> Videos {get; set;} = new List<YoutubeVideo>();
+    public string? NextPageToken {get; set;}
+    public string? PrevPageToken {get; set;}
+}
+
+public class YoutubePlayList
+{
+    public string? PlayListId {get; set;}
+    public string? PlayListTitle {get; set;}
+    public string? PlayListDescription {get; set;}
+    public string? PlayListThumbnail {get; set;}
+    public DateTimeOffset? PlayListPublishedAt {get; set;}
+}
+
+public class YoutubePlayListItem
+{
+    public string? PlayListId {get; set;}
+    public string? PlayListTitle {get; set;}
+    public List<YoutubeVideo>? Videos {get; set;}
 }

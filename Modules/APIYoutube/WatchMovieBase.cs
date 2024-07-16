@@ -10,8 +10,9 @@ public class WatchMovieBase : ComponentBase
     private IYoutubeService youtubeService {get; set;}
     [Inject]
     private NavigationManager nav { get; set; }
-    protected YtbPlaylistItem playListItem = new YtbPlaylistItem();
-    public IEnumerable<YtbPlaylistItem> playListItems {get; set;} = new List<YtbPlaylistItem>();
+    protected IEnumerable<YoutubeVideo> videos { get; set; } = new List<YoutubeVideo>();
+    protected YoutubeVideo video { get; set; } = new YoutubeVideo();
+    protected YoutubePlayListItem playListItem { get; set; } = new YoutubePlayListItem();
     protected string focus  { get; set; } = "background-color: #fff;";
 
     //Start first
@@ -19,18 +20,18 @@ public class WatchMovieBase : ComponentBase
     {
         try
         {
-            playListItems = await youtubeService.GetPlaylistItems(listId);
-            playListItem = playListItems.Select(e => e).FirstOrDefault();
+            playListItem = await youtubeService.GetPlaylistItems(listId);
+            videos = playListItem.Videos.ToList();
+            video = videos.Select(e => e).FirstOrDefault();
         }
         catch (Exception ex)
         {
             throw new Exception("Error: "+ ex);
         }
     }
-
-    protected async Task GetUrlID (string playItemId)
+    protected async Task selectVideo (string videoId)
     {
-        playListItem = playListItems.Where(e => e.plItemId == playItemId).FirstOrDefault();
+        video = videos.Where(e => e.VideoId == videoId).FirstOrDefault();
         StateHasChanged();
     }
 }

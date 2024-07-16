@@ -9,7 +9,7 @@ public class YoutubeService : IYoutubeService
         this.httpClient = _httpClient;
     }
 
-    public async Task<IEnumerable<YtbPlaylists>> GetPlaylists()
+    public async Task<IEnumerable<YoutubePlayList>> GetPlaylists()
     {
         try
         {
@@ -18,10 +18,10 @@ public class YoutubeService : IYoutubeService
             {
                 if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
                 {
-                    return default(IEnumerable<YtbPlaylists>);
+                    return default(IEnumerable<YoutubePlayList>);
                 }
 
-                return await response.Content.ReadFromJsonAsync<IEnumerable<YtbPlaylists>>();
+                return await response.Content.ReadFromJsonAsync<IEnumerable<YoutubePlayList>>();
             }
             else
             {
@@ -34,7 +34,7 @@ public class YoutubeService : IYoutubeService
             throw;
         }
     }
-    public async Task<IEnumerable<YtbPlaylistItem>> GetPlaylistItems(string playListId)
+    public async Task<YoutubePlayListItem> GetPlaylistItems(string playListId)
     {
         try
         {
@@ -43,10 +43,10 @@ public class YoutubeService : IYoutubeService
             {
                 if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
                 {
-                    return default(IEnumerable<YtbPlaylistItem>);
+                    return default(YoutubePlayListItem);
                 }
 
-                return await response.Content.ReadFromJsonAsync<IEnumerable<YtbPlaylistItem>>();
+                return await response.Content.ReadFromJsonAsync<YoutubePlayListItem>();
             }
             else
             {
