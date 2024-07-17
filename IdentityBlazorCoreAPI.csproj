@@ -22,9 +22,8 @@
     <!--Connector to MySql database-->
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
 
-    <!--Authentication-->
+    <!--Authorization-->
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="8.0.6" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
 
     <!--JWT-->
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -35,7 +34,9 @@
     <!--Layout MudBlazor-->
     <PackageReference Include="MudBlazor" Version="6.20.0" />
 
-    <!--Swagger for API-->
+    <!--Authentication: Swagger, Google for API-->
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
     <PackageReference Include="System.Security.Cryptography.Primitives" Version="4.3.0" />

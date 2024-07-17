@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.AspNetCore.Components.Authorization;
 using IdentityBlazorCoreAPI.Modules.APIYoutube;
+using Microsoft.AspNetCore.Authentication.Google;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +27,8 @@ builder.Services.AddIdentity<AppUser, IdentityRole>()
 
 // API: Connect to Mysql server
 builder.Services.AddDbContext<IdentityBlazorCoreAPIDbContext>(
-    opt => {
+    opt =>
+    {
         opt.UseMySql(builder.Configuration.GetConnectionString("LocalDB"),
         Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.31-mysql"));
         /*
@@ -51,7 +53,7 @@ builder.Services.AddMudServices();
 // UI: Register Client Factory
 builder.Services.AddHttpClient("IdentityBlazorCoreAPIServer", httpClient =>
     {
-        httpClient.BaseAddress = new Uri(builder.Configuration["API:localhost"] ?? 
+        httpClient.BaseAddress = new Uri(builder.Configuration["API:localhost"] ??
                                 throw new InvalidOperationException("Can't found [Secret Key] in appsettings.json !"));
         httpClient.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
         httpClient.DefaultRequestHeaders.Add(HeaderNames.UserAgent, "HttpRequestIdentityBlazorCoreAPI");
@@ -59,9 +61,9 @@ builder.Services.AddHttpClient("IdentityBlazorCoreAPIServer", httpClient =>
 
 // UI: Get httpClient API default
 builder.Services.AddScoped(
-    defaultClient => new HttpClient 
+    defaultClient => new HttpClient
     {
-        BaseAddress = new Uri(builder.Configuration["API:localhost"] ?? 
+        BaseAddress = new Uri(builder.Configuration["API:localhost"] ??
                                 throw new InvalidOperationException("Can't found [Secret Key] in appsettings.json !"))
     });
 
@@ -69,34 +71,38 @@ builder.Services.AddScoped(
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-// API: Add Jwt Authentication
-builder.Services.AddAuthentication(
-    opt => 
+// API: Add Jwt, Gooogle Authentication
+builder.Services.AddAuthentication(authenticationOptions =>
     {
-        opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-    }
-)
-.AddJwtBearer(opt =>
+        authenticationOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        authenticationOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        authenticationOptions.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+.AddJwtBearer(jwtBearerOptions =>
     {
-        opt.RequireHttpsMetadata = false;
-        opt.SaveToken = true;
-        opt.TokenValidationParameters =
+        jwtBearerOptions.RequireHttpsMetadata = false;
+        jwtBearerOptions.SaveToken = true;
+        jwtBearerOptions.TokenValidationParameters =
             new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
                 ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
                 ValidAudience = builder.Configuration["JWT:ValidAudience"],
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                    builder.Configuration["JWT:Secret"] ?? throw new InvalidOperationException("Can't found [Secret Key] in appsettings.json !"))
-
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]
+                                    ?? throw new InvalidOperationException("Can't found [Secret Key] in appsettings.json !"))
                 ),
                 ValidateIssuer = false,
                 ValidateAudience = false
             };
-    }
-);
+    })
+.AddGoogle(googleOptions =>
+    {
+        googleOptions.ClientId = builder.Configuration["GoogleOAuth2:ClientId"]
+                                    ?? throw new InvalidOperationException("Can't found [Secret Key] in appsettings.json !");
+        googleOptions.ClientSecret = builder.Configuration["GoogleOAuth2:ClientSecret"]
+                                    ?? throw new InvalidOperationException("Can't found [Secret Key] in appsettings.json !");
+    });
+
 
 // API: Add SwaggerGen (dotnet add package Swashbuckle.AspNetCore)
 builder.Services.AddSwaggerGen(
