@@ -2,7 +2,7 @@
 window.handleCredentialResponse = async (response) => {
   //Xữ lý token trả về
     console.log("Encoded JWT ID token: " + response.credential);
-    localStorage.setItem("googleToken", response.credential);
+    localStorage.setItem("_identityApp", response.credential);
 }
 
 //Load singin-google ở mọi trang
