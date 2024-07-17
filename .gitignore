@@ -4,3 +4,4 @@ IdentityBlazorCoreAPI/obj
 bin
 .config
 obj
+.vscode

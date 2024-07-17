@@ -19,7 +19,7 @@ public class AuthService : AuthenticationStateProvider, IAuthService
     //JavaScript
     private readonly IJSRuntime jS;
     //Key localStorage
-    private string key = "_IdentityBlazorCoreAPI";
+    private string key = "_identityApp";
     //Anonymous authentication state
     private AuthenticationState Anonymous =>
         new AuthenticationState(new System.Security.Claims.ClaimsPrincipal(new ClaimsIdentity()));
