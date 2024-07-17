@@ -3,6 +3,7 @@ using MudBlazor;
 using IdentityBlazorCoreAPI.Data.Entities;
 using IdentityBlazorCoreAPI.Repositories.Interfaces;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.JSInterop;
 
 namespace IdentityBlazorCoreAPI.Pages.Bases;
 
@@ -27,6 +28,16 @@ public class AppLoginBase : ComponentBase
         catch(Exception ex)
         {
 
+        }
+    }
+
+    [Inject]
+    private IJSRuntime js { get; set; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await js.InvokeVoidAsync("googleSingInOnPage", null);
         }
     }
 
