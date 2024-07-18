@@ -1,0 +1,42 @@
+@page "/verify-account"
+@inject AuthenticationStateProvider GetAuthenticationStateAsync
+
+<PageTitle>Xác thực thông tin người dùng - AugCenter</PageTitle>
+
+<MudMainContent Class="augBackground augBody">
+    <MudContainer MaxWidth="MaxWidth.Large" Class="augImg mt-5">
+        <MudGrid>
+            <MudItem sm="12" md="8">
+                <MudItem>
+                    <MudText Typo="Typo.h4" Color="Color.Primary">Xác thực thông tin người dùng
+                    </MudText>
+                    <MudText Typo="Typo.h5" Class="mt-3">
+                        Email đăng nhập của bạn là: !
+                        <AuthorizeView>
+                            <Authorized>
+                                <a href="/me">Hello, @name!</a>
+                            </Authorized>
+                            <NotAuthorized>
+                                <a href="/register">Register</a>
+                                <a href="/login">Log in</a>
+                            </NotAuthorized>
+                        </AuthorizeView>
+                    </MudText>
+                </MudItem>
+            </MudItem>
+            <!-- Image ảnh-->
+            <MudItem sm="12" md="4">
+                <img width="100%" height="100%" src="imgs/photos/register1.jpg" />
+            </MudItem>
+        </MudGrid>
+    </MudContainer>
+</MudMainContent>
+@code{
+    string name{get; set;}
+    protected async override Task OnInitializedAsync()
+    {
+        var authstate = await GetAuthenticationStateAsync.GetAuthenticationStateAsync();
+        var user = authstate.User;
+        var name = user.Identity.Name;
+    }
+}

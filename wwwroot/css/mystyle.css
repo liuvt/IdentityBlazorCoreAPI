@@ -1,126 +1,130 @@
-/*Default font Typo mudblazor*/
-.default {
+
+.augBody,
+.augBody div,
+.augBody p,
+.augBody a,
+.augBody button,
+.augBody h1,
+.augBody h2,
+.augBody h3,
+.augBody h4,
+.augBody h5,
+.augBody h6,
+.augBody .default,
+.augBody body {
+    font-family: "Trirong", serif;
+}
+
+.augBody .default {
     font-size: .875rem;
-    font-family: "Trirong", serif; 
     font-weight: 400;
     line-height: 1.43;
     letter-spacing: .01071em;
-    transform-origin: none;
+    text-transform: none;
 }
 
-h1 {
-    font-size: 6rem;
-    font-family: "Trirong", serif; 
-    font-weight: 300;
-    line-height: 1.167;
-    letter-spacing: -.01562em;
-    transform-origin: none;
-}
-
-h2 {
-    font-size: 3.75rem;
-    font-family: "Trirong", serif; 
-    font-weight: 300;
-    line-height: 1.2;
-    letter-spacing: -.00833em;
-    transform-origin: none;
-}
-
-h3 {
-    font-size: 3rem;
-    font-family: "Trirong", serif; 
-    font-weight: 400;
-    line-height: 1.167;
-    letter-spacing: 0;
-    transform-origin: none;
-}
-
-h4 {
-    font-size: 2.125rem; /*fix: 30pixel*/
-    font-family: "Trirong", serif; 
-    font-weight: 400;
-    line-height: 1.235;
-    letter-spacing: .00735em;
-    transform-origin: none;
-} 
-
-h5 {
-    font-size: 1.5rem;
-    font-family: "Trirong", serif; 
-    font-weight: 400;
-    line-height: 1.334;
-    letter-spacing: 0;
-    transform-origin: none;
-}
-
-h6 {
-    font-size: 1.25rem;
-    font-family: "Trirong", serif; 
-    font-weight: 500;
-    line-height: 1.6;
-    letter-spacing: .0075em;
-    transform-origin: none;
-}
-
-.subtitle1 {
-    font-size: 1rem;
-    font-family: "Trirong", serif; 
-    font-weight: 400;
-    line-height: 1.75;
-    letter-spacing: .00938em;
-    transform-origin: none;
-}
-
-.subtitle2 {
-    font-size: .875rem;
-    font-family: "Trirong", serif; 
-    font-weight: 500;
-    line-height: 1.57;
-    letter-spacing: .00714em;
-    transform-origin: none;
-}
-
-.body1, p {
+.augBody .body1, 
+.augBody p, 
+.augBody a {
     font-size: 1rem; /*fix: 15pixel*/
-    font-family: "Trirong", serif; 
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: .00938em;
-    transform-origin: none;
+    text-transform: none;
 }
 
-.body2 {
+.augBody h1 {
+    font-size: 6rem;
+    font-weight: 300;
+    line-height: 1.167;
+    letter-spacing: -.01562em;
+    text-transform: none;
+}
+
+.augBody h2 {
+    font-size: 3.75rem;
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: -.00833em;
+    text-transform: none;
+}
+
+.augBody h3 {
+    font-size: 3rem;
+    font-weight: 400;
+    line-height: 1.167;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.augBody h4 {
+    font-size: 2.125rem; /*fix: 30pixel*/
+    font-weight: 400;
+    line-height: 1.235;
+    letter-spacing: .00735em;
+    text-transform: none;
+} 
+
+.augBody h5 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.334;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.augBody h6 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: .0075em;
+    text-transform: none;
+}
+
+.augBody .subtitle1 {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.75;
+    letter-spacing: .00938em;
+    text-transform: none;
+}
+
+.augBody .subtitle2 {
     font-size: .875rem;
-    font-family: "Trirong", serif; 
+    font-weight: 500;
+    line-height: 1.57;
+    letter-spacing: .00714em;
+    text-transform: none;
+}
+
+.augBody .body2 {
+    font-size: .875rem;
     font-weight: 400;
     line-height: 1.43;
     letter-spacing: .01071em;
-    transform-origin: none;
+    text-transform: none;
 }
 
-button {
+.augBody button {
     font-size: .875rem;
-    font-family: "Trirong", serif; 
     font-weight: 500;
     line-height: 1.75;
     letter-spacing: .02857em;
-    transform-origin: uppercase;
+    text-transform: uppercase;
 }
 
-.caption {
+.augBody .caption {
     font-size: .75rem;
-    font-family: "Trirong", serif; 
     font-weight: 400;
     line-height: 1.66;
     letter-spacing: .03333em;
-    transform-origin: none;
+    text-transform: none;
 }
 
-.overline {
+.augBody .overline {
     font-size: .75rem;
-    font-family: "Trirong", serif; 
     font-weight: 400;
     line-height: 2.66;
     letter-spacing: .08333em;
-    transform-origin: none;
+    text-transform: none;
 }

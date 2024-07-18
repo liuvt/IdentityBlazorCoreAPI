@@ -1,17 +1,6 @@
 /* =========================================================================================== */
 /* MudAppBar in MainLayout.razor change font: Navigation Link and Logo Name */
 /* Logo name*/
-.logoName {
-    font-family: "Trirong", serif !important;
-    vertical-align: middle !important;
-    letter-spacing: .2rem !important;
-    font-weight: 200 !important;
-    font-size: 22px !important;
-    color: black !important;
-    line-height: 1.334 !important;
-    text-transform: none !important;
-}
-
 #augNameCompany {
     font-family: "Trirong", serif !important;
     vertical-align: middle !important;
@@ -32,17 +21,7 @@
 
 /* =========================================================================================== */
 /* Format font style */
-.augReFont,
-.augReFont a,
-.augReFont button,
-.augFont h1,
-.augReFont h2,
-.augReFont h3,
-.augReFont h4,
-.augReFont h5,
-.augReFont h6,
-.augReFont div,
-.augReFont body {
+.augReFont {
     font-family: "Trirong", serif;
 }
 
@@ -73,7 +52,7 @@ button {
     font-family: "Trirong", serif;
     font-weight: 400;
     line-height: 1.235;
-    letter-spacing: .2rem;
+    letter-spacing: .35rem;
     text-transform: none;
 }
 
