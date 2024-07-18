@@ -23,9 +23,11 @@ public partial class UserRoles
 //Login: create token 
 public partial class InfomationUserSaveInToken
 {
-    public string userId { get; set; } = string.Empty;
-    public string userEmail { get; set; } = string.Empty;
+    public string id { get; set; } = string.Empty;
+    public string email { get; set; } = string.Empty;
     public string userName { get; set; } = string.Empty;
+    public string name { get; set; } = string.Empty;
+    public string giveName { get; set; } = string.Empty;
     public string userRole { get; set; } = string.Empty;
     public string userGuiId { get; set; } = string.Empty;
 }

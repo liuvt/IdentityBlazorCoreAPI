@@ -3,7 +3,15 @@
 @attribute [Authorize]
 
 <PageTitle>Thông tin tài khoản - AugCenter</PageTitle>
-
+@if(models == null)
+{
+<MudMainContent Class="augBackground">
+<MudContainer MaxWidth="MaxWidth.Medium" Class="augImg pa-5">
+    <MudProgressCircular Color="Color.Secondary" Indeterminate="true" />
+</MudContainer>
+</MudMainContent>
+}
+else{
 <MudMainContent Class="augBackground">
 <MudContainer MaxWidth="MaxWidth.Medium" Class="augImg pa-5">
     <MudItem>
@@ -118,3 +126,4 @@
     </MudGrid>
 </MudContainer>
 </MudMainContent>
+}

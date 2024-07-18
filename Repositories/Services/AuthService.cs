@@ -9,6 +9,7 @@ using System.Net.Http.Headers;
 using IdentityBlazorCoreAPI.Data.Models;
 using System.Text.Json;
 using System.Net;
+using System.Runtime.CompilerServices;
 
 namespace IdentityBlazorCoreAPI.Repositories.Services;
 
@@ -187,7 +188,7 @@ public class AuthService : AuthenticationStateProvider, IAuthService
                 await jS.SetFromLocalStorage(key, token);
 
                 //Kiểm tra trạng thái xác thực
-                var state = BuildAuthenticationState(token);
+                var state = await BuildAuthenticationState(token);
                 NotifyAuthenticationStateChanged(Task.FromResult(state));
             }
             else
@@ -250,7 +251,7 @@ public class AuthService : AuthenticationStateProvider, IAuthService
         - Check token by ValidationToken(): bool
         - return BuildAuthenticationState(token)
     */
-    public async override Task<AuthenticationState> GetAuthenticationStateAsync()
+    public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
         //Lấy token từ LocalStorage
         var token = await jS.GetFromLocalStorage(key);
@@ -260,9 +261,10 @@ public class AuthService : AuthenticationStateProvider, IAuthService
         {
             return Anonymous;
         }
+        
 
         //Build AuthenticationState
-        return BuildAuthenticationState(token);
+        return await BuildAuthenticationState(token);
     }
 
     /*
@@ -272,22 +274,29 @@ public class AuthService : AuthenticationStateProvider, IAuthService
         - Get Notify authentication state
         - return authenticationstate
     */
-    private AuthenticationState BuildAuthenticationState(string token)
+    private async Task<AuthenticationState> BuildAuthenticationState(string localStorageToken)
     {
-        var identity = new ClaimsIdentity(ParseClaimsFromJwt(token), "jwt");
+        //Lấy token từ localstorage vào chuyển đổi token mặt định
+        var token = localStorageToken.Replace("\"", "");
 
+        var identity = new ClaimsIdentity(ParseClaimsFromJwt(token), "jwt");
         httpClient.DefaultRequestHeaders.Authorization =
-            new AuthenticationHeaderValue("Bearer", token.Replace("\"", ""));
+                new AuthenticationHeaderValue("Bearer", token);
 
         var user = new ClaimsPrincipal(identity);
         var state = new AuthenticationState(user);
 
+        /* Lấy dữ liệu chuyển đổi từ Token sang các cập [Key:Value]
+        var _user = state.User;
+        var ObjectIdentifier = _user.Claims.Where(c => c.Type == "ObjectIdentifier").FirstOrDefault().Value;
+        */
+       
         NotifyAuthenticationStateChanged(Task.FromResult(state));
 
         return state;
     }
 
-    //Parse Claims From Jwt
+    //Chuyển Token thành cặp [Key:Value]
     private IEnumerable<Claim> ParseClaimsFromJwt(string jwt)
     {
         var payload = jwt.Split('.')[1];

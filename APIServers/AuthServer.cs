@@ -139,9 +139,11 @@ public class AuthServer : IAuthServer
             //Thông tin User đưa vào Token
             var listClaims = new List<Claim>
                         {
-                            new Claim(ClaimTypes.Email, user.userEmail),
-                            new Claim(ClaimTypes.NameIdentifier, user.userName is not null ? user.userName : string.Empty),
-                            new Claim("ObjectIdentifier", user.userId),
+                            new Claim("id", user.id),
+                            new Claim("username", user.userName),
+                            new Claim("email", user.email),
+                            new Claim("name", user.name),
+                            new Claim("give_name", user.giveName),
                             new Claim(ClaimTypes.Role, user.userRole),
                             new Claim(JwtRegisteredClaimNames.Jti, user.userGuiId)
                         };

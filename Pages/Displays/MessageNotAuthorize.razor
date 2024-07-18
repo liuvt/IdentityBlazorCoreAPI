@@ -1,0 +1,18 @@
+<MudMainContent Class="augBackground">
+    <MudContainer MaxWidth="MaxWidth.Large" Class="augImg mt-5">
+    <MudItem>
+        <MudText Typo="Typo.h3">@Title</MudText>
+        <MudLink Href="@Link">@TitleLink</MudLink>
+    </MudItem>
+    <ComponentPlayLists/>
+</MudContainer>
+</MudMainContent>
+
+@code{
+    [Parameter]
+    public string? Title { get; set; }
+    [Parameter]
+    public string? Link { get; set; }
+    [Parameter]
+    public string? TitleLink { get; set; }
+}

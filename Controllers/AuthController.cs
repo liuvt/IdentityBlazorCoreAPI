@@ -52,9 +52,11 @@ public class AuthController : ControllerBase
             //Create token
             var userClaim = new InfomationUserSaveInToken()
             {
-                userId = appUser.Id is not null ? appUser.Id : string.Empty,
-                userEmail = appUser.Email is not null ? appUser.Email : string.Empty,
-                userName = appUser.UserName is not null ? appUser.UserName : string.Empty,
+                id = appUser.Id ?? string.Empty,
+                email = appUser.Email ?? string.Empty,
+                name = $"{appUser.FirstName} {appUser.LastName}" ?? string.Empty,
+                giveName = $"{appUser.FirstName} {appUser.LastName}" ?? string.Empty,
+                userName = appUser.UserName ?? string.Empty,
                 userRole = role,
                 userGuiId = Guid.NewGuid().ToString()
             };
@@ -77,11 +79,11 @@ public class AuthController : ControllerBase
         {
             /*
                 Console.WriteLine("User name: " + User.FindFirstValue(ClaimTypes.NameIdentifier)); //User name
-                Console.WriteLine("Email: " + User.FindFirstValue(ClaimTypes.Email));        //Email
+                Console.WriteLine("Email: " + User.FindFirstValue(email));        //Email
                 Console.WriteLine("Role: " + User.FindFirstValue(ClaimTypes.Role));             //Role
-                Console.WriteLine("User Id: " + User.FindFirstValue("ObjectIdentifier"));    //User Id
+                Console.WriteLine("User Id: " + User.FindFirstValue("id"));    //User Id
             */
-            return Ok(await this.context.GetMe(this.User.FindFirstValue("ObjectIdentifier")
+            return Ok(await this.context.GetMe(this.User.FindFirstValue("id")
                                                     ?? throw new Exception("Not found User ID")));
         }
         catch (Exception ex)
@@ -96,7 +98,7 @@ public class AuthController : ControllerBase
     {
         try
         {
-            var edit = await this.context.EditMe(models, this.User.FindFirstValue("ObjectIdentifier")
+            var edit = await this.context.EditMe(models, this.User.FindFirstValue("id")
                                                                 ?? throw new Exception("Not found User ID"));
             if (!edit.Succeeded) return BadRequest();
 
@@ -114,8 +116,8 @@ public class AuthController : ControllerBase
     {
         try
         {
-            var userId = this.User.FindFirstValue("ObjectIdentifier")
-                                                                ?? throw new Exception("Not found User ID");
+            var userId = this.User.FindFirstValue("id")
+                                        ?? throw new Exception("Not found User ID");
             var resetpassword = await this.context.ChangeCurrentPassword(userId, changePassword.CurrentPassword, changePassword.Password);
             if (!resetpassword.Succeeded) return Unauthorized();
 
@@ -133,8 +135,8 @@ public class AuthController : ControllerBase
     {
         try
         {
-            var userId = this.User.FindFirstValue("ObjectIdentifier")
-                                                                ?? throw new Exception("Không tìm thấy User ID");
+            var userId = this.User.FindFirstValue("id")
+                                            ?? throw new Exception("Không tìm thấy User ID");
             var delete = await this.context.DeleteMe(userId);
             if (!delete.Succeeded) return Unauthorized();
 
