@@ -101,6 +101,7 @@ builder.Services.AddAuthentication(authenticationOptions =>
                                     ?? throw new InvalidOperationException("Can't found [Secret Key] in appsettings.json !");
         googleOptions.ClientSecret = builder.Configuration["GoogleOAuth2:ClientSecret"]
                                     ?? throw new InvalidOperationException("Can't found [Secret Key] in appsettings.json !");
+        googleOptions.Scope.Add("profile");
     });
 
 

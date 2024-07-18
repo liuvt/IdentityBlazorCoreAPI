@@ -2,7 +2,7 @@
 
 @if(playLists != null)
 {
-    <MudContainer MaxWidth="MaxWidth.Medium" Class="pa-3 augReFont">
+    <MudContainer MaxWidth="MaxWidth.Medium" Class="pa-3 augReFont ">
         <MudItem xs="12" Class="d-flex justify-center">
             <MudText Color="Color.Primary" Typo="Typo.h4">Danh sách video xem thêm</MudText>
         </MudItem>
@@ -11,7 +11,7 @@
                 @foreach (var item in playLists)
                 {
                     <MudItem xs="12" sm="6" md="4">
-                        <MudPaper Height="100%">
+                        <MudPaper Height="100%" Class="durk7HoverLink">
                             <MudLink Href="@($"/w/{item.PlayListId}")" Underline="Underline.None">
                                     <MudItem>
                                         <img src="@item.PlayListThumbnail" />

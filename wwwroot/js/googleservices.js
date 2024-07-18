@@ -2,7 +2,8 @@
 window.handleCredentialResponse = async (response) => {
   //Xữ lý token trả về
     console.log("Encoded JWT ID token: " + response.credential);
-    localStorage.setItem("_identityApp", response.credential);
+    console.log("Encoded Decoded: " + response);
+    localStorage.setItem("googleApp", response.credential);
 }
 
 //Load singin-google ở mọi trang
@@ -24,7 +25,7 @@ window.onload = async () => {
 window.googleSingInOnPage = async () => {
   google.accounts.id.initialize({
     client_id: "37285241759-fjd9b14rmn8s7f6ah1l5255mimlhfnt7.apps.googleusercontent.com",
-    callback: handleCredentialResponse
+    callback: handleCredentialResponse,
   });
 
   google.accounts.id.renderButton(
