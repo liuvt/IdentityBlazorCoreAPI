@@ -1,3 +1,8 @@
+.durk7HoverLink:hover {
+    background-color: #f0f0f0 !important;
+    padding: 0.3rem ;
+}
+
 .durk7HoverLink a:hover {
     background-color: #f0f0f0 !important;
 }
