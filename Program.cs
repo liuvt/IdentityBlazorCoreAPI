@@ -16,7 +16,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.AspNetCore.Components.Authorization;
 using IdentityBlazorCoreAPI.Modules.APIYoutube;
-using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Google.Apis.Auth.AspNetCore3;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -77,7 +78,18 @@ builder.Services.AddAuthentication(authenticationOptions =>
         authenticationOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
         authenticationOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
         authenticationOptions.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+
+        // This forces challenge results to be handled by Google OpenID Handler, so there's no
+        // need to add an AccountController that emits challenges for Login.
+        authenticationOptions.DefaultChallengeScheme = GoogleOpenIdConnectDefaults.AuthenticationScheme;
+        // This forces forbid results to be handled by Google OpenID Handler, which checks if
+        // extra scopes are required and does automatic incremental auth.
+        authenticationOptions.DefaultForbidScheme = GoogleOpenIdConnectDefaults.AuthenticationScheme;
+        // Default scheme that will handle everything else.
+        // Once a user is authenticated, the OAuth2 token info is stored in cookies.
+        authenticationOptions.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     })
+.AddCookie()
 .AddJwtBearer(jwtBearerOptions =>
     {
         jwtBearerOptions.RequireHttpsMetadata = false;
@@ -95,14 +107,13 @@ builder.Services.AddAuthentication(authenticationOptions =>
                 ValidateAudience = false
             };
     })
-.AddGoogle(googleOptions =>
-    {
-        googleOptions.ClientId = builder.Configuration["GoogleOAuth2:ClientId"]
+.AddGoogleOpenIdConnect(options =>
+        {
+            options.ClientId = builder.Configuration["GoogleOAuth2:ClientId"]
                                     ?? throw new InvalidOperationException("Can't found [Secret Key] in appsettings.json !");
-        googleOptions.ClientSecret = builder.Configuration["GoogleOAuth2:ClientSecret"]
+            options.ClientSecret = builder.Configuration["GoogleOAuth2:ClientSecret"]
                                     ?? throw new InvalidOperationException("Can't found [Secret Key] in appsettings.json !");
-        googleOptions.Scope.Add("profile");
-    });
+        }); ;
 
 
 // API: Add SwaggerGen (dotnet add package Swashbuckle.AspNetCore)
@@ -118,7 +129,7 @@ builder.Services.AddSwaggerGen(
         opt.SwaggerDoc("v2", new OpenApiInfo { Title = "AugCenter API", Version = "v2" });
         */
         //Init project: CRUD category,order,orderdetail,..., AugCenterModel
-        opt.SwaggerDoc("v1", new OpenApiInfo { Title = "Manager Business", Version = "v1" });
+        opt.SwaggerDoc("v1", new OpenApiInfo { Title = "Blazor Server Core API", Version = "v1" });
         opt.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
         {
             Name = "Authorization",
@@ -160,7 +171,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-// API: Add run Swagger UI: http://localhost:5187/swagger/index.html
+// API: Add run Swagger UI: https://localhost:5187/swagger/index.html
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

@@ -34,9 +34,8 @@
     <!--Layout MudBlazor-->
     <PackageReference Include="MudBlazor" Version="6.20.0" />
 
-    <!--Authentication: Swagger, Google for API-->
+    <!--Authentication: Swagger for API-->
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
     <PackageReference Include="System.Security.Cryptography.Primitives" Version="4.3.0" />
@@ -44,6 +43,10 @@
 
     <!--Youtube API-->
     <PackageReference Include="Google.Apis.YouTube.v3" Version="1.68.0.3421" />
+    <!--Drive google-->
+    <PackageReference Include="Google.Apis.Auth.AspNetCore3" Version="1.68.0" />
+    <PackageReference Include="Google.Apis" Version="1.68.0" />
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.68.0.3466" />
   </ItemGroup>
 
 </Project>

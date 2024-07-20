@@ -4,7 +4,7 @@
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
                 <NotAuthorized>
                     <PageTitle>Không có quyền truy cập!</PageTitle>
-                    <MessageNotAuthorize Title="Xin lỗi, bạn không có quyền truy cập" Link="/login" TitleLink="Đăng nhập ngay!"/>
+                    <MessageAuthorize Title="Xin lỗi, bạn không có quyền truy cập" Link="/login" TitleLink="Đăng nhập ngay!"/>
                 </NotAuthorized>
                 <Authorizing>
                     <MudProgressCircular Color="Color.Secondary" Indeterminate="true" />
@@ -15,7 +15,7 @@
         <NotFound>
             <PageTitle>Trang không tồn tại!</PageTitle>
             <LayoutView Layout="@typeof(MainLayout)">
-                <MessageNotAuthorize Title="Xin lỗi, trang này không tồn tại" Link="/" TitleLink="Quay lại trang chủ!"/>
+                <MessageAuthorize Title="Xin lỗi, trang này không tồn tại" Link="/" TitleLink="Quay lại trang chủ!"/>
             </LayoutView>
         </NotFound>
     </Router>
