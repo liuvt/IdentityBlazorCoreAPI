@@ -15,7 +15,16 @@ public class MainLayoutBase : LayoutComponentBase
 
     // Lưu biến isdarkmode vào localstorage theo key
     private string localStorageDarkMode = "_isDarkMode";
-    protected MudTheme _theme = new ();
+    protected MudTheme _theme = new MudTheme()
+    {
+        Typography = new Typography()
+        {
+            Default = new Default()
+            {
+                FontFamily = new[] { "Trirong", "sans-serif" },
+            }
+        }
+    };
     // Trang thái mặt định là Light Mode
     protected bool _isDarkMode = false;
     // Thay đổi Icon darkmode
