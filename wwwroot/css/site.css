@@ -2,14 +2,13 @@
 /* MudAppBar in MainLayout.razor change font: Navigation Link and Logo Name */
 /* Logo name*/
 #augNameCompany {
-    font-family: "Trirong", serif !important;
-    vertical-align: middle !important;
-    letter-spacing: .2rem !important;
-    font-weight: 200 !important;
-    font-size: 22px !important;
-    color: black !important;
-    line-height: 1.334 !important;
-    text-transform: none !important;
+    font-family: "Trirong", serif ;
+    vertical-align: middle;
+    letter-spacing: .2rem;
+    font-weight: 200;
+    font-size: 22px;
+    line-height: 1.334;
+    text-transform: none;
 }
 
 /* =========================================================================================== */
@@ -164,9 +163,16 @@ button {
 }
 
 /* =========================================================================================== */
-/* Nền trắng mờ giành cho MudMainContent */
+/* Nền trắng mờ giành cho MudMainContent 
 .augBackground {
     background-color: #FEFEFE !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+*/
+
+/* Nền trắng mờ giành cho MudMainContent */
+.augBackground {
     padding-top: 0 !important;
     margin-top: 0 !important;
 }
