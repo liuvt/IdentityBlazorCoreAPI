@@ -19,8 +19,12 @@ public class WatchMovieBase : ComponentBase
     {
         try
         {
+            // Gọi api lấy ds video của một playlist thông qua ID của playlist
             playListItem = await youtubeService.GetPlaylistItems(listId);
+            
+            // Lấy ds video ra từ playlistItem
             videos = playListItem.Videos.ToList();
+            // Lấy một video trong danh sách video
             video = videos.Select(e => e).FirstOrDefault();
         }
         catch (Exception ex)
@@ -28,9 +32,8 @@ public class WatchMovieBase : ComponentBase
             throw new Exception("Error: "+ ex);
         }
     }
-    protected async Task selectVideo (string videoId)
-    {
-        video = videos.Where(e => e.VideoId == videoId).FirstOrDefault();
-        StateHasChanged();
-    }
+
+    //Click vào một video theo ID của video trong ds playlistitem
+    protected async Task selectVideo (string videoId) =>  video = videos.Where(e => e.VideoId == videoId).FirstOrDefault();
+
 }

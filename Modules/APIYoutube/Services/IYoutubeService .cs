@@ -8,5 +8,6 @@ public interface IYoutubeService
     //Lấy toàn bộ Video trong playlist thông qua id của playlist
     Task<YoutubePlayListItem> GetPlaylistItems(string playListId);
     //Lấy toàn bộ video trong channel, tối đa hiển thị 50 video, truyền mã token để loading tiếp 50video tiếp theo
-    Task<YtbResponse> GetChannelVideos(string? pageToken = null, int maxResult = 50);
+    Task<YoutubeVideoPagination> GetSearchChannelVideos(string? pageToken = null);
+    Task<YoutubeVideo> GetVideosById(string videoId);
 }

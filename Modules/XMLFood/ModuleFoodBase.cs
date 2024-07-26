@@ -11,8 +11,6 @@ public class ModuleFoodBase : ComponentBase
     protected IEnumerable<Food> listFoods { get; set; }
     protected Food _food { get; set; }
 
-
-
     protected override async Task OnInitializedAsync()
     {
         //Get all Food data

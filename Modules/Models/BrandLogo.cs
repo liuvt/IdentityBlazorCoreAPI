@@ -1,4 +1,4 @@
-namespace IdentityBlazorCoreAPI.Data.Models;
+namespace IdentityBlazorCoreAPI.Modules.Models;
 
 public class BrandLogo
 {

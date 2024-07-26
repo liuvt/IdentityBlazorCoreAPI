@@ -87,7 +87,7 @@ public class YoutubeServer : IYoutubeServer
             request.PageToken = null;
             var result = await request.ExecuteAsync();
 
-            var videos = result.Items.Select(item => new YoutubeVideo
+            var listVideos = result.Items.Select(item => new YoutubeVideo
             {
                 VideoId = item.Snippet.ResourceId.VideoId,
                 VideoTitle = item.Snippet.Title,
@@ -102,7 +102,7 @@ public class YoutubeServer : IYoutubeServer
             {
                 PlayListId = playList.PlayListId,
                 PlayListTitle = playList.PlayListTitle,
-                Videos = videos.ToList()
+                Videos = listVideos.Where(v => v.VideoThumbnail != string.Empty).ToList()
             };
 
             return playListItems;
@@ -113,29 +113,31 @@ public class YoutubeServer : IYoutubeServer
         }
     }
 
-    public async Task<YtbResponse> GetChannelVideos(string? pageToken = null, int maxResult = 50)
+    public async Task<YoutubeVideoPagination> GetSearchChannelVideos(string? pageToken = null)
     {
         try
         {
             var request = youtubeService.Search.List("snippet");
+            //Search by ChannelId: https://developers.google.com/youtube/v3/docs/search/list
             request.ChannelId = configuration["YoutubeAPI:ChannelId"];
             request.Order = SearchResource.ListRequest.OrderEnum.Date;
-            request.MaxResults = maxResult; //Tối đa item trả về 50 video
+            request.MaxResults = 50; //Tối đa item trả về 50 video
             request.PageToken = pageToken; //Phân trang
             var result = await request.ExecuteAsync();
 
-            var listVideo = result.Items.Select(static item => new YtbMovie
+            var listVideos = result.Items.Select(item => new YoutubeVideo
             {
-                YbTitle = item.Snippet.Title,
-                YbLink = $"https://www.youtube.com/watch?v={item.Id.VideoId}",
-                YbThumbnail = item.Snippet.Thumbnails.Medium.Url,
-                YbDescription = item.Snippet.Description,
-                YbPublishedAt = item.Snippet.PublishedAtDateTimeOffset
-            }).OrderByDescending(video => video.YbPublishedAt).ToList();
+                VideoId = item.Id.VideoId,
+                VideoTitle = item.Snippet.Title,
+                VideoThumbnail = (item.Snippet.Title == "Deleted video" || item.Snippet.Title == "Private video")
+                                    ? string.Empty : item.Snippet.Thumbnails.High.Url,
+                VideoDescription = item.Snippet.Description,
+                VideoPublishedAt = item.Snippet.PublishedAtDateTimeOffset,
+            }).OrderByDescending(v => v.VideoPublishedAt);
 
-            var response = new YtbResponse
+            var response = new YoutubeVideoPagination
             {
-                YbVideos = listVideo,
+                Videos = listVideos.Where(v => v.VideoId != null).ToList(),
                 NextPageToken = result.NextPageToken,
                 PrevPageToken = result.PrevPageToken,
             };
@@ -148,4 +150,31 @@ public class YoutubeServer : IYoutubeServer
         }
     }
 
+    public async Task<YoutubeVideo> GetVideosById(string videoId)
+    {
+        try
+        {
+            var request = youtubeService.Videos.List("snippet");
+            //Video by Id: https://developers.google.com/youtube/v3/docs/videos/list
+            request.Id = videoId;
+
+            var result = await request.ExecuteAsync();
+
+            var video = result.Items.Select(item => new YoutubeVideo
+            {
+                VideoId = item.Id,
+                VideoTitle = item.Snippet.Title,
+                VideoThumbnail = (item.Snippet.Title == "Deleted video" || item.Snippet.Title == "Private video")
+                                    ? string.Empty : item.Snippet.Thumbnails.High.Url,
+                VideoDescription = item.Snippet.Description,
+                VideoPublishedAt = item.Snippet.PublishedAtDateTimeOffset,
+            }).FirstOrDefault();
+
+            return video;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Get videos in channel not work by: "+ ex.Message);
+        }
+    }
 }

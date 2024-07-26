@@ -1,20 +1,6 @@
 namespace IdentityBlazorCoreAPI.Modules.Models;
-public class YtbMovie 
-{
-    public string? YbTitle {get; set;}
-    public string? YbLink {get; set;}
-    public string? YbThumbnail {get; set;}
-    public string? YbDescription {get; set;}
-    public DateTimeOffset? YbPublishedAt {get; set;}
-}
 
-public class YtbResponse 
-{
-    public List<YtbMovie>? YbVideos {get; set;} = new List<YtbMovie>();
-    public string? NextPageToken {get; set;}
-    public string? PrevPageToken {get; set;}
-}
-
+// Trả về video
 public class YoutubeVideo
 {
     public string? VideoId {get; set;}
@@ -24,13 +10,15 @@ public class YoutubeVideo
     public DateTimeOffset? VideoPublishedAt {get; set;}
 }
 
+// Trả về list video và trong đó có Token để phân trang tối 50video/1token
 public class YoutubeVideoPagination
 {
-    public List<YoutubeVideo> Videos {get; set;} = new List<YoutubeVideo>();
+    public List<YoutubeVideo>? Videos {get; set;} = new List<YoutubeVideo>();
     public string? NextPageToken {get; set;}
     public string? PrevPageToken {get; set;}
 }
 
+// Trả về playlist
 public class YoutubePlayList
 {
     public string? PlayListId {get; set;}
@@ -40,6 +28,7 @@ public class YoutubePlayList
     public DateTimeOffset? PlayListPublishedAt {get; set;}
 }
 
+// Trả về nội dung một playlist chứa các video
 public class YoutubePlayListItem
 {
     public string? PlayListId {get; set;}

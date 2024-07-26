@@ -1,7 +1,7 @@
 using Google.Apis.Services;
 using Google.Apis.YouTube.v3;
 using Microsoft.AspNetCore.Mvc;
-using IdentityBlazorCoreAPI.Data.Models;
+using IdentityBlazorCoreAPI.Modules.Models;
 using IdentityBlazorCoreAPI.APIServers.Contracts;
 
 namespace IdentityBlazorCoreAPI.Controllers;
@@ -47,13 +47,27 @@ public class YoutubeController : ControllerBase
         }
     }
 
-    [HttpGet("Search")]
-    public async Task<ActionResult<YtbResponse>> GetChannelVideos(string? pageToken, int maxResult)
+    [HttpGet("SearchChannelVideos")]
+    public async Task<ActionResult<YoutubeVideoPagination>> GetSearchChannelVideos(string? pageToken)
     {
         try
         {
-            var channelVideos = await context.GetChannelVideos(pageToken, maxResult);
-            return Ok(channelVideos);
+            var seachChannel = await context.GetSearchChannelVideos(pageToken);
+            return Ok(seachChannel);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
+
+    [HttpGet("Videos/{videoId}")]
+    public async Task<IActionResult> GetVideosById(string videoId)
+    {
+        try
+        {
+            var video = await context.GetVideosById(videoId);
+            return Ok(video);
         }
         catch (Exception ex)
         {
