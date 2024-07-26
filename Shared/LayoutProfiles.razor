@@ -1,60 +1,60 @@
-
 <AuthorizeView>
     <Authorized>
-        <MudMenu Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit">
-            <MudMenuItem Href="/me">
-                <MudItem Class="d-flex">
-                    <MudIcon Class="mr-2" Icon="@Icons.Material.Filled.AccountCircle" Color="Color.Primary"/>
-                    <MudText Class="augBody" Color="Color.Primary">Thông tin</MudText>
-                </MudItem>
-            </MudMenuItem>
-            <MudMenuItem Href="/foods">
-                <MudItem Class="d-flex">
-                    <MudIcon Class="mr-2" Icon="@Icons.Material.Filled.AccountCircle" Color="Color.Primary"/>
-                    <MudText Color="Color.Primary">Foods</MudText>
-                </MudItem>
-            </MudMenuItem>
-            <MudMenuItem Href="orders">
-                <MudItem Class="d-flex">
-                    <MudIcon Class="mr-2" Icon="@Icons.Material.Filled.ShoppingBag"Color="Color.Primary"/>
-                    <MudText Color="Color.Primary">Đơn đặt hàng</MudText>
-                </MudItem>
-            </MudMenuItem>
-            <MudMenuItem Href="/">
-                <MudItem Class="d-flex">
-                    <MudIcon Class="mr-2" Icon="@Icons.Material.Filled.ManageAccounts" Color="Color.Primary"/>
-                    <MudText Color="Color.Primary">Cài đặt</MudText>
-                </MudItem>
-            </MudMenuItem>
-            <MudMenuItem  @onclick="@(()=> Logout_Click())">
-                <MudItem Class="d-flex">
-                    <MudIcon Class="mr-2" Icon="@Icons.Material.Filled.Logout" Color="Color.Error"/>
-                    <MudText Color="Color.Error">Đăng xuất</MudText>
-                </MudItem>
-            </MudMenuItem>
-            <MudMenuItem Href="/register">
-                <MudItem Class="d-flex">
-                    <MudIcon Class="mr-2" Icon="@Icons.Material.Filled.AppRegistration" Color="Color.Primary"/>
-                    <MudText Color="Color.Primary">Đăng ký</MudText>
-                </MudItem>
-            </MudMenuItem>
-            <MudMenuItem Href="/">
-                <MudItem Class="d-flex">
-                    <MudIcon Class="mr-2" Icon="@Icons.Material.Filled.Help" Color="Color.Primary"/>
-                    <MudText Color="Color.Primary">Trợ giúp</MudText>
-                </MudItem>
-            </MudMenuItem>
+        <MudMenu>
+            <ActivatorContent>
+                <MudAvatar>
+                    <MudImage Style="height:50px; width:50px; font-size:2rem;" Src="imgs/photos/avartar.jpg" />
+                </MudAvatar>
+            </ActivatorContent>
+            <ChildContent>
+                <MudMenuItem Href="/me">
+                    <MudItem Class="d-flex augBody">
+                        <MudIcon Class="mr-2" Icon="@Icons.Material.Filled.AccountCircle"/>
+                        <MudText>Thông tin</MudText>
+                    </MudItem>
+                </MudMenuItem>
+                <MudMenuItem Href="/foods">
+                    <MudItem Class="d-flex augBody">
+                        <MudIcon Class="mr-2" Icon="@Icons.Material.Filled.AppRegistration"/>
+                        <MudText>Foods</MudText>
+                    </MudItem>
+                </MudMenuItem>
+                <MudMenuItem Href="orders">
+                    <MudItem Class="d-flex augBody">
+                        <MudIcon Class="mr-2" Icon="@Icons.Material.Filled.ShoppingBag"/>
+                        <MudText>Đơn đặt hàng</MudText>
+                    </MudItem>
+                </MudMenuItem>
+                <MudMenuItem Href="/">
+                    <MudItem Class="d-flex augBody">
+                        <MudIcon Class="mr-2" Icon="@Icons.Material.Filled.ManageAccounts"/>
+                        <MudText>Cài đặt</MudText>
+                    </MudItem>
+                </MudMenuItem>
+                <MudMenuItem Href="/faq">
+                    <MudItem Class="d-flex augBody">
+                        <MudIcon Class="mr-2" Icon="@Icons.Material.Filled.Help"/>
+                        <MudText>Trợ giúp</MudText>
+                    </MudItem>
+                </MudMenuItem>
+                <MudMenuItem @onclick="@(()=> Logout_Click())">
+                    <MudItem Class="d-flex augBody">
+                        <MudIcon Class="mr-2" Icon="@Icons.Material.Filled.Logout"/>
+                        <MudText Color="Color.Error">Đăng xuất</MudText>
+                    </MudItem>
+                </MudMenuItem>
+            </ChildContent>
         </MudMenu>
     </Authorized>
 </AuthorizeView>
 
 @code {
 
-    [Inject] 
+    [Inject]
     IAuthService authService { get; set; }
     [Inject]
     NavigationManager nav { get; set; }
-    //Hiển thị thông báo  khi add/update/deleted category
+    //Hiển thị thông báo khi add/update/deleted category
     [Inject]
     ISnackbar snackBar { get; set; }
 
@@ -63,28 +63,27 @@
         try
         {
             await this.authService.LogOut();
-             
+
             snackBar.Add($"Đã đăng xuất thành công.", Severity.Success);
             //Chuyển về trang chủ
             nav.NavigateTo("/", true);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             snackBar.Add($"Lỗi: {ex.Message}.", Severity.Error);
         }
     }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        
+
         try
         {
             if (firstRender) await authService.GetAuthenState();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             await authService.LogOut();
-            throw new Exception("Authentication error: "+ ex.Message);
+            throw new Exception("Authentication error: " + ex.Message);
         }
     }
 }
-   

@@ -1,10 +1,14 @@
 @inherits ComponentPlayListsBase
 
-@if(playLists != null)
+@if(playLists == null)
+{
+    <MudProgressCircular Color="Color.Secondary" Indeterminate="true" />
+}
+else
 {
     <MudContainer MaxWidth="MaxWidth.Medium" Class="pa-3">
         <MudItem xs="12" Class="d-flex justify-center">
-            <MudText Color="Color.Primary" Typo="Typo.h4">DANH SÁCH VIDEO CỦA CHÚNG TÔI</MudText>
+            <MudText Color="Color.Primary" Typo="Typo.h3">Videos của chúng tôi</MudText>
         </MudItem>
         <MudItem xs="12" Class="mt-5">
             <MudGrid>
