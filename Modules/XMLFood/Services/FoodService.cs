@@ -1,6 +1,7 @@
 using System.Xml.Linq;
+using IdentityBlazorCoreAPI.Modules.Models;
 
-namespace IdentityBlazorCoreAPI.Modules.XMLFoods;
+namespace IdentityBlazorCoreAPI.Modules.XMLFoods.Services;
 
 public class FoodService : IFoodService
 {

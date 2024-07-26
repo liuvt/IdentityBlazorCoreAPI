@@ -1,5 +1,5 @@
 
-using IdentityBlazorCoreAPI.Data.Models;
+using IdentityBlazorCoreAPI.Modules.Models;
 
 namespace IdentityBlazorCoreAPI.APIServers.Contracts;
 

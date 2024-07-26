@@ -1,4 +1,6 @@
-namespace IdentityBlazorCoreAPI.Modules.XMLFoods;
+using IdentityBlazorCoreAPI.Modules.Models;
+
+namespace IdentityBlazorCoreAPI.Modules.XMLFoods.Services;
 public interface IFoodService
 {
     //Get all

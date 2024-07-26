@@ -1,5 +1,5 @@
 using IdentityBlazorCoreAPI.APIServers.Contracts;
-using IdentityBlazorCoreAPI.Data.Models;
+using IdentityBlazorCoreAPI.Modules.Models;
 using Google.Apis.Services;
 using Google.Apis.YouTube.v3;
 

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components;
-using IdentityBlazorCoreAPI.Data.Models;
+using IdentityBlazorCoreAPI.Modules.Models;
+using IdentityBlazorCoreAPI.Modules.APIYoutube.Services;
 
 namespace IdentityBlazorCoreAPI.Modules.APIYoutube;
 public class ComponentPlayListsBase : ComponentBase

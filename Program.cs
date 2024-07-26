@@ -4,7 +4,6 @@ using IdentityBlazorCoreAPI.Repositories.Interfaces;
 using IdentityBlazorCoreAPI.Repositories.Services;
 using MudBlazor.Services;
 using IdentityBlazorCoreAPI.Data.Models;
-using IdentityBlazorCoreAPI.Modules.XMLFoods;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using IdentityBlazorCoreAPI.APIServers.Contracts;
@@ -15,9 +14,11 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.AspNetCore.Components.Authorization;
-using IdentityBlazorCoreAPI.Modules.APIYoutube;
+using IdentityBlazorCoreAPI.Modules.APIYoutube.Services;
+using IdentityBlazorCoreAPI.Modules.APIDrive;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Google.Apis.Auth.AspNetCore3;
+using IdentityBlazorCoreAPI.Modules.XMLFoods.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -73,48 +74,43 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 // API: Add Jwt, Gooogle Authentication
-builder.Services.AddAuthentication(authenticationOptions =>
-    {
-        authenticationOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        authenticationOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        authenticationOptions.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+builder.Services.AddAuthentication(authenticationOptions => {
+                    authenticationOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    //authenticationOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                    //authenticationOptions.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 
-        // This forces challenge results to be handled by Google OpenID Handler, so there's no
-        // need to add an AccountController that emits challenges for Login.
-        authenticationOptions.DefaultChallengeScheme = GoogleOpenIdConnectDefaults.AuthenticationScheme;
-        // This forces forbid results to be handled by Google OpenID Handler, which checks if
-        // extra scopes are required and does automatic incremental auth.
-        authenticationOptions.DefaultForbidScheme = GoogleOpenIdConnectDefaults.AuthenticationScheme;
-        // Default scheme that will handle everything else.
-        // Once a user is authenticated, the OAuth2 token info is stored in cookies.
-        authenticationOptions.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    })
-.AddCookie()
-.AddJwtBearer(jwtBearerOptions =>
-    {
-        jwtBearerOptions.RequireHttpsMetadata = false;
-        jwtBearerOptions.SaveToken = true;
-        jwtBearerOptions.TokenValidationParameters =
-            new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
-                ValidAudience = builder.Configuration["JWT:ValidAudience"],
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]
-                                    ?? throw new InvalidOperationException("Can't found [Secret Key] in appsettings.json !"))
-                ),
-                ValidateIssuer = false,
-                ValidateAudience = false
-            };
-    })
-.AddGoogleOpenIdConnect(options =>
-        {
-            options.ClientId = builder.Configuration["GoogleOAuth2:ClientId"]
-                                    ?? throw new InvalidOperationException("Can't found [Secret Key] in appsettings.json !");
-            options.ClientSecret = builder.Configuration["GoogleOAuth2:ClientSecret"]
-                                    ?? throw new InvalidOperationException("Can't found [Secret Key] in appsettings.json !");
-        }); ;
-
+                    // This forces challenge results to be handled by Google OpenID Handler, so there's no
+                    // need to add an AccountController that emits challenges for Login.
+                    authenticationOptions.DefaultChallengeScheme = GoogleOpenIdConnectDefaults.AuthenticationScheme;
+                    // This forces forbid results to be handled by Google OpenID Handler, which checks if
+                    // extra scopes are required and does automatic incremental auth.
+                    authenticationOptions.DefaultForbidScheme = GoogleOpenIdConnectDefaults.AuthenticationScheme;
+                    // Default scheme that will handle everything else.
+                    // Once a user is authenticated, the OAuth2 token info is stored in cookies.
+                    authenticationOptions.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                })
+                .AddCookie()
+                .AddGoogleOpenIdConnect(options => {
+                    options.SkipUnrecognizedRequests = true;
+                    options.ClientId = builder.Configuration["GoogleWebApplication:client_id"]
+                                        ?? throw new InvalidOperationException("Can't found [Secret Key] in appsettings.json !");
+                    options.ClientSecret = builder.Configuration["GoogleWebApplication:client_secret"]
+                                            ?? throw new InvalidOperationException("Can't found [Secret Key] in appsettings.json !");
+                })
+                .AddJwtBearer(jwtBearerOptions => {
+                    jwtBearerOptions.RequireHttpsMetadata = false;
+                    jwtBearerOptions.SaveToken = true;
+                    jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters {
+                            ValidateIssuerSigningKey = true,
+                            ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+                            ValidAudience = builder.Configuration["JWT:ValidAudience"],
+                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]
+                                                ?? throw new InvalidOperationException("Can't found [Secret Key] in appsettings.json !"))
+                            ),
+                            ValidateIssuer = false,
+                            ValidateAudience = false
+                    };
+                });
 
 // API: Add SwaggerGen (dotnet add package Swashbuckle.AspNetCore)
 builder.Services.AddSwaggerGen(
@@ -155,6 +151,7 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IFoodService, FoodService>();
 // UI: Modules Youtube
 builder.Services.AddScoped<IYoutubeService, YoutubeService>();
+builder.Services.AddScoped<IGoogleDriveService, GoogleDriveService>();
 
 // UI: Authentication
 builder.Services.AddScoped<AuthenticationStateProvider, AuthService>();
@@ -170,10 +167,9 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
-// API: Add run Swagger UI: https://localhost:5187/swagger/index.html
-if (app.Environment.IsDevelopment())
+else // API: Add run Swagger UI: https://localhost:5187/swagger/index.html
 {
+    app.UseMigrationsEndPoint();
     app.UseSwagger();
     app.UseSwaggerUI(
         opt =>

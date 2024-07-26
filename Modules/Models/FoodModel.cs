@@ -1,5 +1,4 @@
-namespace IdentityBlazorCoreAPI.Modules.XMLFoods;
-
+namespace IdentityBlazorCoreAPI.Modules.Models;
 public class Food
 {
     public int food_id {get; set;}

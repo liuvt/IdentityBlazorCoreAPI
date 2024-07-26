@@ -1,6 +1,5 @@
-using IdentityBlazorCoreAPI.Data.Models;
-using IdentityBlazorCoreAPI.Modules.APIYoutube;
-namespace IdentityBlazorCoreAPI.Modules.APIYoutube;
+using IdentityBlazorCoreAPI.Modules.Models;
+namespace IdentityBlazorCoreAPI.Modules.APIYoutube.Services;
 public class YoutubeService : IYoutubeService
 {
     private readonly HttpClient httpClient;

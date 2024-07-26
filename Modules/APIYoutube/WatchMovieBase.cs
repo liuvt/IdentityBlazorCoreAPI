@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components;
-using IdentityBlazorCoreAPI.Data.Models;
+using IdentityBlazorCoreAPI.Modules.Models;
+using IdentityBlazorCoreAPI.Modules.APIYoutube.Services;
 
 namespace IdentityBlazorCoreAPI.Modules.APIYoutube;
 public class WatchMovieBase : ComponentBase
@@ -8,8 +9,6 @@ public class WatchMovieBase : ComponentBase
     public string listId { get; set; }
     [Inject]
     private IYoutubeService youtubeService {get; set;}
-    [Inject]
-    private NavigationManager nav { get; set; }
     protected IEnumerable<YoutubeVideo> videos { get; set; } = new List<YoutubeVideo>();
     protected YoutubeVideo video { get; set; } = new YoutubeVideo();
     protected YoutubePlayListItem playListItem { get; set; } = new YoutubePlayListItem();

@@ -1,4 +1,5 @@
-using IdentityBlazorCoreAPI.Modules.XMLFoods;
+using IdentityBlazorCoreAPI.Modules.XMLFoods.Services;
+using IdentityBlazorCoreAPI.Modules.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 

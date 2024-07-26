@@ -1,5 +1,5 @@
-using IdentityBlazorCoreAPI.Data.Models;
-namespace IdentityBlazorCoreAPI.Modules.APIYoutube;
+using IdentityBlazorCoreAPI.Modules.Models;
+namespace IdentityBlazorCoreAPI.Modules.APIYoutube.Services;
 
 public interface IYoutubeService
 {
