@@ -17,6 +17,7 @@ public class MainLayoutBase : LayoutComponentBase
     private string localStorageDarkMode = "_isDarkMode";
     protected MudTheme _theme = new MudTheme()
     {
+        // Thay đổi font mặt định của MudBlazor
         Typography = new Typography()
         {
             Default = new Default()
