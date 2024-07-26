@@ -1,5 +1,5 @@
 <!--Sử dụng css animation-->
-<MudItem sm="12" md="7">
+<MudItem sm="12" md="7" Style="@ColorTextDarkMode">
     <MudText Class="augAnimation" Style="animation-delay: 600ms;" Typo="Typo.h4">
         @Title
     </MudText>
@@ -46,6 +46,9 @@
     public string? LinkButton3 { get; set; }
     [Parameter]
     public string? LinkButton4 { get; set; }
+
+    [Parameter]
+    public string? ColorTextDarkMode { get; set; }
 }
 
 @*

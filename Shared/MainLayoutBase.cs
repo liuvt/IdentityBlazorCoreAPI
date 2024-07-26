@@ -10,7 +10,6 @@ public class MainLayoutBase : LayoutComponentBase
 {
     [Inject]
     private IAuthService authService { get; set; }
-
     [Inject]
     protected IJSRuntime Js { get; set; }
 
@@ -53,11 +52,13 @@ public class MainLayoutBase : LayoutComponentBase
         {
             // Nếu không rỗng thì lấy giá trị
             _isDarkMode = bool.Parse(valueDarkMode.Replace("\"",""));
+            StateHasChanged();
         }
         else
         {
             // Nếu rỗng thì set giá trị hiện tại
             await Js.SetFromLocalStorage(localStorageDarkMode, Convert.ToString(_isDarkMode));
+            StateHasChanged();
         }
     }
 
