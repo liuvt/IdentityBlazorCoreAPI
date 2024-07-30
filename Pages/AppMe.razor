@@ -7,7 +7,7 @@
 {
 <MudMainContent Class="augBackground">
 <MudContainer MaxWidth="MaxWidth.Medium" Class="augImg pa-5">
-    <MudProgressCircular Color="Color.Secondary" Indeterminate="true" />
+    <MudProgressCircular Color="Color.Error" Indeterminate="true" />
 </MudContainer>
 </MudMainContent>
 }
@@ -19,7 +19,7 @@ else{
     </MudItem>
     <MudGrid Spacing="6" Class="mt-3">
         <!--Nội dung phần Public-->
-        <MudItem xs="12" Style="@($"background:{Colors.Blue.Lighten5};")" Class="pa-4">
+        <MudItem xs="12" Class="pa-4">
             <MudItem Class="d-flex pa-2">
                 <MudText Class="mr-2" Typo="Typo.h5" GutterBottom="true">Public</MudText>
                 <MudButton Class="mb-2" OnClick="(() => editControl())" 
@@ -34,8 +34,12 @@ else{
                     </MudCardHeader>
                     <MudCardContent>
                         <MudGrid Class="pl-10 pr-10">
+                            <MudItem xs="12">
+                                <MudTextField Label="Bio" @bind-Value="models.Biography"
+                                                    For="@(() => models.Biography)"  Disabled="@_processing"/>
+                            </MudItem>
                             <MudItem xs="12" sm="5">
-                                <MudTextField Color="Color.Primary" Label="Họ" @bind-Value="models.FirstName"
+                                <MudTextField Label="Họ" @bind-Value="models.FirstName"
                                                     For="@(() => models.FirstName)"  Disabled="@_processing"/>
                             </MudItem>
                             <MudItem xs="12" sm="5">
@@ -66,7 +70,7 @@ else{
                         </MudGrid>
                     </MudCardContent>
                     <MudCardActions Class="d-flex justify-space-between pa-4">
-                        <MudIconButton Color="Color.Secondary" Icon="@Icons.Material.Filled.Autorenew"
+                        <MudIconButton Color="Color.Error" Icon="@Icons.Material.Filled.Autorenew"
                                             aria-label="delete" OnClick="@(() => CleanForm())" Disabled="@_processing">
                         </MudIconButton>
                         <MudButton StartIcon="@Icons.Material.Filled.AppRegistration" 
@@ -78,7 +82,7 @@ else{
             </EditForm>
         </MudItem>
         <!--Nội dung phần Private-->
-        <MudItem xs="12" Style="@($"background:{Colors.Blue.Lighten5};")">
+        <MudItem xs="12">
             <MudItem Class="d-flex pa-2">
                 <MudText Class="mr-2" Typo="Typo.h5" GutterBottom="true">Private</MudText>
             </MudItem>
@@ -108,7 +112,7 @@ else{
             </MudCard>
         </MudItem>
         <!--Nội dung phần Setting-->
-        <MudItem xs="12" Style="@($"background:{Colors.Blue.Lighten5};")">
+        <MudItem xs="12">
             <MudItem Class="d-flex pa-2">
                 <MudText Class="mr-2" Typo="Typo.h5" GutterBottom="true">Setting</MudText>
             </MudItem>

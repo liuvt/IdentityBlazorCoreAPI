@@ -13,9 +13,9 @@ public class AppLoginBase : ComponentBase
     private IAuthService authService { get; set; }
     //Notifycation
     [Inject]
-    private ISnackbar snackBar { get; set; }
+    private ISnackbar snackBar { get; set; } 
     [Inject]
-    private NavigationManager nav { get; set; }
+    private NavigationManager nav { get; set; } 
     
     //Start first
     protected override async Task OnInitializedAsync()

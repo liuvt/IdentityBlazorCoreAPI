@@ -77,7 +77,8 @@ public class AuthServer : IAuthServer
             FirstName = register.FirstName,
             LastName = register.LastName,
             UserName = register.Email,
-            Gender = register.Gender
+            Gender = register.Gender,
+            PublishedAt = DateTime.Now
         };
 
         //Create password
@@ -112,6 +113,7 @@ public class AuthServer : IAuthServer
         
         user.FirstName = models.FirstName;
         user.LastName = models.LastName;
+        user.Biography = models.Biography;
         user.PhoneNumber = models.PhoneNumber;
         user.Address = models.Address;
         user.Gender = models.Gender;

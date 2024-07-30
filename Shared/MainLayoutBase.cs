@@ -11,7 +11,7 @@ public class MainLayoutBase : LayoutComponentBase
     [Inject]
     private IAuthService authService { get; set; }
     [Inject]
-    protected IJSRuntime Js { get; set; }
+    private IJSRuntime Js { get; set; }
 
     // Lưu biến isdarkmode vào localstorage theo key
     private string localStorageDarkMode = "_isDarkMode";
@@ -24,22 +24,35 @@ public class MainLayoutBase : LayoutComponentBase
             {
                 FontFamily = new[] { "Trirong", "sans-serif" },
             }
-        }
+        },
+        // Thay đổi trạng thái dark và light
+        Palette = new PaletteLight()
+        {
+            // Đổi màu thanh appbar
+            AppbarBackground = Colors.Grey.Lighten2,
+            Primary = "#0A7BCF",
+            Secondary = "#FFFFFF", // Secondary tham số Color ít dùng
+        },
+        PaletteDark = new PaletteDark()
+        {
+            // Đổi màu thanh appbar
+            AppbarBackground = Colors.Grey.Darken3,
+            Primary = "#6585e0",
+            Secondary = "#E0E0E0", // Secondary tham số Color ít dùng
+        },
     };
     // Trang thái mặt định là Light Mode
     protected bool _isDarkMode = false;
     // Thay đổi Icon darkmode
     protected string modeIcon => _isDarkMode ? Icons.Material.Outlined.DarkMode : Icons.Material.Outlined.LightMode;
-    protected string colorIcon => _isDarkMode ? "rgba(255,255,255,0.6980392156862745)" : Colors.Yellow.Accent3;
-    // Thay đổi màu thanh App Bar theo darkmode
-    protected string modeAppBarColor => _isDarkMode ? "background:rgba(50,51,61,1);" : "background:rgb(245,245,245);";
-    // Thay đổi tên logo theo darkmode
-    protected string modeNameCompany => _isDarkMode ? "" : "color:rgba(66,66,66,1);";
+    protected string colorIcon => _isDarkMode ? "#E0E0E0" : "#FDD835";
 
     // Drawer navigation
     protected bool _drawerOpen = false;
+    // Anchor show navigation position
     protected Anchor anchor;
-    protected string width, height;
+    // Navigation size
+    protected string width, height; 
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

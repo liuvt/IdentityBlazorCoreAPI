@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IdentityBlazorCoreAPI.Data.Migrations
 {
     [DbContext(typeof(IdentityBlazorCoreAPIDbContext))]
-    [Migration("20240713100350_Init")]
+    [Migration("20240729161938_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -34,6 +34,10 @@ namespace IdentityBlazorCoreAPI.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Biography")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -113,7 +117,8 @@ namespace IdentityBlazorCoreAPI.Data.Migrations
                             Id = "OWNER-AUGCENTER-2023",
                             AccessFailedCount = 0,
                             Address = "",
-                            ConcurrencyStamp = "b381e566-0bca-4606-942f-9df0d1a7c120",
+                            Biography = "",
+                            ConcurrencyStamp = "966010ad-773e-442f-9628-5f55c549d618",
                             Email = "owner@augcenter.com",
                             EmailConfirmed = false,
                             FirstName = "Aug",
@@ -122,10 +127,10 @@ namespace IdentityBlazorCoreAPI.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "OWNER@AUGCENTER.COM",
                             NormalizedUserName = "OWNER@AUGCENTER.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAENhvNwVJECfuv/BrHo0dcOhMmUiuK/gK//I0mjs0i7CJ70Rq27zPSgunXYd9kz6fYw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAshLP9SzwD3ZG1K5pYO4aOJsNKEIVSCGjnZrI7if1Nb64jsT9hc3+mSm0i/ru5XBA==",
                             PhoneNumber = "0868752251",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d051193b-85aa-41d9-bcfa-cbd3a7097e0f",
+                            SecurityStamp = "f32e832b-bc31-4ae7-bd5f-a9fdfaa58719",
                             TwoFactorEnabled = false,
                             UserName = "owner@augcenter.com"
                         },
@@ -134,7 +139,8 @@ namespace IdentityBlazorCoreAPI.Data.Migrations
                             Id = "ADMIN-AUGCENTER-2023",
                             AccessFailedCount = 0,
                             Address = "",
-                            ConcurrencyStamp = "c276eb65-05cf-4116-920c-c360e1532dcf",
+                            Biography = "",
+                            ConcurrencyStamp = "38fa488d-2d53-41a4-910e-5444e4823e93",
                             Email = "administructor@augcenter.com",
                             EmailConfirmed = false,
                             FirstName = "Aug",
@@ -143,10 +149,10 @@ namespace IdentityBlazorCoreAPI.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINISTRUCTOR@AUGCENTER.COM",
                             NormalizedUserName = "ADMINISTRUCTOR@AUGCENTER.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEN3T/IyTQpltmObQu5sWX9y9Tf/eXTG/3axe1uIP0CMpgbGpvotmTjNsb4PCOHoC5w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKqJQ6Q7c9y/0GYRcvUteGhHkSxiekVWyz8fT2ZhkIuvMD4Xdn8y5nhAWA8/yUnsDA==",
                             PhoneNumber = "0868752251",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "37a4a6bc-b467-476d-a07a-dcde60d1ebe4",
+                            SecurityStamp = "0751326c-80b0-4fbf-b644-e7f03441842a",
                             TwoFactorEnabled = false,
                             UserName = "administructor@augcenter.com"
                         },
@@ -155,7 +161,8 @@ namespace IdentityBlazorCoreAPI.Data.Migrations
                             Id = "SELLER-AUGCENTER-2023",
                             AccessFailedCount = 0,
                             Address = "",
-                            ConcurrencyStamp = "1fdcf06c-689d-45e0-971c-d485bc3c49c7",
+                            Biography = "",
+                            ConcurrencyStamp = "28d07aaa-5616-482d-8042-957adb82e8f4",
                             Email = "seller@augcenter.com",
                             EmailConfirmed = false,
                             FirstName = "Aug",
@@ -164,10 +171,10 @@ namespace IdentityBlazorCoreAPI.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SELLER@AUGCENTER.COM",
                             NormalizedUserName = "SELLER@AUGCENTER.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKyrSDhbmbuWIbaj95FAPeZAQj1XWyA4GKZAc5woZ/AuTzZPyK+jli9i9KaOVVB3Jw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGuip/BhRb/ci40Gw4X6wJoGH5kkivyT2rwoYfEpAPp/e5SdkMpSxgDEBc3P4Spn1Q==",
                             PhoneNumber = "0868752251",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8cf761e3-4518-42bd-85dd-a3b0e47c82ae",
+                            SecurityStamp = "66ca5f1e-b691-4c21-95b5-ff9d43d277d2",
                             TwoFactorEnabled = false,
                             UserName = "seller@augcenter.com"
                         },
@@ -176,7 +183,8 @@ namespace IdentityBlazorCoreAPI.Data.Migrations
                             Id = "BUYER-AUGCENTER-2023",
                             AccessFailedCount = 0,
                             Address = "",
-                            ConcurrencyStamp = "362d9b2e-33d5-4623-ac23-90a6ec2f0d3f",
+                            Biography = "",
+                            ConcurrencyStamp = "1cbedc58-3a07-4153-9630-c1f6611ed9ae",
                             Email = "buyer@augcenter.com",
                             EmailConfirmed = false,
                             FirstName = "Aug",
@@ -185,10 +193,10 @@ namespace IdentityBlazorCoreAPI.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "BUYER@AUGCENTER.COM",
                             NormalizedUserName = "BUYER@AUGCENTER.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJgGnBIQFZOYCmoziaop9BRbeQigqU3AnXficear5UKXovmySM3ecdKcel6nFk6L2Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMX13zn35Xo3bsfnQuYLxhWkLTA8gbBiRgsvnFejmTZ4ijhR0IofhAnEC/UaIxGZlg==",
                             PhoneNumber = "0868752251",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0ecda3d3-4715-4f00-8d82-3ef799e1c4da",
+                            SecurityStamp = "54b7590c-928a-4ba5-b75a-e34c27d9d89d",
                             TwoFactorEnabled = false,
                             UserName = "buyer@augcenter.com"
                         });
@@ -223,35 +231,35 @@ namespace IdentityBlazorCoreAPI.Data.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "13/07/2024 5:03:46 CH",
+                            ConcurrencyStamp = "29/07/2024 11:19:36 CH",
                             Name = "Owner",
                             NormalizedName = "OWNER"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "13/07/2024 5:03:46 CH",
+                            ConcurrencyStamp = "29/07/2024 11:19:36 CH",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRUCTOR"
                         },
                         new
                         {
                             Id = "3",
-                            ConcurrencyStamp = "13/07/2024 5:03:46 CH",
+                            ConcurrencyStamp = "29/07/2024 11:19:36 CH",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
                             Id = "4",
-                            ConcurrencyStamp = "13/07/2024 5:03:46 CH",
+                            ConcurrencyStamp = "29/07/2024 11:19:36 CH",
                             Name = "Seller",
                             NormalizedName = "SELLER"
                         },
                         new
                         {
                             Id = "5",
-                            ConcurrencyStamp = "13/07/2024 5:03:46 CH",
+                            ConcurrencyStamp = "29/07/2024 11:19:36 CH",
                             Name = "Buyer",
                             NormalizedName = "BUYER"
                         });

@@ -46,11 +46,13 @@ namespace IdentityBlazorCoreAPI.Data.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     LastName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Address = table.Column<string>(type: "longtext", nullable: false)
+                    Biography = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Gender = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     BirthDay = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    Address = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     UserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     NormalizedUserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
@@ -212,22 +214,22 @@ namespace IdentityBlazorCoreAPI.Data.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "1", "13/07/2024 5:03:46 CH", "Owner", "OWNER" },
-                    { "2", "13/07/2024 5:03:46 CH", "Administrator", "ADMINISTRUCTOR" },
-                    { "3", "13/07/2024 5:03:46 CH", "Manager", "MANAGER" },
-                    { "4", "13/07/2024 5:03:46 CH", "Seller", "SELLER" },
-                    { "5", "13/07/2024 5:03:46 CH", "Buyer", "BUYER" }
+                    { "1", "29/07/2024 11:19:36 CH", "Owner", "OWNER" },
+                    { "2", "29/07/2024 11:19:36 CH", "Administrator", "ADMINISTRUCTOR" },
+                    { "3", "29/07/2024 11:19:36 CH", "Manager", "MANAGER" },
+                    { "4", "29/07/2024 11:19:36 CH", "Seller", "SELLER" },
+                    { "5", "29/07/2024 11:19:36 CH", "Buyer", "BUYER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "Address", "BirthDay", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "Gender", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "Address", "Biography", "BirthDay", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "Gender", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "ADMIN-AUGCENTER-2023", 0, "", null, "c276eb65-05cf-4116-920c-c360e1532dcf", "administructor@augcenter.com", false, "Aug", "", "Center", false, null, "ADMINISTRUCTOR@AUGCENTER.COM", "ADMINISTRUCTOR@AUGCENTER.COM", "AQAAAAIAAYagAAAAEN3T/IyTQpltmObQu5sWX9y9Tf/eXTG/3axe1uIP0CMpgbGpvotmTjNsb4PCOHoC5w==", "0868752251", false, "37a4a6bc-b467-476d-a07a-dcde60d1ebe4", false, "administructor@augcenter.com" },
-                    { "BUYER-AUGCENTER-2023", 0, "", null, "362d9b2e-33d5-4623-ac23-90a6ec2f0d3f", "buyer@augcenter.com", false, "Aug", "", "Center", false, null, "BUYER@AUGCENTER.COM", "BUYER@AUGCENTER.COM", "AQAAAAIAAYagAAAAEJgGnBIQFZOYCmoziaop9BRbeQigqU3AnXficear5UKXovmySM3ecdKcel6nFk6L2Q==", "0868752251", false, "0ecda3d3-4715-4f00-8d82-3ef799e1c4da", false, "buyer@augcenter.com" },
-                    { "OWNER-AUGCENTER-2023", 0, "", null, "b381e566-0bca-4606-942f-9df0d1a7c120", "owner@augcenter.com", false, "Aug", "", "Center", false, null, "OWNER@AUGCENTER.COM", "OWNER@AUGCENTER.COM", "AQAAAAIAAYagAAAAENhvNwVJECfuv/BrHo0dcOhMmUiuK/gK//I0mjs0i7CJ70Rq27zPSgunXYd9kz6fYw==", "0868752251", false, "d051193b-85aa-41d9-bcfa-cbd3a7097e0f", false, "owner@augcenter.com" },
-                    { "SELLER-AUGCENTER-2023", 0, "", null, "1fdcf06c-689d-45e0-971c-d485bc3c49c7", "seller@augcenter.com", false, "Aug", "", "Center", false, null, "SELLER@AUGCENTER.COM", "SELLER@AUGCENTER.COM", "AQAAAAIAAYagAAAAEKyrSDhbmbuWIbaj95FAPeZAQj1XWyA4GKZAc5woZ/AuTzZPyK+jli9i9KaOVVB3Jw==", "0868752251", false, "8cf761e3-4518-42bd-85dd-a3b0e47c82ae", false, "seller@augcenter.com" }
+                    { "ADMIN-AUGCENTER-2023", 0, "", "", null, "38fa488d-2d53-41a4-910e-5444e4823e93", "administructor@augcenter.com", false, "Aug", "", "Center", false, null, "ADMINISTRUCTOR@AUGCENTER.COM", "ADMINISTRUCTOR@AUGCENTER.COM", "AQAAAAIAAYagAAAAEKqJQ6Q7c9y/0GYRcvUteGhHkSxiekVWyz8fT2ZhkIuvMD4Xdn8y5nhAWA8/yUnsDA==", "0868752251", false, "0751326c-80b0-4fbf-b644-e7f03441842a", false, "administructor@augcenter.com" },
+                    { "BUYER-AUGCENTER-2023", 0, "", "", null, "1cbedc58-3a07-4153-9630-c1f6611ed9ae", "buyer@augcenter.com", false, "Aug", "", "Center", false, null, "BUYER@AUGCENTER.COM", "BUYER@AUGCENTER.COM", "AQAAAAIAAYagAAAAEMX13zn35Xo3bsfnQuYLxhWkLTA8gbBiRgsvnFejmTZ4ijhR0IofhAnEC/UaIxGZlg==", "0868752251", false, "54b7590c-928a-4ba5-b75a-e34c27d9d89d", false, "buyer@augcenter.com" },
+                    { "OWNER-AUGCENTER-2023", 0, "", "", null, "966010ad-773e-442f-9628-5f55c549d618", "owner@augcenter.com", false, "Aug", "", "Center", false, null, "OWNER@AUGCENTER.COM", "OWNER@AUGCENTER.COM", "AQAAAAIAAYagAAAAEAshLP9SzwD3ZG1K5pYO4aOJsNKEIVSCGjnZrI7if1Nb64jsT9hc3+mSm0i/ru5XBA==", "0868752251", false, "f32e832b-bc31-4ae7-bd5f-a9fdfaa58719", false, "owner@augcenter.com" },
+                    { "SELLER-AUGCENTER-2023", 0, "", "", null, "28d07aaa-5616-482d-8042-957adb82e8f4", "seller@augcenter.com", false, "Aug", "", "Center", false, null, "SELLER@AUGCENTER.COM", "SELLER@AUGCENTER.COM", "AQAAAAIAAYagAAAAEGuip/BhRb/ci40Gw4X6wJoGH5kkivyT2rwoYfEpAPp/e5SdkMpSxgDEBc3P4Spn1Q==", "0868752251", false, "66ca5f1e-b691-4c21-95b5-ff9d43d277d2", false, "seller@augcenter.com" }
                 });
 
             migrationBuilder.InsertData(

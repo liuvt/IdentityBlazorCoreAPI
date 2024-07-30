@@ -185,14 +185,3 @@ button {
 }
 
 /* =========================================================================================== */
-.buttonOrMudTabs {
-    font-size: 1.125rem !important;
-    /* 18 pixel/16 = 1.125rem rem */
-    font-family: "Trirong", serif !important;
-    font-weight: 400 !important;
-    line-height: 1.334 !important;
-    letter-spacing: 0 !important;
-    text-transform: none !important;
-}
-
-/* =========================================================================================== */

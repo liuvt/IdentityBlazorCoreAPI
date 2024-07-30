@@ -1,0 +1,207 @@
+@implements IDisposable
+
+<MudDialog Class="pa-3">
+    <TitleContent>
+            @if(isEdit != true)
+            {
+                <MudText Typo="Typo.h6" Color="Color.Success">
+                    <MudIcon Icon="@Icons.Material.Filled.AddCircle" Class="mr-3" /> TẠO MỚI
+                </MudText>
+            }
+            else
+            {
+                <MudText Typo="Typo.h6" Color="Color.Primary">
+                    <MudIcon Icon="@Icons.Material.Outlined.Edit" Class="mr-3" /> CẬP NHẬT
+                </MudText>
+            }
+    </TitleContent>
+    <DialogContent>
+        <EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit" Enhance>
+        <DataAnnotationsValidator/>
+            <MudGrid Class="pa-3">
+                <MudItem sm="12" md="7">
+                    <MudCardContent>
+                    <MudPaper Elevation="1" Class="pa-3">
+                        <MudGrid>
+                            <MudItem xs="12">
+                                <MudTextField @bind-Value="user.Email" For="@(() => user.Email)"
+                                    Counter="30" MaxLength="30" Immediate="true" Required="true" 
+                                    Label="Email người dùng" HelperText="Hỗ trợ Email: Gmail, Yahoo, Hotmail, Outlook,.." />
+                            </MudItem>
+
+                            <MudItem xs="12">  
+                                <MudTextField @bind-Value="user.Password" For="@(() => user.Password)" Immediate="true" Required="true" 
+                                    InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon"
+                                    OnAdornmentClick="@(() => ShowPasswordHandler())" AdornmentAriaLabel="Show Password"
+                                    Label="Mật khẩu" Counter="15" MaxLength="15"
+                                    HelperText="Mật khẩu yêu cầu: 8-15 ký tự, 1 ký tự đặt biệt (!,#,$,%,..), 1 ký tự viết hoa, 1 chữ số. Ví dụ: Abc!1234"/>
+                            </MudItem>
+
+                            <MudItem xs="12" sm="6">  
+                                <MudTextField @bind-Value="user.LastName" For="@(() => user.LastName)"
+                                    Counter="15" MaxLength="15" Immediate="true" 
+                                    Label="Tên" HelperText="Nhập tên người dùng" />
+                            </MudItem>
+
+                            <MudItem xs="12" sm="6">  
+                                <MudTextField @bind-Value="user.FirstName" For="@(() => user.FirstName)"
+                                    Counter="15" MaxLength="15" Immediate="true" 
+                                    Label="Họ" HelperText="Nhập họ người dùng" />
+                            </MudItem>
+
+                            <MudItem xs="12">
+                                <MudTextField @bind-Value="user.Biography" For="@(() => user.Biography)"
+                                    Lines="3" Immediate="true" 
+                                    Label="Bio" HelperText="Giới thiệu ngắn về bản thân" />
+                            </MudItem>
+
+                            <MudItem xs="12" sm="6">  
+                                <MudTextField @bind-Value="user.PhoneNumber" For="@(() => user.PhoneNumber)"
+                                    Counter="15" MaxLength="15" Immediate="true" 
+                                    Label="Số điện thoại" HelperText="Hỗ trợ SĐT: Việt Nam, Malaysia, China. Đầu số: 84, 60, 86, 0)" />
+                            </MudItem>
+                            
+                            <MudItem xs="12" sm="6">  
+                                <MudSelect Dense="true" T="string" Label="Giới tính"
+                                    Variant="Variant.Text" @bind-Value="user.Gender" For="@(() => user.Gender)">
+                                    <MudSelectItem Value="@("Nam")" />
+                                    <MudSelectItem Value="@("Nữ")" />
+                                    <MudSelectItem Value="@("Khác")" />
+                                </MudSelect>
+                            </MudItem>
+
+                            <MudItem xs="12">  
+                                <MudTextField @bind-Value="user.Address" For="@(() => user.Address)"
+                                    Counter="150" MaxLength="150" Immediate="true" 
+                                    Lines="3"
+                                    Label="Địa chỉ" HelperText="Địa chỉ sinh sống chi tiết" />
+                            </MudItem>
+                            
+                        </MudGrid>
+                    </MudPaper>
+                    </MudCardContent>
+                </MudItem>
+                <MudItem sm="12" md="5">
+                    <MudItem Class="pa-3">
+                        <MudText Color="@Color.Error" Typo="Typo.subtitle2">
+                            <ValidationSummary />
+                        </MudText>
+                        <MudText Color="@Color.Error" Typo="Typo.subtitle2">@textResult</MudText>
+                    </MudItem>
+                </MudItem>
+            </MudGrid>
+        </EditForm>
+    </DialogContent>
+    <DialogActions>
+        <MudIconButton Color="Color.Error" Icon="@Icons.Material.Filled.Autorenew" OnClick="@(() => CleanForm())" />
+        <MudSpacer />
+        <MudButton Color="Color.Error" OnClick="Cancel">Thoát</MudButton>
+        @if(isEdit != true)
+        {
+            <MudButton Color="Color.Success" ButtonType="ButtonType.Submit" 
+                Disabled="@formInvalid" OnClick="(() => Submit())">Tạo mới
+            </MudButton>
+        }
+        else
+        {
+            <MudButton Color="Color.Primary" ButtonType="ButtonType.Submit" 
+                Disabled="@formInvalid" OnClick="(() => Submit())">Cập nhật
+            </MudButton>
+        }
+    </DialogActions>
+</MudDialog>
+
+@code {
+    // Dữ liệu trả về sau khi submit: user đầu ra dữ liệu
+    private UserCreateDTO user {get; set;} = new UserCreateDTO();
+    // Dữ liệu được truyền vào, xem trước khi cập nhật, sử dụng nếu đây là Cập nhật với isEdit = true: userEdit đầu vào dữ liệu
+    [Parameter] public UserCreateDTO userEdit {get; set;} = new UserCreateDTO();
+    // Tham số trạng thái cập nhật hay thêm mới
+    [Parameter] public bool isEdit {get; set;}
+    // Khai báo dialog
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    // Kiểm tra validation các mudtextfield có phù hợp hay không, nếu không nút submit hiden cho đến khi phù hợp yêu cầu
+    private bool formInvalid = true;
+    private string textResult;
+    // Khai báo nội dung editform
+    private EditContext editContext;
+    // Dữ liệu được submit từ editform
+
+    private async Task Submit()
+    {
+        MudDialog.Close(DialogResult.Ok(user));
+    }
+    private void Cancel() => MudDialog.Cancel();
+
+    protected void CleanForm()
+    {
+        if(!isEdit)
+        {
+            user = new UserCreateDTO();
+            editContext = new EditContext(user);
+        }
+        else 
+        {
+            editContext = new EditContext(userEdit);
+        }
+        StateHasChanged(); 
+    }
+
+    protected override void OnInitialized()
+    {
+        // Load dữ liệu from khi khởi tạo
+        if(isEdit != true){
+            // Create: các field đều rỗng
+            editContext = new EditContext(user);
+        }
+        else
+        {
+            // Update: các field được nhận từ tham số userEdit
+            editContext = new EditContext(userEdit);
+        }
+
+        editContext.OnFieldChanged += HandleFieldChanged;
+    }
+
+    private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
+    {
+        // Kiểm tra xem các điều kiện trên field đã phù hợp hay chưa
+        formInvalid = !editContext.Validate();
+        StateHasChanged();
+    }
+
+    private void HandleValidSubmit()
+    {
+        // Process the valid form
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        editContext.OnFieldChanged -= HandleFieldChanged;
+    }
+
+    #region MudTextField Password
+
+    protected bool isShowPassword = false;
+    protected InputType PasswordInput = InputType.Password;
+    protected string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+    protected async Task ShowPasswordHandler()
+    {
+        if (isShowPassword)
+        {
+            isShowPassword = false;
+            PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+            PasswordInput = InputType.Password;
+        }
+        else
+        {
+            isShowPassword = true;
+            PasswordInputIcon = Icons.Material.Filled.Visibility;
+            PasswordInput = InputType.Text;
+        }
+    }
+
+    #endregion
+}

@@ -2,19 +2,26 @@
 @inherits MainLayoutBase
 
 <MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="@_theme"/>
-<MudDialogProvider />
 <MudSnackbarProvider />
+<MudDialogProvider 
+    FullWidth="true"
+    MaxWidth="MaxWidth.Medium"
+    CloseButton="true"
+    DisableBackdropClick="true"
+    Position="DialogPosition.Center"
+    CloseOnEscapeKey="true"
+/>
 
 <MudLayout >
-    <MudAppBar Style="@modeAppBarColor">
+    <MudAppBar>
         <!--For mobile and tablet Navigation Button show-->
         <MudIconButton Class="d-xs-flex d-md-none" 
             Icon="@Icons.Material.Filled.Menu" Color="Color.Default"
             Edge="Edge.Start" OnClick="@((e) => DrawerToggle(Anchor.Start))" />
         <!-- Show size >=sm -->
-        <MudText Style="@modeNameCompany" Id="augNameCompany" Class="d-none d-sm-flex pa-2">August Center</MudText>
+        <MudText Color="Color.Primary" Id="augNameCompany" Class="d-none d-sm-flex pa-2">August Center</MudText>
         <!-- Show size <sm -->
-        <MudText Style="@modeNameCompany" Id="augNameCompany" Class="d-xs-flex d-sm-none">A. Center</MudText>
+        <MudText Color="Color.Primary" Id="augNameCompany" Class="d-xs-flex d-sm-none">A. Center</MudText>
         <!-- BreakPoint -->
         <MudSpacer />
         <!-- For desktop

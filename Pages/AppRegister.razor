@@ -28,7 +28,6 @@
                                         For="@(() => models.FirstName)" Disabled="@_processing"/>
                                 </MudItem>
                                 <MudItem xs="12" sm="6">
-                                    
                                     <MudTextField Label="Tên*" HelperText="Tên tối thiểu 3 ký tự" @bind-Value="models.LastName"
                                         Disabled="@_processing"
                                         For="@(() => models.LastName)" />
@@ -60,7 +59,7 @@
                             </MudGrid>
                         </MudCardContent>
                         <MudCardActions Class="d-flex justify-space-between pa-4">
-                            <MudIconButton Color="Color.Secondary" Icon="@Icons.Material.Filled.Autorenew"
+                            <MudIconButton Color="Color.Error" Icon="@Icons.Material.Filled.Autorenew"
                                 Disabled="@_processing" OnClick="@(() => CleanForm())"></MudIconButton>
                             <MudButton StartIcon="@Icons.Material.Filled.AppRegistration" ButtonType="ButtonType.Submit"
                                 Disabled="@_processing" Variant="Variant.Filled" Color="Color.Primary" Class="buttonOrMudTabs ml-auto text-end">Đăng ký

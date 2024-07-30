@@ -1,0 +1,67 @@
+@page "/manager/users"
+@inherits ManagerUsersBase
+@attribute [Authorize(Roles = ("Owner"))]
+
+<PageTitle>Quản lý thông tin users - Augcenter</PageTitle>
+
+<MudDataGrid T="AppUser"
+        Items="@appUsers" 
+        Hover="true"
+        SortMode="@SortMode.Multiple" 
+        Filterable="true" 
+        QuickFilter="@_quickFilter" 
+        MultiSelection="true" 
+        SelectedItemsChanged="@(SelectedItemsChanged)" >
+    <ToolBarContent>
+        <MudButton Class="pa-3" Disabled="@_selectRow" Variant="Variant.Text" OnClick="@(() => DeleteUsers())"
+            StartIcon="@Icons.Material.Outlined.Delete" Color="Color.Error" Size="Size.Small" Edge="Edge.End">Chọn xóa
+        </MudButton>
+        <MudButton Class="pa-3" Variant="Variant.Text" OnClick="@(() => CreateDialog())"
+            StartIcon="@Icons.Material.Outlined.Add" Color="Color.Success" Size="Size.Small" Edge="Edge.End">Tạo mới
+        </MudButton>
+        <MudButton Class="pa-3" Variant="Variant.Text" OnClick="(() => ExportDataExcel())"
+            Color="Color.Warning" Size="Size.Small" Edge="Edge.End">Xuất dữ liệu(Excel)
+        </MudButton>
+        <MudSpacer />
+        <MudTextField @bind-Value="@_searchString" Placeholder="Tìm kiếm..." Adornment="Adornment.Start" 
+            Immediate="true" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0">
+        </MudTextField>
+    </ToolBarContent>
+    <Columns>
+        <HierarchyColumn T="AppUser" />
+        <SelectColumn T="AppUser" />
+        <PropertyColumn Property="x => x.Id" Title="ID" Sortable="false" Filterable="false" />
+        <PropertyColumn Property="x => x.Email" Title="Email" SortBy="@_sortBy" CellStyleFunc="@DataGridCellStyleFuncExtensions.ForAppUser(DataGridCellStyleFuncExtensions.color_backgold_bold)" />
+        <PropertyColumn Property="x => x.UserName" Title="Tên tài khoản"/>
+        <PropertyColumn Property="x => x.PhoneNumber" Title="Số điện thoại"/>
+        <PropertyColumn Property="x => x.PublishedAt" Title="Ngày tạo tài khoản"/>
+    </Columns>
+    <ChildRowContent>
+        <MudCard>
+            <MudCardActions>
+                <MudButton Class="pa-3"  Variant="Variant.Text" 
+                        StartIcon="@Icons.Material.Outlined.Dashboard"
+                        Color="Color.Success" Size="Size.Small" Edge="Edge.End">Chi tiết
+                </MudButton>
+                <MudButton Class="pa-3"  
+                        Variant="Variant.Text" StartIcon="@Icons.Material.Outlined.Edit" 
+                        Color="Color.Primary" Size="Size.Small" Edge="Edge.End">Cập nhật
+                </MudButton>
+                <MudButton Class="pa-3" OnClick="@(() => DeleteUser(@context.Item.Id))"
+                        Variant="Variant.Text" StartIcon="@Icons.Material.Outlined.Delete" 
+                        Color="Color.Error" Size="Size.Small" Edge="Edge.End">Xóa
+                </MudButton>
+            </MudCardActions>
+            <MudCardContent>
+                <MudText Typo="Typo.h6">Thông tin người dùng</MudText>
+                <MudText Typo="Typo.subtitle2">Bio: @context.Item.Biography</MudText>
+                <MudText>Họ và tên: @context.Item.FirstName @context.Item.LastName</MudText>
+                <MudText>Giới tính: @context.Item.Gender</MudText>
+                <MudText>Địa chỉ: @context.Item.Address</MudText>
+            </MudCardContent>
+        </MudCard>
+    </ChildRowContent>
+    <PagerContent>
+        <MudDataGridPager T="AppUser" />
+    </PagerContent>
+</MudDataGrid>

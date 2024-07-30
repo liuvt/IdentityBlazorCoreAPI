@@ -7,9 +7,12 @@ public class AppUser : IdentityUser
 {
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
-    public string Address { get; set; } = string.Empty;
+    public string Biography { get; set; } = string.Empty;
     public string Gender { get; set; } = string.Empty;
     public DateTime? BirthDay { get; set; }
+    public string Address { get; set; } = string.Empty;
+    public DateTime? PublishedAt { get; set; }
+    
 }
 
 //Register: set default role for new User
