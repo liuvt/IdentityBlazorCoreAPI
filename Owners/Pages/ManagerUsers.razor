@@ -19,7 +19,7 @@
         <MudButton Class="pa-3" Variant="Variant.Text" OnClick="@(() => CreateDialog())"
             StartIcon="@Icons.Material.Outlined.Add" Color="Color.Success" Size="Size.Small" Edge="Edge.End">Tạo mới
         </MudButton>
-        <MudButton Class="pa-3" Variant="Variant.Text" OnClick="(() => ExportDataExcel())"
+        <MudButton Class="pa-3" Variant="Variant.Text" OnClick="@ExportDataExcel"
             Color="Color.Warning" Size="Size.Small" Edge="Edge.End">Xuất dữ liệu(Excel)
         </MudButton>
         <MudSpacer />
@@ -53,7 +53,8 @@
                 </MudButton>
             </MudCardActions>
             <MudCardContent>
-                <MudText Typo="Typo.h6">Thông tin người dùng</MudText>
+                <MudText Typo="Typo.h6">THÔNG TIN</MudText>
+                <br/>
                 <MudText Typo="Typo.subtitle2">Bio: @context.Item.Biography</MudText>
                 <MudText>Họ và tên: @context.Item.FirstName @context.Item.LastName</MudText>
                 <MudText>Giới tính: @context.Item.Gender</MudText>

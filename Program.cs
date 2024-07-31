@@ -3,7 +3,6 @@ using Microsoft.Net.Http.Headers;
 using IdentityBlazorCoreAPI.Repositories.Interfaces;
 using IdentityBlazorCoreAPI.Repositories.Services;
 using MudBlazor.Services;
-using IdentityBlazorCoreAPI.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using IdentityBlazorCoreAPI.APIServers.Contracts;
@@ -19,13 +18,9 @@ using IdentityBlazorCoreAPI.Modules.APIDrive;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Google.Apis.Auth.AspNetCore3;
 using IdentityBlazorCoreAPI.Modules.XMLFoods.Services;
+using IdentityBlazorCoreAPI.Data.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// API: Add Identity
-builder.Services.AddIdentity<AppUser, IdentityRole>()
-        .AddEntityFrameworkStores<IdentityBlazorCoreAPIDbContext>()
-        .AddDefaultTokenProviders();
 
 // API: Connect to Mysql server
 builder.Services.AddDbContext<IdentityBlazorCoreAPIDbContext>(
@@ -44,6 +39,16 @@ builder.Services.AddDbContext<IdentityBlazorCoreAPIDbContext>(
         opt.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
     }, ServiceLifetime.Transient
 );
+
+// API: Add Identity
+builder.Services.AddIdentity<AppUser, IdentityRole>()
+        .AddEntityFrameworkStores<IdentityBlazorCoreAPIDbContext>()
+        .AddDefaultTokenProviders();
+// UI: Tăng kích thước bộ nhớ đệm
+builder.Services.AddSignalR(e =>
+{
+    e.MaximumReceiveMessageSize = 102400000;
+});
 
 // UI: Add services to the container.
 builder.Services.AddRazorPages();
@@ -142,17 +147,17 @@ builder.Services.AddSwaggerGen(
 
 // API: Register ApiServers
 builder.Services.AddScoped<IAuthServer, AuthServer>();
+builder.Services.AddScoped<IUserServer, UserServer>();
 builder.Services.AddScoped<IYoutubeServer, YoutubeServer>();
 
 // UI: Register Repository
 builder.Services.AddScoped<IAuthService, AuthService>();
-
+builder.Services.AddScoped<IUserService, UserService>();
 // UI: Modules XML
 builder.Services.AddScoped<IFoodService, FoodService>();
 // UI: Modules Youtube
 builder.Services.AddScoped<IYoutubeService, YoutubeService>();
 builder.Services.AddScoped<IGoogleDriveService, GoogleDriveService>();
-
 // UI: Authentication
 builder.Services.AddScoped<AuthenticationStateProvider, AuthService>();
 builder.Services.AddAuthorizationCore();

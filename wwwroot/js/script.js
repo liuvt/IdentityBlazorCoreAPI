@@ -1,4 +1,4 @@
-//SwiperJS: trượt logo brand
+﻿//SwiperJS: trượt logo brand
 window.callSwiperJSLogoBrand = async () => {
   const swiper = new Swiper('.swiperJsBrand', {
     slidesPerView: "auto",
@@ -38,18 +38,18 @@ window.callSwiperJSEffect = async () => {
   });
 }
 
-
-window.saveAsFile = async (filename, byteBase64) =>{
-
-      // Create the <a> element and click on it
-  const a = document.createElement("a");
-  document.body.appendChild(a);
-  a.href = "data:application/octet-stream;base64," + byteBase64;
-  a.download = filename;
-  a.target = "_self";
-  a.click();
-  document.body.removeChild(a);
-  // We don't need to keep the object url, let's release the memory
-  // On Safari it seems you need to comment this line... (please let me know if you know why)
-  URL.revokeObjectURL(exportUrl);
+// Download file: https://learn.microsoft.com/en-us/aspnet/core/blazor/file-downloads?view=aspnetcore-8.0
+window.downloadFileFromStream = async (fileName, content) => {
+  // Tạo một định dạng file để chuyển dữ liệu về blob
+  const file = new File([content], fileName, { type: "application/octet-stream" });
+  // Convert to ObjectUrl để chuyển dữ liệu thành blob
+  const url = URL.createObjectURL(file);
+  // Tạo một element a để tài xuống
+  const anchorElement = document.createElement('a');
+  anchorElement.href = url;
+  anchorElement.download = fileName;
+  anchorElement.click();
+  anchorElement.target = "_self";
+  anchorElement.remove();
+  URL.revokeObjectURL(url);
 }

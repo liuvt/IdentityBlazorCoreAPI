@@ -50,15 +50,11 @@ public class ManagerUsersBase : ComponentBase
 
     #region Import/Export excel
     //export
-    protected async Task ExportDataExcel()
+    protected async void ExportDataExcel()
     {
-        ExcelExport excelExport = new ExcelExport();
-        var fileContents = excelExport.Export_Users(appUsers.ToList());
-        await Js.InvokeVoidAsync(
-                "saveAsFile",
-                "GeneratedExcel.xlsx",
-                Convert.ToBase64String(fileContents)
-            );
+        ExcelExportExtensions excelExport = new ExcelExportExtensions();
+        await excelExport.DefaultExport(Js, appUsers.ToList());
+
     }
     #endregion
 
