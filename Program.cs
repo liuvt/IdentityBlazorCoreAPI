@@ -149,10 +149,12 @@ builder.Services.AddSwaggerGen(
 builder.Services.AddScoped<IAuthServer, AuthServer>();
 builder.Services.AddScoped<IUserServer, UserServer>();
 builder.Services.AddScoped<IYoutubeServer, YoutubeServer>();
+builder.Services.AddScoped<IEtherealEmailServer, EtherealEmailServer>();
 
 // UI: Register Repository
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IEtherealEmailService, EtherealEmailService>();
 // UI: Modules XML
 builder.Services.AddScoped<IFoodService, FoodService>();
 // UI: Modules Youtube

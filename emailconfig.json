@@ -1,0 +1,29 @@
+{
+    "Web-Site": "https://ethereal.email/",
+    "AccountCredentials": {
+        "Name": "Ken Armstrong",
+        "Username": "ken.armstrong@ethereal.email",
+        "Password": "mTe97TmrB4chhQGSeM"
+    },
+    "SMTPConfiguration": {
+        "Host": "smtp.ethereal.email",
+        "Port": "587",
+        "Security": "STARTTLS",
+        "Username": "ken.armstrong@ethereal.email",
+        "Password": "mTe97TmrB4chhQGSeM"
+    },
+    "IMAPConfiguration": {
+        "Host": "imap.ethereal.email",
+        "Port": "993",
+        "Security": "TLS",
+        "Username": "ken.armstrong@ethereal.email",
+        "Password": "mTe97TmrB4chhQGSeM"
+    },
+    "POP3 configuration": {
+        "Host": "pop3.ethereal.email",
+        "Port": "995",
+        "Security": "TLS",
+        "Username": "ken.armstrong@ethereal.email",
+        "Password": "mTe97TmrB4chhQGSeM"
+    }
+}

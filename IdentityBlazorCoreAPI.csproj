@@ -37,6 +37,9 @@
     <!--Import/Export Excel file-->
     <PackageReference Include="ClosedXML" Version="0.102.3" />
 
+    <!--Send mail-->
+    <PackageReference Include="MailKit" Version="4.7.1.1" />
+
     <!--Authentication: Swagger for API-->
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />

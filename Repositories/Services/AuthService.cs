@@ -9,13 +9,11 @@ using System.Net.Http.Headers;
 using IdentityBlazorCoreAPI.Data.Models;
 using System.Text.Json;
 using System.Net;
-using System.Runtime.CompilerServices;
 
 namespace IdentityBlazorCoreAPI.Repositories.Services;
 
 public class AuthService : AuthenticationStateProvider, IAuthService
 {
-    private readonly IHttpClientFactory httpClientFactory;
     private readonly HttpClient httpClient;
     //JavaScript
     private readonly IJSRuntime jS;
@@ -26,9 +24,8 @@ public class AuthService : AuthenticationStateProvider, IAuthService
         new AuthenticationState(new System.Security.Claims.ClaimsPrincipal(new ClaimsIdentity()));
 
     //Constructor
-    public AuthService(IHttpClientFactory _httpClientFactory, HttpClient _httpClient, IJSRuntime _jS)
+    public AuthService(HttpClient _httpClient, IJSRuntime _jS)
     {
-        this.httpClientFactory = _httpClientFactory;
         this.httpClient = _httpClient;
         this.jS = _jS;
     }
