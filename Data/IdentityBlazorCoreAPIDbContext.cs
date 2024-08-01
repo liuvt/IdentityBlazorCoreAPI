@@ -28,7 +28,7 @@ public partial class IdentityBlazorCoreAPIDbContext : IdentityDbContext<AppUser>
         if (!optionsBuilder.IsConfigured)
         {
             optionsBuilder.UseMySql(
-                configuration["ConnectionStrings:LocalDB"] ?? 
+                configuration["ConnectionStrings:Default"] ?? 
                                 throw new InvalidOperationException("Can't found [Secret Key] in appsettings.json !"), 
                 ServerVersion.Parse("8.0.31-mysql")
             );

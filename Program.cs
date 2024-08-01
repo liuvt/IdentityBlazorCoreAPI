@@ -26,7 +26,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<IdentityBlazorCoreAPIDbContext>(
     opt =>
     {
-        opt.UseMySql(builder.Configuration.GetConnectionString("LocalDB"),
+        opt.UseMySql(builder.Configuration.GetConnectionString("Default"),
         Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.31-mysql"));
         /*
             Fix error: The instance of entity type cannot be tracked because another instance 
