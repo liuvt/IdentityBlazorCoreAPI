@@ -5,3 +5,4 @@ bin
 .config
 obj
 .vscode
+IdentityBlazorCoreAPI/Data/Migrations
