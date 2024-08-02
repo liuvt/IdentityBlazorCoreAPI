@@ -86,50 +86,50 @@
                 <img width="100%" height="100%" src="imgs/photos/contact1.png" />
             </MudItem>
         </MudGrid>
-        <EditForm Model="@model" OnValidSubmit="OnValidSubmit" Enhance>
-        <DataAnnotationsValidator />
-        <MudGrid Class="pa-3">
-            <MudItem sm="12" md="7">
-                <MudCardContent>
-                    <MudPaper Elevation="1" Class="pa-3">
-                        <MudGrid>
-                            <MudItem xs="12">
-                                <MudTextField @bind-Value="model.From" For="@(() => model.From)"
-                                    Counter="30" MaxLength="30" Immediate="true" Required="true" 
-                                    Label="Email của bạn" HelperText="Hỗ trợ Email: Gmail, Yahoo, Hotmail, Outlook,.." />
-                            </MudItem>
+                <EditForm Model="@model" OnValidSubmit="OnValidSubmit" Enhance>
+                <DataAnnotationsValidator />
+                    <MudGrid Class="pa-3 d-flex justify-center">
+                        <MudItem sm="12" md="7">
+                            <MudPaper Elevation="1" Class="pa-3">
+                                <MudCardContent>
+                                    <MudGrid>
+                                        <MudItem xs="12">
+                                            <MudTextField @bind-Value="model.From" For="@(() => model.From)" Disabled="@_processing"
+                                                Counter="30" MaxLength="30" Immediate="true" Required="true" 
+                                                Label="Email của bạn" HelperText="Hỗ trợ Email: Gmail, Yahoo, Hotmail, Outlook,.." />
+                                        </MudItem>
 
-                            <MudItem xs="12">  
-                                    <MudTextField @bind-Value="model.YourPhone" For="@(() => model.YourPhone)"
-                                        Counter="15" MaxLength="15" Immediate="true" 
-                                        Label="Số điện thoại" HelperText="Hỗ trợ SĐT: Việt Nam, Malaysia, China. Đầu số: 84, 60, 86, 0)" />
-                            </MudItem>
+                                        <MudItem xs="12">  
+                                                <MudTextField @bind-Value="model.YourPhone" For="@(() => model.YourPhone)" Disabled="@_processing"
+                                                    Counter="15" MaxLength="15" Immediate="true" 
+                                                    Label="Số điện thoại" HelperText="Hỗ trợ SĐT: Việt Nam, Malaysia, China. Đầu số: 84, 60, 86, 0)" />
+                                        </MudItem>
 
-                            <MudItem xs="12">  
-                                <MudTextField @bind-Value="model.Subject" For="@(() => model.Subject)"
-                                    Counter="15" MaxLength="15" Immediate="true" 
-                                    Label="Subject" HelperText="Nhập tiêu đề email" />
-                            </MudItem>
+                                        <MudItem xs="12">  
+                                            <MudTextField @bind-Value="model.Subject" For="@(() => model.Subject)" Disabled="@_processing"
+                                                Counter="15" MaxLength="15" Immediate="true" 
+                                                Label="Tiêu đề" HelperText="Nhập tiêu đề email" />
+                                        </MudItem>
 
-                            <MudItem xs="12">
-                                <MudTextField @bind-Value="model.Body" For="@(() => model.Body)"
-                                    Lines="10" Immediate="true" 
-                                    Label="Body" HelperText="Giới thiệu ngắn về bản thân" />
-                            </MudItem>
-                        </MudGrid>
-                    </MudPaper>
-                </MudCardContent>
-                 <MudCardActions Class="d-flex justify-space-between pa-2">
-                    <MudIconButton OnClick="@(() => CleanForm())" Color="Color.Error"
-                        Icon="@Icons.Material.Filled.Autorenew" />
-                        
-                    <MudButton StartIcon="@Icons.Material.Filled.Login" ButtonType="ButtonType.Submit"
-                        Variant="Variant.Filled" Color="Color.Primary" Class="buttonOrMudTabs ml-auto text-end">
-                            <MudText>Submit</MudText>
-                    </MudButton>
-                </MudCardActions>
-            </MudItem>
-        </MudGrid>
-    </EditForm>
+                                        <MudItem xs="12">
+                                            <MudTextField @bind-Value="model.Body" For="@(() => model.Body)" Disabled="@_processing"
+                                                Lines="10" Immediate="true" 
+                                                Label="Nội dung" HelperText="Nội dung email của bạn" />
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudCardContent>
+                                <MudCardActions Class="d-flex justify-space-between pa-2">
+                                    <MudIconButton OnClick="@(() => CleanForm())" Color="Color.Error" Disabled="@_processing"
+                                        Icon="@Icons.Material.Filled.Autorenew" />
+                                        
+                                    <MudButton StartIcon="@Icons.Material.Filled.Login" ButtonType="ButtonType.Submit" Disabled="@_processing"
+                                        Variant="Variant.Filled" Color="Color.Primary" Class="buttonOrMudTabs ml-auto text-end">
+                                            <MudText>Submit</MudText>
+                                    </MudButton>
+                                </MudCardActions>
+                            </MudPaper>
+                        </MudItem>
+                    </MudGrid>
+                </EditForm>
     </MudContainer>
 </MudMainContent>

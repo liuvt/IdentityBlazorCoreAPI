@@ -9,16 +9,16 @@ namespace IdentityBlazorCoreAPI.Pages.Bases;
 
 public class ContactBase : ComponentBase
 {
-    [Inject]
-    private IEtherealEmailService etherealEmailService {get; set; }
+
     [Inject]
     private ISnackbar snackBar { get; set; }
-    protected EtherealEmail model = new EtherealEmail();
     protected override async Task OnInitializedAsync()
     {
         try
         {
-          
+            // Dừng 3s trước khi mở form edit
+            Thread.Sleep(TimeSpan.FromSeconds(3));
+            _processing = false;
         }
         catch (Exception ex)
         {
@@ -26,9 +26,16 @@ public class ContactBase : ComponentBase
         }
     }
 
+    #region Edit form send mail
+    [Inject]
+    private IEtherealEmailService etherealEmailService {get; set; }
+    protected EtherealEmail model = new EtherealEmail();
+    protected bool _processing = true;
     protected async void OnValidSubmit(EditContext editContext)
     {
         await etherealEmailService.Send(model);
+        _processing = true;
+        await CleanForm();
         StateHasChanged();
     }
 
@@ -37,5 +44,6 @@ public class ContactBase : ComponentBase
         model = new EtherealEmail();
         StateHasChanged();
     }
+    #endregion
 
 }

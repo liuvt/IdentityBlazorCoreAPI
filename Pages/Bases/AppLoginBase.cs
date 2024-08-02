@@ -11,26 +11,27 @@ public class AppLoginBase : ComponentBase
 {
     [Inject]
     private IAuthService authService { get; set; }
-    //Notifycation
+    // Notifycation
     [Inject]
-    private ISnackbar snackBar { get; set; } 
+    private ISnackbar snackBar { get; set; }
     [Inject]
-    private NavigationManager nav { get; set; } 
-    
-    //Start first
+    private NavigationManager nav { get; set; }
+
+    // Start first
     protected override async Task OnInitializedAsync()
     {
         try
-        {   
-            //Check authentication state
+        {
+            // Check authentication state
             if (await authService.CheckAuthenState()) nav.NavigateTo("/", true);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
 
         }
     }
-
+    
+    #region Load Js google authen  
     [Inject]
     private IJSRuntime js { get; set; }
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -40,20 +41,21 @@ public class AppLoginBase : ComponentBase
             await js.InvokeVoidAsync("googleSingInOnPage", null);
         }
     }
+    #endregion
 
     #region Private to handler with data                             
-    //Login
+    // Login
     private async Task LoginHandler(AppLoginDTO _models)
     {
         try
-        {         
+        {
             await authService.Login(_models);
             snackBar.Add($"Login success.", Severity.Success);
-            
-            //Dừng 3s sau khi chuyển hướng
+
+            // Dừng 3s sau khi chuyển hướng
             Thread.Sleep(TimeSpan.FromSeconds(3));
 
-            //Chuyển về trang chủ
+            // Chuyển về trang chủ
             nav.NavigateTo("/", true);
         }
         catch (Exception ex)
@@ -69,16 +71,16 @@ public class AppLoginBase : ComponentBase
     protected bool _processing = false;
     protected string textResult;
 
-    //Submit
+    // Submit
     protected async void OnValidSubmit(EditContext editContext)
     {
         _processing = true;
-        //Do something
+        // Do something
         await LoginHandler(models);
         StateHasChanged();
     }
 
-    //Clean models
+    // Clean models
     protected async Task CleanForm()
     {
         models = new AppLoginDTO();
@@ -100,7 +102,8 @@ public class AppLoginBase : ComponentBase
             PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
             PasswordInput = InputType.Password;
         }
-        else {
+        else
+        {
             isShowPassword = true;
             PasswordInputIcon = Icons.Material.Filled.Visibility;
             PasswordInput = InputType.Text;
