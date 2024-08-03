@@ -30,25 +30,13 @@
             gap-8: khoản cách giữ các link
             mr-15: item thục vào 15
         --> 
-        <MudItem Class="d-none d-md-flex gap-8 mr-15" >
-            <MudItem>
-                <MudLink Href="/" Underline="Underline.None">Trang chủ</MudLink>
-            </MudItem>
-            <MudItem>
-                <MudLink Href="/check-out" Underline="Underline.None">Đơn hàng</MudLink>
-            </MudItem>
-            <MudItem>
-                <MudLink Href="/list-videos" Underline="Underline.None">Videos</MudLink>
-            </MudItem>
-            <MudItem>
-                <MudLink Href="/pricing" Underline="Underline.None">Giá tiền</MudLink>
-            </MudItem>
-            <MudItem>
-                <MudLink Href="/contact" Underline="Underline.None">Liên hệ</MudLink>
-            </MudItem>
-            <MudItem>
-                <MudLink Href="/about" Underline="Underline.None">Thông tin</MudLink>
-            </MudItem>
+        <MudItem Class="d-none d-md-flex gap-4 justify-end augHover mr-5">
+                <MudLink Href="/" Underline="Underline.None"><MudText Typo="Typo.body1">Trang chủ</MudText></MudLink>
+                <MudLink Href="/check-out" Underline="Underline.None"><MudText Typo="Typo.body1">Đơn hàng</MudText></MudLink>
+                <MudLink Href="/list-videos" Underline="Underline.None"><MudText Typo="Typo.body1">Videos</MudText></MudLink>
+                <MudLink Href="/pricing" Underline="Underline.None"><MudText Typo="Typo.body1">Giá tiền</MudText></MudLink>
+                <MudLink Href="/contact" Underline="Underline.None"><MudText Typo="Typo.body1">Liên hệ</MudText></MudLink>
+                <MudLink Href="/about" Underline="Underline.None"><MudText Typo="Typo.body1">Thông tin</MudText></MudLink>
         </MudItem>
         <!--Dark Mode-->
         <MudButton OnClick="@((e) => DarkLightModeToggle())">

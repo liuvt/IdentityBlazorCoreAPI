@@ -101,19 +101,19 @@
 
                                         <MudItem xs="12">  
                                                 <MudTextField @bind-Value="model.YourPhone" For="@(() => model.YourPhone)" Disabled="@_processing"
-                                                    Counter="15" MaxLength="15" Immediate="true" 
+                                                    Counter="15" MaxLength="15" Immediate="true" Required="true" 
                                                     Label="Số điện thoại" HelperText="Hỗ trợ SĐT: Việt Nam, Malaysia, China. Đầu số: 84, 60, 86, 0)" />
                                         </MudItem>
 
                                         <MudItem xs="12">  
                                             <MudTextField @bind-Value="model.Subject" For="@(() => model.Subject)" Disabled="@_processing"
-                                                Counter="15" MaxLength="15" Immediate="true" 
+                                                Counter="15" MaxLength="15" Immediate="true" Required="true" 
                                                 Label="Tiêu đề" HelperText="Nhập tiêu đề email" />
                                         </MudItem>
 
                                         <MudItem xs="12">
                                             <MudTextField @bind-Value="model.Body" For="@(() => model.Body)" Disabled="@_processing"
-                                                Lines="10" Immediate="true" 
+                                                Lines="10" Immediate="true" Required="true"  
                                                 Label="Nội dung" HelperText="Nội dung email của bạn" />
                                         </MudItem>
                                     </MudGrid>
@@ -124,7 +124,7 @@
                                         
                                     <MudButton StartIcon="@Icons.Material.Filled.Login" ButtonType="ButtonType.Submit" Disabled="@_processing"
                                         Variant="Variant.Filled" Color="Color.Primary" Class="buttonOrMudTabs ml-auto text-end">
-                                            <MudText>Submit</MudText>
+                                            <MudText>Gửi</MudText>
                                     </MudButton>
                                 </MudCardActions>
                             </MudPaper>

@@ -150,17 +150,30 @@ button {
 }
 */
 
-/* Nền trắng mờ giành cho MudMainContent */
+/* Nền cho MudMainContent */
 .augBackground {
     padding-top: 0 !important;
     margin-top: 0 !important;
 }
 
 /* =========================================================================================== */
-
+/* Con trỏ chuột ở FAQ page */
 .augCursorFAQ p {
     font-weight: bold !important;
     cursor: pointer !important;
+}
+
+/* =========================================================================================== */
+/* Navigation hiệu ứng hover */
+.augHover a, .augHover p {
+	line-height: 1.2em;
+    color: #0000;
+    text-shadow: 0 0 #2e00fa, 0 1.2em #1095c1;
+    overflow: hidden;
+    transition: 0.3s;
+}
+.augHover a, .augHover p:hover {
+	text-shadow: 0 -1.2em #2e00fa, 0 0 #1095c1;
 }
 
 /* =========================================================================================== */

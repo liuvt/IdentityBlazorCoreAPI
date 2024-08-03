@@ -34,6 +34,7 @@ public class ContactBase : ComponentBase
     protected async void OnValidSubmit(EditContext editContext)
     {
         await etherealEmailService.Send(model);
+        snackBar.Add($"Đã gửi email.", Severity.Success);
         _processing = true;
         await CleanForm();
         StateHasChanged();

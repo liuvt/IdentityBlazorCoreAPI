@@ -50,7 +50,7 @@ public class AppLoginBase : ComponentBase
         try
         {
             await authService.Login(_models);
-            snackBar.Add($"Login success.", Severity.Success);
+            snackBar.Add($"Đăng nhập thành công.", Severity.Success);
 
             // Dừng 3s sau khi chuyển hướng
             Thread.Sleep(TimeSpan.FromSeconds(3));

@@ -48,10 +48,10 @@ public class AppMeBase : ComponentBase
         var icon = new Icons.Material.Filled();
         var parameters = new DialogParameters<IdentityBlazorCoreAPI.Pages.ComponentDialogs.TemplatingDialog>
         {
-            { x => x.TitleText, "XÓA TÀI KHOẢN" },
+            { x => x.TextTitle, "XÓA TÀI KHOẢN" },
             { x => x.IconTittle, "<path d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z\"/>" },
-            { x => x.ContentText, $"Bạn có đồng ý thực hiện tài khoản {models.Email}? Sau khi xóa, mọi thông tin dữ liệu sẽ không thể phục hồi." },
-            { x => x.ButtonText, "Delete" },
+            { x => x.TextContent, $"Bạn có đồng ý thực hiện tài khoản {models.Email}? Sau khi xóa, mọi thông tin dữ liệu sẽ không thể phục hồi." },
+            { x => x.TextButton, "Delete" },
             { x => x.ColorButton, Color.Error }
         };
 

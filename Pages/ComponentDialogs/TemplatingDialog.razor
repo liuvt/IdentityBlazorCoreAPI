@@ -4,14 +4,14 @@
     <TitleContent>
         <MudItem Class="d-flex">
             <MudIcon Color="@ColorButton" Icon="@IconTittle" Class="mr-2 mt-1" />
-            <MudText Color="@ColorButton" Typo="Typo.h6">@TitleText</MudText>
+            <MudText Color="@ColorButton" Typo="Typo.h6">@TextTitle</MudText>
         </MudItem>
     </TitleContent>
     <DialogContent>
-        <MudText>@ContentText</MudText>
+        <MudText>@TextContent</MudText>
     </DialogContent>
     <DialogActions>
         <MudButton OnClick="Cancel">Cancel</MudButton>
-        <MudButton Color="@ColorButton" Variant="Variant.Filled" ButtonType="ButtonType.Submit" OnClick="Submit">@ButtonText</MudButton>
+        <MudButton Color="@ColorButton" Variant="Variant.Filled" ButtonType="ButtonType.Submit" OnClick="Submit">@TextButton</MudButton>
     </DialogActions>
 </MudDialog>

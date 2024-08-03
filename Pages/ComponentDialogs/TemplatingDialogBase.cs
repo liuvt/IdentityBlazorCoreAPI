@@ -8,17 +8,17 @@ public class TemplatingDialogBase : ComponentBase
     [CascadingParameter] 
     protected MudDialogInstance MudDialog { get; set; }
     [Parameter]
-    public string ContentText { get; set; } //Nội dung
+    public string TextContent { get; set; } //Nội dung
 
     [Parameter]
-    public string ButtonText { get; set; } //Tên button
+    public string TextButton { get; set; } //Tên button
 
     [Parameter]
     public Color ColorButton { get; set; } //Màu button
     [Parameter]
     public string IconTittle { get; set; } //Icon tiêu đề
     [Parameter]
-    public string TitleText { get; set; } //Tiêu đề
+    public string TextTitle { get; set; } //Tiêu đề
     protected void Submit() => MudDialog.Close(DialogResult.Ok(true));
     protected void Cancel() => MudDialog.Cancel();
 }

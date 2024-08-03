@@ -15,6 +15,8 @@ public class EtherealEmail
     [RegularExpression(@"((84|60|86|02|01|0)[1-9]{1})+(([0-9]{8})|([0-9]{9})|([0-9]{10}))", 
                                                     ErrorMessage = "Số điện thoại không hợp lệ.")]
     public string YourPhone { get; set; } = string.Empty;
+    [Required(ErrorMessage = "Tiêu đề không được bỏ trống.")]
     public string Subject { get; set; } = string.Empty;
+    [Required(ErrorMessage = "Nội dung không được bỏ trống.")]
     public string Body { get; set; } = string.Empty;
 }
