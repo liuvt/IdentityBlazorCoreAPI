@@ -39,9 +39,10 @@
                 <MudLink Href="/about" Underline="Underline.None"><MudText Typo="Typo.body1">Thông tin</MudText></MudLink>
         </MudItem>
         <!--Dark Mode-->
-        <MudButton OnClick="@((e) => DarkLightModeToggle())">
-            <MudIcon Icon="@modeIcon" Style="@($"color:{colorIcon}")"/>
-        </MudButton>
+        <MudToggleIconButton Toggled="@_isDarkMode" ToggledChanged="OnToggledChanged"
+                    Icon="@Icons.Material.Outlined.LightMode" Color="@Color.Warning" title=@(_isDarkMode ? "Dark mode" : "Light mode")
+                    ToggledIcon="@Icons.Material.Outlined.DarkMode" ToggledColor="@Color.Default" 
+                    />
         <!-- Infomation Option MudMenu -->
         <LayoutProfiles />
     </MudAppBar>

@@ -13,8 +13,6 @@ public class MainLayoutBase : LayoutComponentBase
     [Inject]
     private IJSRuntime Js { get; set; }
 
-    // Lưu biến isdarkmode vào localstorage theo key
-    private string localStorageDarkMode = "_isDarkMode";
     protected MudTheme _theme = new MudTheme()
     {
         // Thay đổi font mặt định của MudBlazor
@@ -41,11 +39,11 @@ public class MainLayoutBase : LayoutComponentBase
             Secondary = "#E0E0E0", // Secondary tham số Color ít dùng
         },
     };
+
+    // Lưu biến isdarkmode vào localstorage theo key
+    private string localStorageDarkMode = "_isDarkMode";
     // Trang thái mặt định là Light Mode
     protected bool _isDarkMode = false;
-    // Thay đổi Icon darkmode
-    protected string modeIcon => _isDarkMode ? Icons.Material.Outlined.DarkMode : Icons.Material.Outlined.LightMode;
-    protected string colorIcon => _isDarkMode ? "#E0E0E0" : "#FDD835";
 
     // Drawer navigation
     protected bool _drawerOpen = false;
@@ -85,13 +83,13 @@ public class MainLayoutBase : LayoutComponentBase
         }
     }
 
-    // Thay đổi trạng thái Dark mode và Light mode
-    protected async Task DarkLightModeToggle()
+    // Thay đổi trạng thái Dark mode và Light mode. Không dùng @bind_Toggle, sử dụng Toggle and ToggleChanged
+    protected async void OnToggledChanged(bool toggled)
     {
-        _isDarkMode = !_isDarkMode;
+        // Vì không dùng @bind_Toggle nên phải cài đặt Tay
+        _isDarkMode = toggled;
         // Sau khi thay đổi trạng thái lưu vào localstorage
         await Js.SetFromLocalStorage(localStorageDarkMode, Convert.ToString(_isDarkMode));
-        StateHasChanged();
     }
 
     // Trược cảm ứng từ trái sang phải để hiển thị navigation cho mobile và tablet
