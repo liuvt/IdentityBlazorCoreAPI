@@ -168,12 +168,12 @@ button {
 .augHover a, .augHover p {
 	line-height: 1.2em;
     color: #0000;
-    text-shadow: 0 0 #1a0284, 0 1.2em #1095c1;
+    text-shadow: 0 0 rgba(101,133,224,1), 0 1.2em #1095c1;
     overflow: hidden;
     transition: 0.3s;
 }
 .augHover a, .augHover p:hover {
-	text-shadow: 0 -1.2em #1a0284, 0 0 #1095c1;
+	text-shadow: 0 -1.2em rgba(101,133,224,1), 0 0 #1095c1;
 }
 
 /* =========================================================================================== */

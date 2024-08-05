@@ -1,9 +1,6 @@
-using IdentityBlazorCoreAPI.Data.Models;
-using IdentityBlazorCoreAPI.Helpers;
-using IdentityBlazorCoreAPI.Repositories.Interfaces;
 using Microsoft.AspNetCore.Components;
 
-namespace IdentityBlazorCoreAPI.Pages.Bases;
+namespace IdentityBlazorCoreAPI.Pages.Indexs;
 
 public class IndexBase : ComponentBase
 {

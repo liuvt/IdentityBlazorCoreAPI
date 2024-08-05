@@ -2,8 +2,7 @@
 @inherits AppRegisterBase
 <PageTitle>Đăng ký tài khoản - AugCenter</PageTitle>
 
-<MudMainContent Class="augBackground augReFont">
-<MudContainer MaxWidth="MaxWidth.Medium" Class="augImg pa-5">
+<MudContainer MaxWidth="MaxWidth.Medium" Class="augReFont augImg pa-5">
     <AuthorizeView Context="authContext">
     <Authorized>
         <MessageAuthorize Title="Bạn đã đăng nhập" Link="/" TitleLink="Quay lại trang chủ!" />
@@ -86,4 +85,3 @@
     </NotAuthorized>
 </AuthorizeView>
 </MudContainer>
-</MudMainContent>

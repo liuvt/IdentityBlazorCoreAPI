@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 
-namespace IdentityBlazorCoreAPI.Pages.ComponentDialogs;
+namespace IdentityBlazorCoreAPI.Pages.Displays;
 
 public class TemplatingDialogBase : ComponentBase
 {
     [CascadingParameter] 
-    protected MudDialogInstance MudDialog { get; set; }
+    public MudDialogInstance MudDialog { get; set; }
     [Parameter]
     public string TextContent { get; set; } //Nội dung
 

@@ -2,10 +2,9 @@
 @inherits ContactBase
 
 <PageTitle>Liên hệ - AugCenter</PageTitle>
-<MudMainContent Class="augBackground">
-    <MudContainer MaxWidth="MaxWidth.Large" Class="augImg mt-5">
-        <MudGrid>
-            <MudItem sm="12" md="6">
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-5">
+    <MudGrid Class="augImg">
+        <MudItem sm="12" md="6">
                 <MudItem>
                     <MudText Typo="Typo.h3" Color="Color.Primary">Liên lạc</MudText>
                     <MudText Class="mt-3">Đã thuyết phục chưa? Hãy hỏi chi tiết, đừng lưu bất kỳ câu hỏi nào!
@@ -85,10 +84,12 @@
             <MudItem sm="12" md="6">
                 <img width="100%" height="100%" src="imgs/photos/contact1.png" />
             </MudItem>
-        </MudGrid>
-                <EditForm Model="@model" OnValidSubmit="OnValidSubmit" Enhance>
-                <DataAnnotationsValidator />
-                    <MudGrid Class="pa-3 d-flex justify-center">
+    </MudGrid>
+
+    <!-- EditForm send email-->
+    <EditForm Model="@model" OnValidSubmit="OnValidSubmit" Enhance>
+    <DataAnnotationsValidator />
+        <MudGrid Class="pa-3 d-flex justify-center">
                         <MudItem sm="12" md="7">
                             <MudPaper Elevation="1" Class="pa-3">
                                 <MudCardContent>
@@ -129,7 +130,6 @@
                                 </MudCardActions>
                             </MudPaper>
                         </MudItem>
-                    </MudGrid>
-                </EditForm>
-    </MudContainer>
-</MudMainContent>
+        </MudGrid>
+    </EditForm>
+</MudContainer>

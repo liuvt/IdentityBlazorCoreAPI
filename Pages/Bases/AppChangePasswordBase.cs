@@ -4,7 +4,7 @@ using IdentityBlazorCoreAPI.Data.Models;
 using MudBlazor;
 using Microsoft.AspNetCore.Components.Forms;
 using IdentityBlazorCoreAPI.Data.Entities;
-using IdentityBlazorCoreAPI.Pages.ComponentDialogs;
+using IdentityBlazorCoreAPI.Pages.Displays;
 
 namespace IdentityBlazorCoreAPI.Pages.Bases;
 

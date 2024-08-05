@@ -4,6 +4,7 @@ using IdentityBlazorCoreAPI.Data.Models;
 using MudBlazor;
 using Microsoft.AspNetCore.Components.Forms;
 using IdentityBlazorCoreAPI.Data.Entities;
+using IdentityBlazorCoreAPI.Pages.Displays;
 
 namespace IdentityBlazorCoreAPI.Pages.Bases;
 
@@ -46,7 +47,7 @@ public class AppMeBase : ComponentBase
     protected async Task DeleteMe_Dialag()
     {
         var icon = new Icons.Material.Filled();
-        var parameters = new DialogParameters<IdentityBlazorCoreAPI.Pages.ComponentDialogs.TemplatingDialog>
+        var parameters = new DialogParameters<TemplatingDialog>
         {
             { x => x.TextTitle, "XÓA TÀI KHOẢN" },
             { x => x.IconTittle, "<path d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z\"/>" },
@@ -57,7 +58,7 @@ public class AppMeBase : ComponentBase
 
         var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.ExtraSmall };
 
-        var dialog = await dialogService.ShowAsync<IdentityBlazorCoreAPI.Pages.ComponentDialogs.TemplatingDialog>("", parameters, options);
+        var dialog = await dialogService.ShowAsync<TemplatingDialog>("", parameters, options);
         var result = await dialog.Result;
         try
         {

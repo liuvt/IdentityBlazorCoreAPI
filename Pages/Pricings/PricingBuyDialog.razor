@@ -1,0 +1,110 @@
+<MudDialog Class="pa-3">
+    <TitleContent>
+        <MudText Typo="Typo.h6" Color="Color.Success">
+            <MudIcon Icon="@Icons.Material.Filled.AddCircle" Class="mr-3" />Mua gói: @price
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit" Enhance>
+        <DataAnnotationsValidator/>
+            <MudGrid Class="pa-3">
+                <MudItem sm="12" md="7">
+                    <MudCardContent>
+                    <MudPaper Elevation="1" Class="pa-3">
+                        <MudGrid>
+                            <MudItem xs="12">  
+                                <MudTextField @bind-Value="model.Body" For="@(() => model.Body)"
+                                    Counter="30" MaxLength="30" Immediate="true" Required="true" 
+                                    Label="Tên" HelperText="Nhập tên của bạn" />
+                            </MudItem>
+                            <MudItem xs="12">
+                                <MudTextField @bind-Value="model.From" For="@(() => model.From)"
+                                    Counter="30" MaxLength="30" Immediate="true" Required="true" 
+                                    Label="Email người dùng" HelperText="Hỗ trợ Email: Gmail, Yahoo, Hotmail, Outlook,.." />
+                            </MudItem>
+                            <MudItem xs="12">  
+                                <MudTextField @bind-Value="model.YourPhone" For="@(() => model.YourPhone)"
+                                    Counter="15" MaxLength="15" Immediate="true" 
+                                    Label="Số điện thoại" HelperText="Hỗ trợ SĐT: Việt Nam, Malaysia, China. Đầu số: 84, 60, 86, 0)" />
+                            </MudItem>
+                        </MudGrid>
+                    </MudPaper>
+                    </MudCardContent>
+                </MudItem>
+                <MudItem sm="12" md="5">
+                    <MudItem Class="pa-3">
+                        <MudText Color="@Color.Error" Typo="Typo.subtitle2">
+                            <ValidationSummary />
+                        </MudText>
+                        <MudText Color="@Color.Error" Typo="Typo.subtitle2">@textResult</MudText>
+                    </MudItem>
+                </MudItem>
+            </MudGrid>
+        </EditForm>
+    </DialogContent>
+    <DialogActions>
+        <MudIconButton Color="Color.Error" Icon="@Icons.Material.Filled.Autorenew" OnClick="@(() => CleanForm())" />
+        <MudSpacer />
+        <MudButton Color="Color.Error" OnClick="Cancel">Thoát</MudButton>
+            <MudButton Color="Color.Primary" ButtonType="ButtonType.Submit" 
+                Disabled="@formInvalid" OnClick="(() => Submit())">Đặt mua
+            </MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code{
+
+    // Dữ liệu trả về sau khi submit: user đầu ra dữ liệu
+    protected EtherealEmail model {get; set;} = new EtherealEmail();
+    [Parameter] public string price {get; set;}
+    // Khai báo dialog
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    // Kiểm tra validation các mudtextfield có phù hợp hay không, nếu không nút submit hiden cho đến khi phù hợp yêu cầu
+    protected bool formInvalid = true;
+    protected string textResult;
+    // Khai báo nội dung editform
+    protected EditContext editContext;
+    // Dữ liệu được submit từ editform
+
+    protected async Task Submit()
+    {
+        MudDialog.Close(DialogResult.Ok(model));
+    }
+    protected void Cancel() => MudDialog.Cancel();
+
+    protected void CleanForm()
+    {
+        model = new EtherealEmail();
+        editContext = new EditContext(model);
+        StateHasChanged(); 
+    }
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(model);
+        editContext.OnFieldChanged += HandleFieldChanged;
+    }
+
+    protected void HandleFieldChanged(object sender, FieldChangedEventArgs e)
+    {
+        
+        // Format lại dữ liệu để gửi mail
+        model.Subject = price;
+
+        // Kiểm tra xem các điều kiện trên field đã phù hợp hay chưa
+        formInvalid = !editContext.Validate();
+        StateHasChanged();
+    }
+
+    protected void HandleValidSubmit()
+    {
+        // Process the valid form
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        editContext.OnFieldChanged -= HandleFieldChanged;
+    }
+
+}

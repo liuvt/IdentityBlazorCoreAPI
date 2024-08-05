@@ -1,35 +1,50 @@
 @page "/pricing"
+@inherits PricingBase
 
-<MudContainer Class="mt-16" MaxWidth="MaxWidth.Medium">
-    <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Pricing</MudText>
-    <MudText Align="Align.Center">Some long pricing text should go here maybe? who knows what text you would want here, i guess i cant fill it in for you.</MudText>
+<PageTitle>Mã nguồn - AugCenter</PageTitle>
+<MudContainer Class="mt-5">
+    <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Giá gói dịch vụ</MudText>
+    <MudText Align="Align.Center">
+        August Center cung cấp các gói cho mã nguồn website tương ứng. Bạn đang có nhu cầu cho website của mình là gì?
+        Nếu trong gói dịch vụ chúng tôi cung cấp không có, hãy <a href="/contact"><MudText Inline="true" Color="Color.Primary">
+        liên hệ ngay với chúng tôi</MudText></a> và nói ra nhu cầu của bạn.
+    </MudText>
     <MudGrid Class="mt-8">
         <MudItem xs="12" sm="6" md="4">
             <MudCard Elevation="25" Class="rounded-lg pb-4">
                 <MudCardHeader>
                     <CardHeaderContent>
-                        <MudText Typo="Typo.h5" Align="Align.Center">Beginner</MudText>
+                        <MudText Typo="Typo.h5" Align="Align.Center">Cơ bản</MudText>
                     </CardHeaderContent>
                 </MudCardHeader>
                 <MudCardContent>
                     <div class="d-flex justify-center">
-                        <MudText Typo="Typo.h3">$5</MudText>
-                        <MudText Typo="Typo.h5" Class="ml-1 mt-5" Color="Color.Error">/Monthly</MudText>
+                        <MudText Typo="Typo.h3">5 </MudText>
+                        <MudText Typo="Typo.h5" Class="ml-1 mt-5" Color="Color.Error">Triệu</MudText>
                     </div>
-                    <MudList Class="mx-auto mt-4" Style="width:300px;">
-                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
-                            Unlimited something
+                    <MudList Class="mx-auto mt-4" Style="max-width:350px;">
+                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp" Class="d-flex mr-5">
+                                Mã nguồn code: Blazor Server Core API .NET 8.0, My SQL server
                         </MudListItem>
                         <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
-                            10 something
+                                Bảo hành trong 3 tháng
                         </MudListItem>
                         <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
-                            No something
+                                Hổ trợ thiết kế trong thời gian bảo hành
+                        </MudListItem>
+                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
+                                Thiết lập Node nhận Email phản hồi
+                        </MudListItem>
+                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
+                                Hổ trợ kế nối với API Youtube
+                        </MudListItem>
+                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
+                                Tính phí dịch vụ theo yêu cầu sau bảo hành
                         </MudListItem>
                     </MudList>
                 </MudCardContent>
                 <MudCardActions Class="d-flex justify-center">
-                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Style="width:50%;">Start Now</MudButton>
+                    <MudButton OnClick="@(() => BuyDialog(BUY_BASIC))" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Style="width:50%;">Đặt mua</MudButton>
                 </MudCardActions>
             </MudCard>
         </MudItem>
@@ -37,28 +52,37 @@
             <MudCard Elevation="25" Class="rounded-lg pb-4">
                 <MudCardHeader>
                     <CardHeaderContent>
-                        <MudText Typo="Typo.h5" Align="Align.Center">Starter</MudText>
+                        <MudText Typo="Typo.h5" Align="Align.Center">Trung bình</MudText>
                     </CardHeaderContent>
                 </MudCardHeader>
                 <MudCardContent>
                     <div class="d-flex justify-center">
-                        <MudText Typo="Typo.h3">$10</MudText>
-                        <MudText Typo="Typo.h5" Class="ml-1 mt-5" Color="Color.Error">/Monthly</MudText>
+                        <MudText Typo="Typo.h3">10 </MudText>
+                        <MudText Typo="Typo.h5" Class="ml-1 mt-5" Color="Color.Error">Triệu</MudText>
                     </div>
-                    <MudList Class="mx-auto mt-4" Style="width:300px;">
-                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
-                            Unlimited something
+                    <MudList Class="mx-auto mt-4" Style="max-width:350px;">
+                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp" Class="d-flex mr-5">
+                                Mã nguồn code: Blazor Server Core API .NET 8.0, My SQL server
                         </MudListItem>
                         <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
-                            10 something
+                                Bảo hành 6 tháng
                         </MudListItem>
                         <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
-                            No something
+                                Bao gồm các dịch vụ gói Cơ bản và các dịch vụ khác
+                        </MudListItem>
+                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
+                                Hổ trợ tải mã nguồn lên hosting (miễn phí 12tháng)
+                        </MudListItem>
+                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
+                                Hổ trợ tìm tên miền website
+                        </MudListItem>
+                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
+                                Tính phí dịch vụ theo yêu cầu sau bảo hành
                         </MudListItem>
                     </MudList>
                 </MudCardContent>
                 <MudCardActions Class="d-flex justify-center">
-                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Style="width:50%;">Start Now</MudButton>
+                    <MudButton OnClick="@(() => BuyDialog(BUY_MEDIUM))" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Style="width:50%;">Đặt mua</MudButton>
                 </MudCardActions>
             </MudCard>
         </MudItem>
@@ -66,28 +90,37 @@
             <MudCard Elevation="25" Class="rounded-lg pb-4">
                 <MudCardHeader>
                     <CardHeaderContent>
-                        <MudText Typo="Typo.h5" Align="Align.Center">Professional</MudText>
+                        <MudText Typo="Typo.h5" Align="Align.Center">Nâng cao</MudText>
                     </CardHeaderContent>
                 </MudCardHeader>
                 <MudCardContent>
                     <div class="d-flex justify-center">
-                        <MudText Typo="Typo.h3">$15</MudText>
-                        <MudText Typo="Typo.h5" Class="ml-1 mt-5" Color="Color.Error">/Monthly</MudText>
+                        <MudText Typo="Typo.h3">15 </MudText>
+                        <MudText Typo="Typo.h5" Class="ml-1 mt-5" Color="Color.Error">Triệu</MudText>
                     </div>
-                    <MudList Class="mx-auto mt-4" Style="width:300px;">
-                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
-                            Unlimited something
+                    <MudList Class="mx-auto mt-4" Style="max-width:350px;">
+                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp" Class="d-flex mr-5">
+                                Mã nguồn code: Blazor Server Core API .NET 8.0, My SQL server
                         </MudListItem>
                         <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
-                            10 something
+                                Bảo hành 12 tháng
                         </MudListItem>
                         <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
-                            No something
+                                Bao gồm các dịch vụ gói Cơ bản và Trung bình
+                        </MudListItem>
+                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
+                                Hổ trợ tải mã nguồn lên hosting (miễn phí 24tháng)
+                        </MudListItem>
+                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
+                                Hổ trợ tìm tên miền website
+                        </MudListItem>
+                        <MudListItem Icon="@Icons.Material.Filled.LiveHelp">
+                                Tính phí dịch vụ theo yêu cầu sau bảo hành
                         </MudListItem>
                     </MudList>
                 </MudCardContent>
                 <MudCardActions Class="d-flex justify-center">
-                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Style="width:50%;">Start Now</MudButton>
+                    <MudButton OnClick="@(() => BuyDialog(BUY_ADVANCED))" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Style="width:50%;">Đặt mua</MudButton>
                 </MudCardActions>
             </MudCard>
         </MudItem>
