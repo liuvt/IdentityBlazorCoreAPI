@@ -55,7 +55,6 @@ public class AppChangePasswordBase : ComponentBase
     }
     #endregion
 
-
     #region EditFrom razor
     protected AppChangePasswordDTO models = new AppChangePasswordDTO();
     protected bool _processing = false;
@@ -72,7 +71,6 @@ public class AppChangePasswordBase : ComponentBase
     //Clean models
     protected async Task CleanForm() => models = new AppChangePasswordDTO();
     #endregion
-
 
     #region MudTextField Password
     protected bool isShowPassword = false;

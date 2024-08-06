@@ -1,0 +1,112 @@
+@page "/list-videos/watch/{id}"
+
+<PageTitle>Xem video - AugCenter</PageTitle>
+
+@if (message != null)
+{
+    <MessageError Title="@message" Link="/" TitleLink="Quay lại trang chủ!"/>
+}
+else if(videos == null)
+{
+    <MudProgressCircular Color="Color.Secondary" Indeterminate="true" />
+}
+else
+{
+    <MudMainContent Class="augBackground">
+    <MudContainer MaxWidth="MaxWidth.Large" Class="augImg mt-5">
+        <MudGrid>
+            <MudItem sm="12" md="8">
+                <!--iframe trình chiếu video-->
+                <MudItem Class="mt-3">
+                    <MudPaper Class="d-flex align-center rounded-lg" Elevation="1" Style="height:450px">
+                        <iframe width="100%" height="100%" class="rounded-lg"
+                                src="https://www.youtube.com/embed/?listType=playlist&list=@(id)&index=@indexVideo" 
+                                frameborder="0" allowfullscreen>
+                        </iframe>
+                    </MudPaper>
+                </MudItem>
+                <!--Nội dung video: tiêu đề, mô tả-->
+                <MudItem Class="mt-3">
+                    <MudText Typo="Typo.h6">@video.VideoTitle</MudText>
+                </MudItem>
+                <MudItem Class="mt-3">
+                    <MudPaper Class="pa-2 rounded-lg" Elevation="1" >
+                        <MudText Typo="Typo.body2">@video.VideoDescription</MudText>
+                    </MudPaper>
+                </MudItem>
+            </MudItem>
+            <MudItem sm="12" md="4">
+                <MudPaper Elevation="4">
+                    <!--Tiêu đề listvideo-->
+                    <MudPaper Elevation="4" Class="pa-3 mt-3">
+                        <MudText Typo="Typo.h6">@playListItem.PlayListTitle</MudText>
+                        <MudText Typo="Typo.body2">Total video: @videos.Count()</MudText>
+                    </MudPaper>
+                    <!--Ds video trong listvideo-->
+                    <MudPaper Elevation="4" MaxHeight="450px" Class="mt-3 d-flex flex-wrap overflow-auto">
+                        @foreach(var (value, index) in videos.Select((v, i)=>(v, i)))
+                        {
+                            <MudPaper Class="d-flex flex-wrap mb-2 durk7HoverLink" Elevation="4" >
+                                <MudLink OnClick="@(() => selectVideoIndex(index, value.VideoId))" Underline="Underline.None">
+                                    <MudGrid Class="pa-2 d-flex align-center">
+                                        <MudItem sm="12" md="4">
+                                            <img src="@value.VideoThumbnail" width="100%" height="100%"/>
+                                        </MudItem>
+                                        <MudItem sm="12" md="8">
+                                            <MudText Typo="Typo.body1">@value.VideoTitle</MudText>
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudLink>
+                            </MudPaper>
+                        }
+                    </MudPaper>
+                </MudPaper>
+            </MudItem>
+        </MudGrid>
+    </MudContainer>
+    </MudMainContent>
+}
+
+@code{
+    [Parameter] public string id { get; set; }
+    [Inject] private IYoutubeService youtubeService {get; set;}
+    // Ds video được lây ra từ PlayListItem
+    protected IEnumerable<YoutubeVideo> videos { get; set; } = new List<YoutubeVideo>();
+    // Video hiển thị
+    protected YoutubeVideo video { get; set; } = new YoutubeVideo();
+    // PlayListItem có chưa ds Video
+    protected YoutubePlayListItem playListItem { get; set; } = new YoutubePlayListItem();
+    // Thông báo lỗi khi lần đầu load trang
+    protected string message { get; set; }
+    // Xem theo ds video và index là vị trí video trong ds
+    protected int indexVideo;
+    // Start first
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            // Gọi api lấy ds video của một playlist thông qua ID của playlist
+            playListItem = await youtubeService.GetPlaylistItems(id);
+            
+            // Lấy ds video ra từ playlistItem
+            videos = playListItem.Videos.ToList();
+
+            // Khi load trang lần đầu: lấy vị trí index của video đầu tiên để hiển thị trên iframe, thông tin tên và mô tả video
+            await selectVideoIndex(0, videos.Select(e => e.VideoId).FirstOrDefault());
+        }
+        catch (Exception ex)
+        {
+            message = $"Xin lỗi, trang này không tồn tại. Error: {ex.Message}";
+        }
+    }
+
+    // Click vào ds video trong listvideo
+    protected async Task selectVideoIndex(int index, string VideoId)
+    {
+        // Vì index trong listvideo chạy từ 0 đến n, do đó cần +1 để load video tương ứng trong iframe
+        indexVideo = index+1;
+        // Tải lại nội dung của video: tên video và mô tả video
+        video = videos.Where(e => e.VideoId == VideoId).FirstOrDefault();
+        StateHasChanged();
+    }
+}

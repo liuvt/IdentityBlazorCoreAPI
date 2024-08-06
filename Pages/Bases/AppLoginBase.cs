@@ -6,18 +6,14 @@ using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
 
 namespace IdentityBlazorCoreAPI.Pages.Bases;
-
 public class AppLoginBase : ComponentBase
 {
     [Inject]
     private IAuthService authService { get; set; }
-    // Notifycation
     [Inject]
     private ISnackbar snackBar { get; set; }
     [Inject]
     private NavigationManager nav { get; set; }
-
-    // Start first
     protected override async Task OnInitializedAsync()
     {
         try
