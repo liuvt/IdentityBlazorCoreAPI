@@ -93,7 +93,8 @@ public class YoutubeServer : IYoutubeServer
                 VideoTitle = item.Snippet.Title,
                 VideoThumbnail = (item.Snippet.Title == "Deleted video" || item.Snippet.Title == "Private video")
                                     ? string.Empty : item.Snippet.Thumbnails.Maxres.Url,
-                VideoDescription = item.Snippet.Description,
+                VideoDescription = (item.Snippet.Description == string.Empty || item.Snippet.Description == null)
+                                    ? item.Snippet.Title : item.Snippet.Description, 
                 VideoPublishedAt = item.Snippet.PublishedAtDateTimeOffset,
             });
 
@@ -102,7 +103,8 @@ public class YoutubeServer : IYoutubeServer
             {
                 PlayListId = playList.PlayListId,
                 PlayListTitle = playList.PlayListTitle,
-                Videos = listVideos.Where(v => v.VideoThumbnail != string.Empty).ToList()
+                // Lấy video có Thumbnail nếu không tức video đã bị xóa
+                Videos = listVideos.Where(v => v.VideoThumbnail != string.Empty).ToList() 
             };
 
             return playListItems;

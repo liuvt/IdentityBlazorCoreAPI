@@ -1,0 +1,66 @@
+@page "/list-videos/watch/{listId}"
+@inherits VideosDetailBase
+
+<PageTitle>Xem video - AugCenter</PageTitle>
+
+@if (message != null)
+{
+    <MessageError Title="@message" Link="/" TitleLink="Quay lại trang chủ!"/>
+}
+else
+{
+    <MudContainer MaxWidth="MaxWidth.Large" Class="augImg mt-5">
+        <MudGrid>
+            <MudItem sm="12" md="8">
+                    <!--iframe trình chiếu video: để loop video cần tạo playlist riêng cho nó-->
+                    <MudItem Class="mt-3">
+                        <MudPaper Class="d-flex align-center rounded-lg" Elevation="1" Style="height:450px">
+                            <iframe width="100%" height="100%" class="rounded-lg"
+                                    src="https://www.youtube.com/embed/@(video.VideoId)?autoplay=1&loop=1&playlist=@(video.VideoId)"
+                                    frameborder="0" allowfullscreen allow="autoplay;">
+                            </iframe>
+                        </MudPaper>
+                    </MudItem>
+                    <!--Nội dung video: tiêu đề, mô tả-->
+                    <MudItem Class="mt-3">
+                        <MudText Typo="Typo.h6">@video.VideoTitle</MudText>
+                    </MudItem>
+                    <MudItem Class="mt-3">
+                        <MudPaper Class="pa-2 rounded-lg" Elevation="1" >
+                            <MudText Typo="Typo.body2">@video.VideoDescription</MudText>
+                        </MudPaper>
+                    </MudItem>
+            </MudItem>
+            <MudItem sm="12" md="4">
+                <MudPaper Elevation="4">
+                    <!--Tiêu đề listvideo-->
+                    <MudPaper Elevation="4" Class="pa-3 mt-3">
+                        <MudText Typo="Typo.h6">@playListItem.PlayListTitle</MudText>
+                        <MudText Typo="Typo.body2">Total video: @videos.Count()</MudText>
+                    </MudPaper>
+                    <!--Ds video trong listvideo-->
+                    <MudPaper Elevation="4" MaxHeight="450px" Class="mt-3 d-flex flex-wrap overflow-auto">
+                        @foreach(var item in videos)
+                        {
+                            <MudPaper Class="d-flex flex-wrap mb-2 durk7HoverLink" Elevation="4" >
+                                <MudLink OnClick="@(() => selectVideo(item))" Underline="Underline.None">
+                                    <MudGrid Class="pa-2 d-flex align-center">
+                                        <MudItem sm="12" md="4">
+                                            <img src="@item.VideoThumbnail" width="100%" height="100%"/>
+                                        </MudItem>
+                                        <MudItem sm="12" md="8">
+                                            <MudText Typo="Typo.body2">@item.VideoTitle</MudText>
+                                            <MudText Typo="Typo.caption" Color="Color.Success">
+                                                @(item.VideoPublishedAt.Value.Date.ToShortDateString())
+                                            </MudText>
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudLink>
+                            </MudPaper>
+                        }
+                    </MudPaper>
+                </MudPaper>
+            </MudItem>
+        </MudGrid>
+    </MudContainer>
+}
