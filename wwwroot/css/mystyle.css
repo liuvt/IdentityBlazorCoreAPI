@@ -13,9 +13,26 @@
 
 /* =========================================================================================== */
 /*Maincontent in Index.razor*/
-.augBackgroundImg {
-    background: url(../imgs/photos/bg1.jpg) no-repeat center fixed !important;
+.augBackgroundIndexImg {
+    background: url(../imgs/photos/index-background.jpg) no-repeat center fixed !important;
     background-size: cover !important;
+}
+
+/*Maincontent in Authentication.razor*/
+.augBackgroundAuthenticationImg {
+    background: url(../imgs/photos/authentication-background.jpg) no-repeat center fixed !important;
+    background-size: cover !important;
+    opacity: 1.0;
+    filter: alpha(opacity=100);
+}
+
+/*Container in Authentication.razor*/
+.augContainer {
+    backdrop-filter: blur(5px);
+}
+
+.augBorder {
+    border: 2px solid white;
 }
 
 /* =========================================================================================== */

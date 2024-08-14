@@ -1,7 +1,7 @@
 ﻿<CascadingAuthenticationState>
     <Router AppAssembly="@typeof(App).Assembly">
         <Found Context="routeData">
-            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(AugMainLayout)">
                 <NotAuthorized>
                     <PageTitle>Không có quyền truy cập!</PageTitle>
                     <MessageError Title="Xin lỗi, bạn không có quyền truy cập" Link="/login" TitleLink="Đăng nhập ngay!"/>
@@ -14,7 +14,7 @@
         </Found>
         <NotFound>
             <PageTitle>Trang không tồn tại!</PageTitle>
-            <LayoutView Layout="@typeof(MainLayout)">
+            <LayoutView Layout="@typeof(AugMainLayout)">
                 <MessageError Title="Xin lỗi, trang này không tồn tại" Link="/" TitleLink="Quay lại trang chủ!"/>
             </LayoutView>
         </NotFound>

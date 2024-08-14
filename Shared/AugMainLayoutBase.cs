@@ -5,8 +5,7 @@ using MudBlazor;
 using Microsoft.JSInterop;
 
 namespace IdentityBlazorCoreAPI.Shared;
-
-public class MainLayoutBase : LayoutComponentBase
+public class AugMainLayoutBase : LayoutComponentBase
 {
     [Inject]
     private IAuthService authService { get; set; }

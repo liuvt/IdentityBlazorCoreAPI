@@ -1,5 +1,5 @@
 ﻿@using MudBlazor
-@inherits MainLayoutBase
+@inherits AugMainLayoutBase
 
 <MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="@_theme"/>
 <MudSnackbarProvider />
@@ -33,7 +33,7 @@
         <MudItem Class="d-none d-md-flex gap-4 justify-end augHover mr-5">
                 <MudLink Href="/" Underline="Underline.None"><MudText Typo="Typo.body1">Trang chủ</MudText></MudLink>
                 <MudLink Href="/check-out" Underline="Underline.None"><MudText Typo="Typo.body1">Đơn hàng</MudText></MudLink>
-                <MudLink Href="/list-videos" Underline="Underline.None"><MudText Typo="Typo.body1">Videos</MudText></MudLink>
+                <MudLink Href="/videos" Underline="Underline.None"><MudText Typo="Typo.body1">Videos</MudText></MudLink>
                 <MudLink Href="/pricing" Underline="Underline.None"><MudText Typo="Typo.body1">Dịch vụ</MudText></MudLink>
                 <MudLink Href="/contact" Underline="Underline.None"><MudText Typo="Typo.body1">Liên hệ</MudText></MudLink>
                 <MudLink Href="/about" Underline="Underline.None"><MudText Typo="Typo.body1">Thông tin</MudText></MudLink>
@@ -44,13 +44,13 @@
                     ToggledIcon="@Icons.Material.Outlined.DarkMode" ToggledColor="@Color.Default" 
                     />
         <!-- Infomation Option MudMenu -->
-        <LayoutProfiles />
+        <AugUserProfile />
     </MudAppBar>
     <!-- For navigation menu-->
      <MudDrawer @bind-Open="@_drawerOpen" Width="@width" Height="@height" 
             Style="@($"color:{Colors.Shades.White}; background:{Colors.Shades.Black};")"
             Anchor="@anchor" Elevation="1" Variant="@DrawerVariant.Temporary">
-        <NavMenu />
+        <AugNavMenu />
     </MudDrawer>
     <!--Mobile trược trên mọi điểm ở Body để show navigation menu-->
     <MudSwipeArea OnSwipeEnd="@OnSwipeEnd" Style="width: 100%;">
@@ -59,7 +59,7 @@
             @Body
         </MudMainContent>
         <!--Footer-->
-        <FooterLayout />
+        <AugMainFooter />
         <MudScrollToTop>
                 <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.KeyboardArrowUp" />
         </MudScrollToTop>

@@ -1,8 +1,8 @@
-@inherits ComponentPlayListsBase
+@inherits VideosIndexPageComponentBase
 
-@if(playLists == null)
+@if (message != null)
 {
-    <MudProgressCircular Color="Color.Secondary" Indeterminate="true" />
+    <MessageError Title="@message" Link="/" TitleLink="Quay lại trang chủ!"/>
 }
 else
 {
