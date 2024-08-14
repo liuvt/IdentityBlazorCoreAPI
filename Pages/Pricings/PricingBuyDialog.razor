@@ -7,10 +7,9 @@
     <DialogContent>
         <EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit" Enhance>
         <DataAnnotationsValidator/>
-            <MudGrid Class="pa-3">
+            <MudGrid>
                 <MudItem sm="12" md="7">
                     <MudCardContent>
-                    <MudPaper Elevation="1" Class="pa-3">
                         <MudGrid>
                             <MudItem xs="12">  
                                 <MudTextField @bind-Value="model.Body" For="@(() => model.Body)"
@@ -28,7 +27,6 @@
                                     Label="Số điện thoại" HelperText="Hỗ trợ SĐT: Việt Nam, Malaysia, China. Đầu số: 84, 60, 86, 0)" />
                             </MudItem>
                         </MudGrid>
-                    </MudPaper>
                     </MudCardContent>
                 </MudItem>
                 <MudItem sm="12" md="5">
