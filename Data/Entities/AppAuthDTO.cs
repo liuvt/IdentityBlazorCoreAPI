@@ -18,13 +18,13 @@ public class AppLoginDTO
 }
 
 //Register
-public partial class AppRegisterDTO
+public class AppRegisterDTO
 {
     [Required(ErrorMessage = "Email không được bỏ trống.")]
     [EmailAddress(ErrorMessage = "Email không hợp lệ.")]
     //Hổ trợ: gmail|homail|yahoo|viettel|outlook|skyper
     [RegularExpression(@"([a-zA-Z0-9_.-]+)@(gmail|homail|yahoo|viettel|outlook|skyper).([a-zA-Z]{2,4}|[0-9]{1,3})?.([a-zA-Z]{2,4}|[0-9]{1,3})"
-        , ErrorMessage = "Email hổ trợ: gmail, outlook, homail, yahoo, viettel, skyper.")]
+        , ErrorMessage = "Hổ trợ: gmail, outlook, homail, yahoo, viettel, skyper.")]
     public string Email { get; set; } = string.Empty;
 
     
@@ -43,7 +43,7 @@ public partial class AppRegisterDTO
     [Required(ErrorMessage = "Mật khẩu không được bỏ trống.")]
     //Mật khẩu yêu cầu: 8-15 ký tự, 1 ký tự đặt biệt (!,#,$,%,..), 1 ký tự viết hoa, 1 chữ số. Ví dụ: Abc!1234
     [RegularExpression("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\\]*+\\/|!\"£$%^&*()#[@~'?><,.=_-]).{8,15}$"
-        , ErrorMessage = "Mật khẩu yêu cầu: 8-15 ký tự, 1 ký tự đặt biệt (!,#,$,%,..), 1 ký tự viết hoa, 1 chữ số. Ví dụ: Abc!1234.")]
+        , ErrorMessage = "Yêu cầu: 8-15 ký tự, 1 ký tự đặt biệt (!,#,$,%,..), 1 ký tự viết hoa, 1 chữ số. Ví dụ: Abc!1234.")]
     public string Password { get; set; } = string.Empty;
 
     
@@ -52,7 +52,7 @@ public partial class AppRegisterDTO
 }
 
 //Update
-public partial class AppEditDTO
+public class AppEditDTO
 {
     [Required(ErrorMessage = "Họ không được bỏ trống.")]
     public string FirstName { get; set; } = string.Empty;
@@ -77,7 +77,7 @@ public partial class AppEditDTO
 
 
 //Change password
-public partial class AppChangePasswordDTO
+public class AppChangePasswordDTO
 {
     [Required(ErrorMessage = "Không được bỏ trống.")]
     public string CurrentPassword { get; set; } = string.Empty;
@@ -85,7 +85,7 @@ public partial class AppChangePasswordDTO
     [Required(ErrorMessage = "Mật khẩu không được bỏ trống.")]
     //Mật khẩu yêu cầu: 8-15 ký tự, 1 ký tự đặt biệt (!,#,$,%,..), 1 ký tự viết hoa, 1 chữ số. Ví dụ: Abc!1234
     [RegularExpression("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\\]*+\\/|!\"£$%^&*()#[@~'?><,.=_-]).{8,15}$"
-        , ErrorMessage = "Mật khẩu yêu cầu: 8-15 ký tự, 1 ký tự đặt biệt (!,#,$,%,..), 1 ký tự viết hoa, 1 chữ số. Ví dụ: Abc!1234.")]
+        , ErrorMessage = "Yêu cầu: 8-15 ký tự, 1 ký tự đặt biệt (!,#,$,%,..), 1 ký tự viết hoa, 1 chữ số. Ví dụ: Abc!1234.")]
     public string Password { get; set; } = string.Empty;
 
     [Compare(nameof(Password), ErrorMessage = "Nhập lại mật khẩu không khớp.")]

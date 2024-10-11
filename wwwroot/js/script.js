@@ -53,3 +53,12 @@ window.downloadFileFromStream = async (fileName, content) => {
   anchorElement.remove();
   URL.revokeObjectURL(url);
 }
+
+// Kiểm tra trạng thái load của Iframe và trả về nội dung dữ liệu Youtube VideoId
+window.IframeOnLoad = async () => {
+  // Lấy src của Iframe
+  var src = document.getElementById("iframe_youtube").src;
+  var indexVideo = src.split('=',4)[3];
+  console.log("indexVideo: " + indexVideo );
+  return indexVideo;
+}
